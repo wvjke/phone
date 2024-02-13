@@ -1,0 +1,10 @@
+<article class="styletile content container-full">
+  {{ page.content }}
+  <section class="content container">
+    <div class="col-12 col-md-6 offset-md-3 d-flex justify-content-center">
+      {% paginate collections.all.products by 20 %}
+        {% include 'pagination' %}
+      {% endpaginate %}
+    </div>
+  </section>
+</article>

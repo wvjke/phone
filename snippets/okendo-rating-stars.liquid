@@ -1,0 +1,10 @@
+<span class="d-flex align-items-center okeReviews okeReviews--theme">
+  <span class="okeReviews-starRating okeReviews-starRating--small">
+    <span class="okeReviews-starRating-indicator" role="presentation">
+      <span class="okeReviews-starRating-indicator-layer"></span>
+      {% assign percent = product.metafields.okendo.ReviewAverageValue | default: 0 | divided_by: 5.0 | times: 100 %}
+      <span class="okeReviews-starRating-indicator-layer okeReviews-starRating-indicator-layer--foreground"
+            style="width: {{ percent }}%"></span>
+    </span>
+  </span>
+</span>

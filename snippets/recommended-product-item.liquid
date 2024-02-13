@@ -1,0 +1,73 @@
+{% if product != nil %}
+<div class="col-6 col-lg-3 recommended-product-item">
+  {% assign img = product.featured_image | img_url: '260x383', crop: 'center' %}
+  {% assign img_2x = product.featured_image | img_url: '260x383', scale: 2, crop: 'center' %}
+  {% assign hover = product.images[1] | img_url: '260x383', crop: 'center' %}
+  {% assign hover_2x = product.images[1] | img_url: '260x383', scale: 2, crop: 'center' %}
+  {% assign first_variant = product.selected_or_first_available_variant %}
+
+  {% assign back_soon = false %}
+  {% for collection in product.collections %}
+    {% if collection.handle == 'pre-order' %}
+      {% assign back_soon = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  <a href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    <img
+      class="img-fluid"
+      alt="{{ product.title | escape }}"
+      src="{% include 'blank_pixel' %}"
+      data-src="{{ img }}"
+      data-srcset="{{ img }} 1x, {{ img_2x }} 2x"
+      {% if product.images[1] %}
+        data-hoverset="{{ hover }} 1x, {{ hover_2x }} 2x"
+      {% endif %}
+    >
+    {% if first_variant.price < first_variant.compare_at_price and first_variant.available %}
+      <span class="sale-badge">SALE</span>}
+    {% endif %}
+    {% if back_soon %}
+      <span class="sold-out-badge">BACK SOON</span>
+    {% endif %}
+  </a>
+
+  <a href="{{ product.url }}" class="h5 recommended-product-item-title">{{ product.title }}</a>
+
+  <div class="text-center mb-2 text-primary">
+    {% if first_variant.price < first_variant.compare_at_price and first_variant.available %}
+      <span class="rrp">{{ first_variant.compare_at_price | money }}</span>
+    {% endif %}
+
+    {% if product.available %}
+    <span>{{ first_variant.price | money }}</span>
+    {% else %}
+    <strong>SOLD OUT</strong>
+    {% endif %}
+  </div>
+
+  <div class="variants">
+    {% for variant in product.variants %}
+      {% if forloop.index > 4 %}
+        {%- if forloop.length > 5 -%}
+          <a href="{{ product.url }}" class="variant-item more-variants{% unless product.available %} disabled{% endunless %}" aria-label="Product page with additional variants"></a>
+        {%- else -%}
+          <a href="{{ variant.url }}" class="variant-item{% unless variant.available %} disabled{% endunless %}" aria-label="variant {{ variant.title | escape }}">
+            {{- variant.title -}}
+          </a>
+        {%- endif -%}
+        {% break %}
+      {% endif %}
+      {%- if forloop.length == 1 -%}
+        {%- assign content = 'O/S' -%}
+      {%- else -%}
+        {%- assign content = variant.title -%}
+      {%- endif -%}
+      <a href="{{ variant.url }}" class="variant-item{% unless variant.available %} disabled{% endunless %}" aria-label="variant {{ content | escape }}">
+        {{- content -}}
+      </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

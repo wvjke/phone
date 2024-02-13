@@ -1,0 +1,35 @@
+<div class="container pt-3">
+    {% for link in linklists.department.links %}
+        {% assign active_parent = link %}
+        {% for sublink in link.links %}
+            {% if sublink.object.handle == collection.handle %}
+                {% assign active_category = sublink %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+        {% if active_category != nil %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+  
+<div class="custom-carousel-wrap collection-carousel-wrap">
+  <div class="container text-center">
+    <div class="custom-carousel collection-carousel justify-content-center" id="collection-carousel">
+        {% assign elements = active_category.links %}
+
+        {% for element in elements %}
+            {% assign current_collection = element.object %}
+              <!--<div class="icon">
+              <img 
+              src="{{ current_collection.image | img_url: '100x100' }}"
+              alt="{{ current_collection.title }}">
+              </div>-->
+              fds{{  current_collection.products.size }}
+              {% if current_collection.products.size > 0 %}
+                <a href="/collections/{{ current_collection.handle }}" class="collection-title custom-carousel-item col-6 col-lg-3 py-1">{{ current_collection.title }}</a>
+              {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+</div>

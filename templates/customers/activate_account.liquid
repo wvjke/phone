@@ -1,0 +1,59 @@
+<article class="activate-account container content">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      {% comment %}
+        Title
+      {% endcomment %}
+      <div class="text-center mb-4">
+        <h1>{{ 'customer.activate_account.title' | t }}</h1>
+        <p class="text-center">{{ 'customer.activate_account.subtext' | t }}</p>
+      </div>
+
+      {% form 'activate_customer_password' %}
+
+        {% comment %}
+          Validation errors
+        {% endcomment %}
+        {%- if form.errors -%}
+          <div class="card bg-danger rounded-6 mb-3 pt-1 px-2">
+            <div class="card-block text-white">
+              {{ form.errors | default_errors }}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {% comment %}
+          Password
+        {% endcomment %}
+        <div class="form-group">
+          <label for="CustomerPassword">{{ 'customer.activate_account.password' | t }}</label>
+          <input type="password" value="" name="customer[password]" id="CustomerPassword"
+            class="form-control">
+        </div>
+
+        {% comment %}
+          Password confirmation
+        {% endcomment %}
+        <div class="form-group">
+          <label for="CustomerPasswordConfirmation">{{ 'customer.activate_account.password_confirm' | t }}</label>
+          <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation"
+              class="form-control">
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-8 offset-0 offset-md-2 text-center">
+            {% comment %}
+              Submit
+            {% endcomment %}
+            <input type="submit" class="btn btn-block btn-lg btn-cta mt-4" value="{{ 'customer.activate_account.submit' | t }}">
+
+            {% comment %}
+              Cancel
+            {% endcomment %}
+            <input type="submit" class="link text-danger mt-3" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+          </div>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</article>

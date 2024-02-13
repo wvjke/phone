@@ -1,0 +1,45 @@
+<div class="container mt-5 mb-3">
+  <div class="row d-md-flex align-items-center">
+    <div class="col-12 col-md-6">
+      <img src="{{ section.settings.image | img_url: '800x', scale: 2 }}" />
+    </div>
+    <div class="col-12 col-md-6">
+      {% if section.settings.title != blank %}
+      <h1 class="title-color mb-3">{{ section.settings.title }}</h1>
+      {% endif %}
+      {% if section.settings.description != blank %}
+      <div>{{ section.settings.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Brand"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "CTA Text"
+    },
+	{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+<!-- TODO if we need to display articles or pages as a search result, this should be refactored -->
+<div class="search-tile col-md-3 col-sm-4 col-xs-6 text-center">
+  <a href="{{ item.url | within: collection }}" title="View {{ item.title }}" class="d-block position-relative text-center mb-5 mb-md-4">
+    {%- for tag in item.tags -%}
+      {%- if tag == 'Super Special'-%}
+        <span class="super-special-badge"></span>
+      {%- endif -%}
+    {%- endfor -%}
+    {% assign featured_image = item.image | default: item.featured_image | default: settings.search_default_image %}
+    {%- if featured_image != blank -%}
+      {{ featured_image | img_url: '260x260', crop: 'center' | img_tag }}
+    {%- endif -%}
+    <p class="text-center mt-3 mb-1">{{ item.title }}</p>
+    <p class="text-center mb-1">Part Number: {{ item.selected_or_first_available_variant.sku }}</p>
+    {%- case item.object_type -%}
+      {%- when 'product' -%}
+        <div class="text-center">
+          {%- if item.compare_at_price > item.price -%}
+            {% assign on_sale = true %}
+          {%- else -%}
+            {% assign on_sale = false %}
+          {%- endif -%}
+          {% assign price_class = 'price-color'%}
+          {% if item.price_varies %}from{% endif %}
+          {% if on_sale %}
+            {% assign price_class = 'discount-price-color'%}
+            <del class="price-color">{{ item.compare_at_price | money }}</del>
+          {% endif %}
+          <span class="{{price_class}}">{{ item.price | money }}</span>
+        </div>
+      {%- when 'article' -%}
+        <!-- <p class="text-center font-weight-light text-secondary">{{ item.excerpt | default: item.content | strip_html | truncate: 60 }}</p> -->
+      {%- when 'page' -%}
+        <!-- <p class="text-center font-weight-light text-secondary">{{ item.excerpt | default: item.content | strip_html | truncate: 60 }}</p> -->
+    {%- endcase -%}
+  </a>
+</div>

@@ -1,0 +1,17 @@
+{% assign given_tag = widget_collection_filters_liquid_link_to_tags_with_given_tag %}
+
+{% assign new_tags = '' %}
+
+{% for current_tag in current_tags %}
+  {% assign new_tags = current_tag | handleize | prepend: '|' | prepend: new_tags %}
+{% endfor %}
+
+{% assign new_tags = given_tag | handleize | prepend: '|' | prepend: new_tags %}
+
+{% assign new_tags = new_tags | remove_first: '|' | split: '|' %}
+
+{% assign tag_url_string = new_tags | join: '+' %}
+
+{% if template contains 'collection' %}
+  {{ collection.url }}/{{ tag_url_string }}?sort_by={{ collection.sort_by | default: collection.default_sort_by }}
+{% endif %}

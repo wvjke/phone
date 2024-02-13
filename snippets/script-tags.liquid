@@ -1,0 +1,28 @@
+
+{%- if template == 'cart' -%}
+  {{ 'cart.template.js' | asset_url | script_tag }}
+{%- endif -%}
+
+{%- if template == 'collection' or template.suffix == 'thumbnails' or template.suffix == 'thumbnails2' -%}
+  {{ 'collection.template.js' | asset_url | script_tag }}
+{%- endif -%}
+
+{%- if template == 'page.brands' -%}
+  {{ 'page.brands.template.js' | asset_url | script_tag }}
+{%- endif -%}
+
+{%- if template == 'product' -%}
+  {{ 'product.template.js' | asset_url | script_tag }}
+{%- endif -%}
+
+{%- if template == 'search' -%}
+  {{ 'search.template.js' | asset_url | script_tag }}
+{%- endif -%}
+
+{%- if template == 'customers/addresses' -%}
+  {{ 'addresses.template.js' | asset_url | script_tag }}
+{%- endif -%}
+
+{%- if template == 'customers/login' -%}
+  {{ 'login.template.js' | asset_url | script_tag }}
+{%- endif -%}

@@ -1,0 +1,1216 @@
+{{ 'fingerprintjs2.js' | asset_url | script_tag }}
+<style>
+    .verification-link-wrapper {
+        display: none;
+        overflow: hidden;
+        font-size: 21px;
+        max-width: 660px;
+        max-height: 820px;
+        width: 90vw;
+        height: 110vw;
+        margin: 20px auto;
+        padding: 65px 70px;
+        text-align: center;
+        border-radius: 17px;
+        box-shadow: 2px 2px 13px 0 rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+    #verification-link-step1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100%;
+    }
+    .verification-link-btn {
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 115px;
+        box-sizing: border-box;
+        background: #2c6ecb;
+        color: white;
+        border: 0 none;
+        padding: 15px;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+    }
+    .verification-link-btn:hover,
+    .verification-link-btn:focus {
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #2c6ecb;
+    }
+
+    #verification-link-failed,
+    #verification-link-success {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100%;
+    }
+    .verification-link-failed-text {
+        margin-top: 4em;
+    }
+    .contact_us {
+        font-weight: bold;
+        color: #0c0c0c;
+        text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+        .verification-link-wrapper {
+            width: auto;
+            margin: 10px;
+            font-size: 12px;
+            height: 450px;
+            padding: 40px 20px;
+        }
+        .verification-link-btn {
+            font-size: 14px;
+        }
+    }
+    @media (max-width: 600px) {
+        .verification-link-wrapper img {
+            width: 80px;
+        }
+        .verification-link-failed-text {
+            font-size: 22px;
+            margin-top: 2em;
+        }
+    }
+</style>
+<div class="verification-link-wrapper">
+
+    <div id="verification-link-step1">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/verify-link.png">
+
+            <p>Did you recently place an order from</p>
+            <p><b>www.arnoldsboatshop.com.au?</b></p>
+
+        </div>
+
+        <div style="margin-top: 6em;display: flex; justify-content: center; gap: 50px">
+            <div class="verification-link-btn" id="btn_box_yes" data-id="yes">Yes</div>
+            <div class="verification-link-btn" id="btn_box_no" data-id="no">No</div>
+        </div>
+    </div>
+
+    <div id="verification-link-failed">
+        <div>
+            <img src="https://beaconimages.s3.amazonaws.com/verify-link-no.png" alt="">
+
+            <p class="verification-link-failed-text">Nothing here</p>
+        </div>
+
+        <div class="button-wrapper">
+            <a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>
+        </div>
+    </div>
+
+    <div id="verification-link-success">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/otp-success.png" alt="">
+
+            <p style="margin-top: 5em">Thank you!</p>
+            <p style="font-weight: bold">We have verified your order.</p>
+        </div>
+
+        <div class="button-wrapper">
+            <a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>
+        </div>
+    </div>
+
+    <a href="https://lizuna.com" class="beacon_app_link" target="_blank">Beacon Fraud Prevention for Shopify</a>
+</div>
+
+
+
+<style>
+
+    /**
+     * Create the loop delay with
+     * the extra keyframes
+     */
+    @-webkit-keyframes moveup {
+        0%, 60%, 100% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+        }
+        25% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(1em);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(1em);
+        }
+    }
+    @keyframes moveup {
+        0%, 60%, 100% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+        }
+        25% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(1em);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(1em);
+        }
+    }
+    @-webkit-keyframes movedown {
+        0%, 60%, 100% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+        }
+        25% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(-1em);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(-1em);
+        }
+    }
+    @keyframes movedown {
+        0%, 60%, 100% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(0);
+        }
+        25% {
+            -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(-1em);
+            transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateZ(-1em);
+        }
+    }
+    /**
+     * Square layer styles
+     */
+    .layer {
+        display: block;
+        position: absolute;
+        height: 3em;
+        width: 3em;
+        box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+        -webkit-transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
+        transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
+    }
+    .layer:nth-of-type(1) {
+        background: #023059;
+        margin-top: 1.5em;
+        -webkit-animation: movedown 1.8s cubic-bezier(0.39, 0.575, 0.565, 1) 0.9s infinite normal;
+        animation: movedown 1.8s cubic-bezier(0.39, 0.575, 0.565, 1) 0.9s infinite normal;
+    }
+    .layer:nth-of-type(2) {
+        background: #03588C;
+        margin-top: 0.75em;
+    }
+    .layer:nth-of-type(3) {
+        background: #5D7CA6;
+        -webkit-animation: moveup 1.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite normal;
+        animation: moveup 1.8s cubic-bezier(0.39, 0.575, 0.565, 1) infinite normal;
+    }
+
+    .container-animation {
+        position: absolute;
+        top: 7%;
+        left: 45%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .otp_wrapper {
+        display: none;
+        overflow: hidden;
+        font-size: 21px;
+        max-width: 660px;
+        max-height: 820px;
+        width: 90vw;
+        height: 110vw;
+        margin: 20px auto;
+        padding: 65px 70px;
+        text-align: center;
+        border-radius: 17px;
+        box-shadow: 2px 2px 13px 0 rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+    .otp_wrapper input {
+        width: auto;
+        box-shadow: none;
+        display: inline;
+        padding: 0;
+        margin: 0;
+    }
+    .otp_input {
+        font-size: 21px;
+        padding-left: 11px;
+        letter-spacing: 38px;
+        border: 0;
+        background-image: linear-gradient(to left, grey 70%, rgba(200, 200, 200, 0) 0%);
+        background-position: bottom;
+        background-size: 50px 2px;
+        background-repeat: repeat-x;
+        background-position-x: 35px;
+        width: 240px;
+        min-width: 240px;
+        text-transform: uppercase;
+    }
+
+    /*Notification Bar*/
+    .notification-bar {
+        opacity: 0;
+        transform: translateY(-100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 5px;
+        background: #000000;
+        color: #ffffff;
+        border-radius: 17px;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+    .notification-bar.active-notification {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .notification-bar--text {
+        margin: 0;
+    }
+
+    input.otp_input:focus {
+        outline: none;
+    }
+    #divInner{
+        left: 0;
+        position: sticky;
+    }
+
+    .divOuter{
+        width: 200px;
+        overflow: hidden;
+        margin: 0 auto;
+        margin-top: 4em;
+    }
+
+    .progress_circle {
+        position: relative;
+    }
+    .progress_text {
+        margin-top: 12em;
+    }
+    .progress_circle,
+    #step-send-otp,
+    #step-submit-otp,
+    #verification_failed,
+    #no_verification,
+    #verification_failed2,
+    #verification_success {
+        display: none;
+        min-height: 100%;
+    }
+    #step-send-otp,
+    #step-submit-otp,
+    #no_verification,
+    #verification_failed,
+    #verification_failed2,
+    #verification_success {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .verification_failed_text,
+    .no_verification_text {
+        font-size: 24px;
+        margin-top: 5em;
+    }
+    #step-send-otp-input-wrapper {
+        margin-top: 4em;
+    }
+    #otp_phone_number_input {
+        border: none;
+        outline: none;
+        border-bottom: 2px solid grey;
+        font-size: 21px;
+        font-weight: bold;
+    }
+    .attempts_number__wrapper {
+        display: none;
+        margin-top: 20px
+    }
+
+    .otp-btn {
+        display: inline-block;
+        padding: 15px 100px;
+        background: #ffffff;
+        color: #0c0c0c;
+        border: solid 1px #979797;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #btn_send_otp {
+        background: #2c6ecb;
+        color: #fff;
+        border: 0 none;
+        border-radius: 3px;
+    }
+    #btn_send_otp:hover,
+    #btn_send_otp:focus {
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #2c6ecb;
+        color: #fff;
+    }
+    .otp-submit-links {
+        color: #0c0c0c;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .beacon_app_link {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        font-size: 6px;
+        color: #b4b2b2;
+        text-decoration: none;
+        cursor: inherit;
+        transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 700px) {
+        .otp_wrapper {
+            width: auto;
+            margin: 10px;
+            font-size: 12px;
+            height: 450px;
+            padding: 40px 20px;
+        }
+        #otp_phone_number_input,
+        #otp_input{
+            font-size: 12px;
+        }
+        .otp_input {
+            font-size: 12px;
+            padding-left: 14px;
+            letter-spacing: 43px;
+        }
+        .otp-btn {
+            padding: 5px 30px;
+        }
+    }
+    @media (max-width: 500px) {
+        .otp_wrapper img {
+            width: 70px;
+        }
+    }
+</style>
+
+<div class="otp_wrapper">
+
+    <div class="notification-bar">
+        <p class="notification-bar--text">SMS Sent!</p>
+    </div>
+
+    <div class="progress_circle">
+        <div class='container-animation'>
+            <i class='layer'></i>
+            <i class='layer'></i>
+            <i class='layer'></i>
+        </div>
+
+        <p class="progress_text">Please wait while we verify your account…</p>
+    </div>
+
+    <div id="step-send-otp">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/otp-send.png">
+
+            <p>OTP Verification</p>
+            <p class="otp_type_text">We will send you an One-Time Password on this mobile number</p>
+            <div id="step-send-otp-input-wrapper">
+                <input type="tel" name="phone_number" id="otp_phone_number_input" maxlength="15" value="+">
+                <p>Enter your mobile number</p>
+            </div>
+        </div>
+
+        <div>
+            <a href="javascript:void(0);" class="otp-btn" id="btn_send_otp">Get OTP</a>
+        </div>
+    </div>
+
+    <div id="step-submit-otp">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/otp-enter.png">
+
+            <p>OTP Verification</p>
+            <p class="step-submit-otp--status">
+                                    Please enter the OTP sent to<span id="step2-phone-number">???</span>
+                            </p>
+            <div class="divOuter">
+                <div id="divInner">
+                    <input class="otp_input" id="otp_input" type="text" maxlength="4"
+                           oninput="this.value = this.value.replace(/[^0-9a-zA-Z.]/g, '').replace(/(\..*)\./g, '$1');" />
+                </div>
+            </div>
+
+            <p class="attempts_number__wrapper">
+                                    <span class="attempts_number">0</span>/3 attempts                            </p>
+
+            <p style="margin-top: 3em;" class="text-after-attempts">Didn't receive an OTP?</p>
+
+            <p class="text-after-attempts"><a href="javascript:void(0);" class="otp-submit-links" id="otp-resend-sms">Re-send SMS</a> <span class="otp-or-word">or</span> <a href="javascript:void(0);" class="otp-submit-links" id="otp-try-another-phone">try a new mobile number</a></p>
+        </div>
+
+        <div>
+            <a href="javascript:void(0);" class="otp-btn" id="btn_submit_otp">Verify & Proceed</a>
+        </div>
+    </div>
+
+    <div id="no_verification">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/otp-success.png" alt="">
+
+            <p class="no_verification_text"></p>
+        </div>
+        <div>
+            <a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>
+        </div>
+    </div>
+
+    <div id="verification_failed">
+        <div>
+            <img src="https://beaconimages.s3.amazonaws.com/verify-link-no.png" alt="">
+
+            <p class="verification_failed_text"></p>
+        </div>
+
+        <div>
+            <a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>
+        </div>
+    </div>
+
+    <div id="verification_failed2">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/otp-fail.png" alt="">
+
+            <p>OTP Verification</p>
+            <p style="font-weight: bold">Verification Failed</p>
+            <p style="font-weight: bold">
+                                    Please contact us at sales@arnoldsboatshop.com.au                            </p>
+            <div class="divOuter">
+                <div id="divInner">
+                    <input id="otp_input_failed" type="text" maxlength="4"
+                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                </div>
+            </div>
+
+            <p>
+                                    <span class="attempts_number">3</span>/3 attempts                            </p>
+        </div>
+
+        <div>
+            <a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>
+        </div>
+    </div>
+
+    <div id="verification_success">
+        <div>
+            <img src="https://apt507.com/assets/dist/img/verifyPage/otp-success.png" alt="">
+
+            <p>OTP Verification</p>
+            <p style="font-weight: bold">Verification Successful!</p>
+            <div class="divOuter">                <div id="divInner">
+                    <input class="otp_input" style="color: #008060" disabled id="otp_input_success" type="text" maxlength="4"
+                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>
+        </div>
+    </div>
+
+    <a href="https://lizuna.com" class="beacon_app_link" target="_blank">Beacon Fraud Prevention for Shopify</a>
+</div>
+
+<!-- MAIN SCRIPTS of APP -->
+<script>
+
+    // Anonymous "self-invoking" function
+    (function() {
+        var startingTime = new Date().getTime();
+        // Load the script
+        var script = document.createElement("SCRIPT");
+        script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
+        script.type = 'text/javascript';
+        document.getElementsByTagName("head")[0].appendChild(script);
+
+        // Poll for jQuery to come into existance
+        var checkReady = function(callback) {
+            if (window.jQuery) {
+                callback(jQuery);
+            }
+            else {
+                window.setTimeout(function() { checkReady(callback); }, 20);
+            }
+        };
+
+        // Start polling...
+        checkReady(function($) {
+            $(function() {
+
+
+                //MAIN SCRIPTS
+                function getQueryParams(qs) {
+                    qs = qs.split("+").join(" ");
+                    var params = {},
+                        tokens,
+                        re = /[?&]?([^=]+)=([^&]*)/g;
+
+                    while (tokens = re.exec(qs)) {
+                        params[decodeURIComponent(tokens[1])]
+                            = decodeURIComponent(tokens[2]);
+                    }
+
+                    return params;
+                }
+
+                var params = getQueryParams(document.location.search);
+
+                //If current window is in Theme editor - show initial look of the window
+                if (Shopify.designMode && params['verification_type'] === 'link') {
+
+                    $('.verification-link-wrapper').show();
+
+                } else if (Shopify.designMode && params['verification_type'] === 'otp') {
+
+                    $('.otp_wrapper').show();
+                    $('#step-send-otp').css('display', 'flex');
+
+                } else if ((typeof params['code'] === 'undefined' || typeof params['id'] === 'undefined' || typeof params['key'] === 'undefined') && typeof params['token'] === 'undefined') {
+
+                    $('.verification-link-wrapper').show();
+
+                    $('#verification-link-step1').hide();
+                    $('#verification-link-failed').css('display', 'flex');
+                    $('.verification-link-failed-text').text(verify_page__text19);
+                }
+
+                if (Shopify.designMode === undefined && typeof params['code'] !== 'undefined' && typeof params['id'] !== 'undefined' && typeof params['key'] !== 'undefined') {
+
+                    $('.verification-link-wrapper').show();
+
+                    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                    var tz_offset = new Date().getTimezoneOffset();
+                    var time_utc = new Date().getTime();
+                    let type_sms_email = 'sms';
+                    if (params['type'] && params['type'] === 'email') {
+                        type_sms_email = 'email';
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: 'https://apt507.com/apartment/check_verify',
+                        crossDomain: true,
+                        async: false,
+                        data: {
+                            "id":params['id'],
+                            "key":params['key'],
+                            "type": type_sms_email
+                        },
+                        dataType: 'json',
+                        cache: false,
+                        success: function (data) {
+                            if (data.result === 1) {
+                                if (data.verified === '1') {
+                                    $('#verification-link-step1').hide();
+                                    $('#verification-link-failed').css('display', 'flex');
+                                    $('.verification-link-failed-text').text('You have already activated your account!');
+                                } else if (data.verified === '2') {
+                                    $('#verification-link-step1').hide();
+                                    $('#verification-link-failed').css('display', 'flex');
+                                    $('.verification-link-failed-text').text('You have already denied verification.');
+                                }
+                            } else {
+
+                                $('#verification-link-step1').hide();
+                                $('#verification-link-failed').css('display', 'flex');
+                                $('.verification-link-failed-text').text('Validation link is currently not active. Please refresh the page or try again later.');
+                            }
+                        },
+                        error: function (error) {
+                            console.log('Server error');
+                            console.log(error);
+
+                            $('#verification-link-step1').hide();
+                            $('#verification-link-failed').css('display', 'flex');
+                            $('.verification-link-failed-text').text('Server is down, try again later');
+
+                            $.ajax({
+
+                                type: "POST",
+                                url: 'https://apt507.com/apartment/log_verify_page_error',
+                                crossDomain: true,
+                                async: false,
+                                data: {
+                                    "id":params['id'],
+                                    "key":params['key'],
+                                    "error": error
+                                },
+                                dataType: 'json',
+                                cache: false,
+                                success: function (data) {
+                                    console.log('success');
+                                },
+                                error: function (error) {
+                                    console.log('Server error');
+                                }
+                            });
+                        }
+                    });
+
+                    if (window.requestIdleCallback) {
+                        requestIdleCallback(function () {
+                            Fingerprint2.get(function (components) {
+                                console.log(components) // an array of components: {key: ..., value: ...}
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: 'https://apt507.com/apartment/get_fingerprint',
+                                    crossDomain: true,
+                                    async: true,
+                                    data: {
+                                        "id": params['id'],
+                                        "key": params['key'],
+                                        "fingerprint": components,
+                                        "canvas": fingerprint()
+                                    },
+                                    dataType: 'json',
+                                    cache: false,
+                                    success: function (data) {
+                                        console.log('ok');
+                                    },
+                                    error: function (error) {
+                                        console.log('Server error');
+                                        console.log(error);
+                                    }
+                                });
+                            })
+                        })
+                    } else {
+                        setTimeout(function () {
+                            Fingerprint2.get(function (components) {
+                                console.log(components) // an array of components: {key: ..., value: ...}
+                                $.ajax({
+
+                                    type: "POST",
+                                    url: 'https://apt507.com/apartment/get_fingerprint',
+                                    crossDomain: true,
+                                    async: true,
+                                    data: {
+                                        "id": params['id'],
+                                        "key": params['key'],
+                                        "fingerprint": components,
+                                        "canvas": fingerprint()
+                                    },
+                                    dataType: 'json',
+                                    cache: false,
+                                    success: function (data) {
+                                        console.log('ok');
+                                    },
+                                    error: function (error) {
+                                        console.log('Server error');
+                                        console.log(error);
+                                    }
+                                });
+                            })
+                        }, 1000)
+                    }
+
+                    $('.verification-link-wrapper').one('click','.verification-link-btn',function() {
+                        var browserInfo = navigator.userAgent;
+                        + new Date();
+                        var timestamp = Math.floor(Date.now() / 1000);
+                        var answer = 'yes';
+                        if ($(this).attr("data-id")==='no')
+                            answer = 'no';
+                        $.ajax({
+
+                            type: "POST",
+                            url: 'https://apt507.com/apartment/verify_shopify_admin',
+                            crossDomain: true,
+                            async: true,
+                            data: {
+                                "code":params['code'],
+                                "id":params['id'],
+                                "browserInfo": browserInfo,
+                                "date_time": timestamp,
+                                "key":params['key'],
+                                "type": type_sms_email,
+                                "answer": answer,
+                                "timezone": tz,
+                                "timezone_offset": tz_offset,
+                                "time_utc": time_utc
+                            },
+                            dataType: 'json',
+                            cache: false,
+                            success: function (data) {
+                                if (data.result === 1) {
+                                    $('#verification-link-step1').hide();
+                                    if (answer==='yes') {
+                                        $('#verification-link-success').css('display', 'flex');
+                                    } else {
+                                        $('#verification-link-failed').css('display', 'flex');
+                                                                                $('.verification-link-failed-text').html('Please contact us at<br><a href="mailto:sales@arnoldsboatshop.com.au" class="contact_us">sales@arnoldsboatshop.com.au</a>');
+                                                                            }
+                                } else {
+                                    $('.verify_page').html('<p style="text-align:center;margin-top:20px;">'+data.message+'</p>');
+                                }
+                            },
+                            error: function (error) {
+                                console.log('Server error');
+                                console.log(error);
+                                $('.beacon_btn_box').remove();
+                                if (answer==='yes') {
+                                    $('.verify_wrapper-head').html('Thank you! <br> You have already activated your account!');
+                                } else {
+                                    $('.verify_wrapper-head').html('Thank you! <br> Our staff has been notified.');
+                                }
+                            }
+                        });
+                    });
+
+                } else if (Shopify.designMode === undefined && typeof params['token'] !== 'undefined') {
+
+                    $('.otp_wrapper').show();
+
+                    let otp_type = 'random_otp';
+
+                    let submitOTPClickCount = 0;
+
+                    //Function to Validate Phone Number on OTP step
+                    function ValidatePhoneNumber(phone_number)
+                    {
+                        if (/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{2,10}$/im.test(phone_number))
+                        {
+                            return (true)
+                        }
+                        return  (false)
+                    }
+
+                    //Fix input OTP
+                    var obj = document.getElementById('otp_input');
+                    obj.addEventListener('keydown', stopCarret);
+                    obj.addEventListener('keyup', stopCarret);
+
+                    function stopCarret() {
+                        if (obj.value.length > 3){
+                            setCaretPosition(obj, 3);
+                        }
+                    }
+
+                    function setCaretPosition(elem, caretPos) {
+                        if(elem != null) {
+                            if(elem.createTextRange) {
+                                var range = elem.createTextRange();
+                                range.move('character', caretPos);
+                                range.select();
+                            }
+                            else {
+                                if(elem.selectionStart) {
+                                    elem.focus();
+                                    elem.setSelectionRange(caretPos, caretPos);
+                                }
+                                else
+                                    elem.focus();
+                            }
+                        }
+                    }
+
+                    //Clear the OTP input
+                    $('#otp_input').click(function (){
+                        $(this).val('');
+                        $(this).css('color', '#0c0c0c');
+                    });
+
+                    let country_code = '';
+                    $('#btn_send_otp').click(function(){
+                        const val = $('#otp_phone_number_input').val();
+                        if (!ValidatePhoneNumber(val)) {
+                            alert('Phone Number format is incorrect');
+                            return false;
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: 'https://apt507.com/apartment/sendOTP',
+                            crossDomain: true,
+                            async: true,
+                            data: {
+                                "shop": window.location.hostname,
+                                "token": params['token'],
+                                "phone_number": val,
+                            },
+                            dataType: 'json',
+                            cache: false,
+                            success: function (data) {
+
+                                if (data.result === 1) {
+                                    $('#step-send-otp').hide();
+                                    $('#step2-phone-number').html(val);
+                                    let attemptsNumber = data.attemptsNumber;
+                                    if (attemptsNumber > 3) {
+                                        attemptsNumber = 3;
+                                    }
+                                    $('.attempts_number').html(attemptsNumber);
+                                    $('#step-submit-otp').css('display', 'flex');
+                                    if (data.otp_method === 'Fixed OTP') {
+                                        $('.step-submit-otp--status').html('Please follow the instructions that was sent to '+val+'  on how to obtain the passcode.');
+                                    }
+
+                                } else {
+                                    if (data.invalid === 1) {
+                                        alert('Invalid phone number');
+                                    } else {
+                                        $('.progress_circle').hide();
+                                        $('#step-send-otp').hide();
+                                        $('#step-submit-otp').hide();
+
+                                        if (data.attemptsNumber < 3) {
+                                            $('#verification_failed').css('display', 'flex');
+                                            $('.verification_failed_text').text(data.message);
+                                        } else {
+                                            $('#verification_failed2').css('display', 'flex');
+                                            $('.divOuter').hide();
+                                        }
+                                    }
+                                }
+                            },
+                            error: function (error) {
+                                console.log('Server error');
+                                console.log(error.responseText);
+                            }
+                        });
+                    });
+                    $('#btn_submit_otp').click(function(){
+                        submitOTPClickCount++;
+                        if (submitOTPClickCount > 3) {
+                            return false;
+                        }
+
+                        const val = $('#otp_input').val();
+
+                        $.ajax({
+                            type: "POST",
+                            url: 'https://apt507.com/apartment/submitOTP',
+                            crossDomain: true,
+                            async: true,
+                            data: {
+                                "token": params['token'],
+                                "otp": val,
+                                "browserInfo": navigator.userAgent,
+                            },
+                            dataType: 'json',
+                            cache: false,
+                            success: function (data) {
+
+                                if (data.result === 1) {
+
+                                    $('.progress_circle').hide();
+                                    $('#step-send-otp').hide();
+                                    $('#step-submit-otp').hide();
+                                    $('#verification_success').css('display', 'flex');
+                                    $('#otp_input_success').val(val);
+
+                                } else {
+                                    $('.attempts_number__wrapper').show();
+
+                                    if (data.attemptsNumber < 3) {
+                                        $('#step-submit-otp img').attr('src', 'https://apt507.com/assets/dist/img/verifyPage/otp-fail.png');
+                                        $('.step-submit-otp--status').html('<b>Verification Failed Please try again!</b>');
+                                        let attemptsNumber = data.attemptsNumber;
+                                        if (attemptsNumber > 3) {
+                                            attemptsNumber = 3;
+                                        }
+                                        $('.attempts_number').text(attemptsNumber);
+                                        $('#otp_input').css('color', '#ff0000');
+                                    } else {
+                                        $('.step-submit-otp--status').each(function (index){
+                                            if (index !== 0) {
+                                                $(this).remove();
+                                            }
+                                        })
+                                        $('.step-submit-otp--status').html('<b>Verification Failed</b>');
+                                                                                $('.step-submit-otp--status').after('<p class="step-submit-otp--status"><b>Please contact us at sales@arnoldsboatshop.com.au</b></p>');
+                                                                                let attemptsNumber = data.attemptsNumber;
+                                        if (attemptsNumber > 3) {
+                                            attemptsNumber = 3;
+                                        }
+                                        $('.attempts_number').text(attemptsNumber);
+                                        $('#otp_input').css('color', '#ff0000');
+                                        $('.text-after-attempts').hide();
+
+                                        $('.otp_input').prop('disabled',true);
+
+                                        $('#btn_submit_otp').html('Exit');
+                                        $('#btn_submit_otp').attr('href', 'https://www.arnoldsboatshop.com.au');
+                                        $('#btn_submit_otp').after('<a href="https://www.arnoldsboatshop.com.au/" class="otp-btn">Exit</a>');
+                                        $('#btn_submit_otp').remove();
+                                    }
+                                }
+                            },
+                            error: function (error) {
+                                console.log('Server error');
+                                console.log(error.responseText);
+                            }
+                        });
+                    });
+
+                    //Send OTP to another phone number
+                    $('#otp-try-another-phone').one('click', function (){
+
+                        $('.progress_circle').hide();
+                        $('.otp_type_text').text('We will send you instructions on how to verify your account.');
+                        $('#step-send-otp').css('display', 'flex');
+                        $('#step-submit-otp').hide();
+                        $('#verification_failed').hide();
+                        $('#otp_phone_number_input').val(country_code);
+                    });
+                    //Send OTP to another phone number
+                    $('#otp-resend-sms').one('click', function (){
+
+                        const val = $('#otp_phone_number_input').val();
+                        if (!ValidatePhoneNumber(val)) {
+                            alert('Phone Number format is incorrect');
+                            return false;
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: 'https://apt507.com/apartment/sendOTP',
+                            crossDomain: true,
+                            async: true,
+                            data: {
+                                "token": params['token'],
+                                "phone_number": val,
+                            },
+                            dataType: 'json',
+                            cache: false,
+                            success: function (data) {
+
+                                if (data.result === 1) {
+                                    $('.notification-bar').addClass('active-notification');
+                                    setTimeout(function (){
+                                        $('.notification-bar').removeClass('active-notification');
+                                    }, 4000);
+
+                                    $('#step-send-otp').hide();
+                                    $('#step2-phone-number').html(val);
+                                    let attemptsNumber = data.attemptsNumber;
+                                    if (attemptsNumber > 3) {
+                                        attemptsNumber = 3;
+                                    }
+                                    $('.attempts_number').html(attemptsNumber);
+                                    $('#step-submit-otp').css('display', 'flex');
+                                    if (data.otp_method === 'Fixed OTP') {
+                                        $('.step-submit-otp--status').html('Please follow the instructions that was sent to '+val+'  on how to obtain the passcode.');
+                                    }
+
+                                } else {
+                                    $('.progress_circle').hide();
+                                    $('#step-send-otp').hide();
+                                    $('#step-submit-otp').hide();
+
+                                    if (data.sendSMSAttempts >= 3) {
+                                        $('#verification_failed').css('display', 'flex');
+                                        $('.verification_failed_text').text(data.message);
+                                    } else {
+                                        if (data.attemptsNumber < 3) {
+                                            $('#verification_failed').css('display', 'flex');
+                                            $('.verification_failed_text').text(data.message);
+                                        } else {
+                                            $('#verification_failed2').css('display', 'flex');
+                                            $('.divOuter').hide();
+                                        }
+                                    }
+                                }
+                            },
+                            error: function (error) {
+                                console.log('Server error');
+                                console.log(error.responseText);
+                            }
+                        });
+                    });
+
+                    let checkOrderExist = false;
+                    let checkOrderRisk = false;
+
+                    var checkOTPToken = {};
+                    checkOTPToken.setProperty = function(property, value) {
+                        if (typeof(checkOTPToken.onChange) === 'function') {
+                            checkOTPToken.onChange(property, checkOTPToken[property], value);
+                        }
+
+                        checkOTPToken[property] = value;
+                    };
+                    //Check if Token is valid and exists
+                    var params = getQueryParams(document.location.search);
+                    $.ajax({
+                        type: "POST",
+                        url: 'https://apt507.com/apartment/checkOTPToken',
+                        crossDomain: true,
+                        async: true,
+                        data: {
+                            "token":params['token'],
+                        },
+                        dataType: 'json',
+                        cache: false,
+                        success: function (data) {
+
+                            if (data.result === 1) {
+
+                                //Token is valid
+                                checkOTPToken.setProperty('token', 'verified');
+                                // otp_type = data.otp_type;
+                            } else {
+
+                                //Token is invalid or doesn't exist
+                                $('.progress_circle').hide();
+                                $('#step-send-otp').hide();
+                                $('#step-submit-otp').hide();
+                                $('#verification_failed').css('display', 'flex');
+                                $('.verification_failed_text').text(data.message);
+                            }
+                        },
+                        error: function (error) {
+                            console.log('Server error');
+                            console.log(error.responseText);
+                            //Server is down
+                            $('.progress_circle').hide();
+                            $('#step-send-otp').hide();
+                            $('#step-submit-otp').hide();
+                            $('#verification_failed').css('display', 'flex');
+                            $('.verification_failed_text').text('Server is down, try again later');
+                        }
+                    });
+
+                    var checkOTPRisk = {};
+                    checkOTPRisk.setProperty = function(property, value) {
+                        if (typeof(checkOTPRisk.onChange) === 'function') {
+                            checkOTPRisk.onChange(property, checkOTPRisk[property], value);
+                        }
+
+                        checkOTPRisk[property] = value;
+                    };
+                    //If Token is valid
+                    checkOTPToken.onChange = function() {
+                        $('.progress_circle').css('display', 'inline-block');
+
+                        let dataPercent = 0;
+                        let interval = setInterval(function (){
+                            $.ajax({
+                                type: "POST",
+                                url: 'https://apt507.com/apartment/checkOTPRisk',
+                                crossDomain: true,
+                                async: true,
+                                data: {
+                                    "token":params['token'],
+                                },
+                                dataType: 'json',
+                                cache: false,
+                                success: function (data) {
+
+                                    if (data.result === 1) {
+
+                                        if (data.order === 1) {
+                                            $('.progress_circle').hide();
+                                            checkOrderExist = true;
+                                            clearInterval(interval);
+
+
+                                            if (data.risk === 1) {
+                                                otp_type = data.otp_type;
+                                                checkOrderRisk = true;
+                                                checkOTPRisk.setProperty('risk', 'true');
+                                                $('#otp_phone_number_input').val(data.country_code);
+                                                country_code = data.country_code;
+                                            } else {
+                                                $('#step-send-otp').hide();
+                                                $('#step-submit-otp').hide();
+                                                $('#verification_failed').hide();
+                                                $('#no_verification').show();
+                                                $('#no_verification').css('display', 'flex');
+                                                $('.no_verification_text').text('No Verification Needed!');
+                                            }
+                                        }
+
+                                    } else {
+
+                                        if (data.attemptsNumber < 3) {
+                                            //Token is invalid or doesn't exist
+                                            $('.progress_circle').hide();
+                                            $('#step-send-otp').hide();
+                                            $('#step-submit-otp').hide();
+                                            $('#verification_failed').css('display', 'flex');
+                                            $('.verification_failed_text').text(data.message);
+                                        } else {
+                                            clearInterval(interval);
+                                            $('.progress_circle').hide();
+                                            $('#step-send-otp').hide();
+                                            $('#step-submit-otp').hide();
+
+                                            $('#verification_failed2').css('display', 'flex');
+                                            $('.divOuter').hide();
+                                        }
+                                    }
+                                },
+                                error: function (error) {
+                                    clearInterval(interval);
+                                    console.log('Server error');
+                                    console.log(error.responseText);
+                                }
+                            });
+
+                            dataPercent++;
+                            if (dataPercent>=30) {
+                                clearInterval(interval);
+                                $('.progress_circle').hide();
+                                $('#step-send-otp').hide();
+                                $('#step-submit-otp').hide();
+                                $('#verification_failed').css('display', 'flex');
+                                $('.verification_failed_text').text('Please, refresh the page');
+                            }
+                        }, 1000);
+                    };
+
+                    checkOTPRisk.onChange = function() {
+
+                        if (otp_type === 'fixed_otp') {
+                            $('.otp_type_text').text('We will send you instructions on how to verify your account.');
+                        }
+                        $('#step-send-otp').css('display', 'flex');
+                    };
+
+                }
+
+                //Function to get fingerprints
+                function fingerprint() {
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+                    var txt = 'i9asdm..$#po((^@KbXrww!~cz';
+                    ctx.textBaseline = "top";
+                    ctx.font = "16px 'Arial'";
+                    ctx.textBaseline = "alphabetic";
+                    ctx.rotate(.05);
+                    ctx.fillStyle = "#f60";
+                    ctx.fillRect(125,1,62,20);
+                    ctx.fillStyle = "#069";
+                    ctx.fillText(txt, 2, 15);
+                    ctx.fillStyle = "rgba(102, 200, 0, 0.7)";
+                    ctx.fillText(txt, 4, 17);
+                    ctx.shadowBlur=10;
+                    ctx.shadowColor="blue";
+                    ctx.fillRect(-20,10,234,5);
+                    var strng=canvas.toDataURL();
+
+                    var hash=0;
+                    if (strng.length==0) return 'nothing!';
+                    for (i = 0; i < strng.length; i++) {
+                        char = strng.charCodeAt(i);
+                        hash = ((hash<<5)-hash)+char;
+                        hash = hash & hash;
+                    }
+                    return hash;
+                }
+
+            });
+        });
+    })();
+
+</script>

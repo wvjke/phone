@@ -1,0 +1,16 @@
+{%- layout none -%}
+[
+{%- for item in cart.items -%}
+  {
+    "variant_id": {{ item.variant_id }},
+    "compare_at_price": {{ item.variant.compare_at_price | default: item.variant.price | json }},
+    "image": {{ item.image | img_url: '120x', crop: 'center' | json }},
+    "image2x": {{ item.image | img_url: '120x', scale: 2, crop: 'center' | json }},
+    "inventory_quantity": {{ item.variant.inventory_quantity | json }},
+    "inventory_policy": {{ item.variant.inventory_policy | json }},
+    "superSpecial": {% render 'is_product_super_special', product: item.product %},
+    "Insurance" : {%- if item.variant.metafields.custom.insuranceismandatory == true -%}true{%- else -%}false{%- endif -%}
+  }
+  {%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]

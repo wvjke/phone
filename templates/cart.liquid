@@ -1,0 +1,8 @@
+<article class="cart container content">
+  <div id="cart-page-root"></div>
+</article>
+
+{% if cart.item_count > 0 %}
+  {% assign first_item = cart.items[0] %}
+  <div id="recommended-products" data-product-id="{{ first_item.product.id }}"></div>
+{% endif %}

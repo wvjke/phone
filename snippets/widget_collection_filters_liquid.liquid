@@ -1,0 +1,70 @@
+{% if collection.all_tags.size > 0 %}
+  <ul class="filter-container d-flex justify-content-center flex-wrap mb-4 px-2">
+    <li class="tag tag-all w-100 mx-1"><a href="{{ collection.url }}" title="All articles" class="w-100">All</a></li>
+
+    {% assign tag_categories = "" %}
+    {% for tag in collection.all_tags %}
+      {% include 'util_tag_dissector' with tag %}
+      {% assign tag_categories = tag_categories | append: "|" | append: tag_prefix %}
+    {% endfor %}
+    {% assign tag_categories = tag_categories | remove_first: "|" | split: "|" | uniq %}
+
+    {% if tag_categories.size > 0 %}
+      <div class="accordion w-100" id="accordion-container-filters">
+        {% for tag_category in tag_categories %}
+
+          <div class="my-2" id="heading-{{ forloop.index }}">
+            <button class="text-left w-100 border-0 collapsed rotate" type="button" data-toggle="collapse" data-target="#collapse-filters-{{ forloop.index }}" aria-expanded="true" aria-controls="collapse-filters-{{ forloop.index }}">
+              <i class="fa fa-chevron-down float-right my-1"></i>
+              {{ tag_category }}
+            </button>
+          </div>
+          <div class="p-2 collapse" id="collapse-filters-{{ forloop.index }}" aria-labelledby="heading-filters-{{ forloop.index }}" data-parent="#accordion-container-filters">
+
+            {% comment %} Display a list of tags as links {% endcomment %}
+            {% for tag in collection.all_tags %}
+              {% include 'util_tag_dissector' with tag %}
+              {% if tag_category == tag_prefix %}
+                {% if current_tags contains tag %}
+                  <li class="active tag mx-1">
+                    <a href="{% include 'widget_collection_filters_liquid_link_to_tags_without_given_tag_replace' with tag %}">
+                      {{ tag_value }}
+                    </a>
+                  </li>
+                {% else %}
+                  <li class="tag mx-1">
+                    <a href="{% include 'widget_collection_filters_liquid_link_to_tags_with_given_tag_replace' with tag %}">
+                      {{ tag_value }}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+          </div>
+
+        {% endfor %}
+      </div>
+    {% else %}
+
+      {% comment %} Display a list of tags as links {% endcomment %}
+      {% for tag in collection.all_tags %}
+        {% include 'util_tag_dissector' with tag %}
+        {% if current_tags contains tag %}
+          <li class="active tag mx-1">
+            <a href="{% include 'widget_collection_filters_liquid_link_to_tags_without_given_tag_replace' with tag %}">
+              {{ tag_value }}
+            </a>
+          </li>
+        {% else %}
+          <li class="tag mx-1">
+            <a href="{% include 'widget_collection_filters_liquid_link_to_tags_with_given_tag_replace' with tag %}">
+              {{ tag_value }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+  </ul>
+{% endif %}

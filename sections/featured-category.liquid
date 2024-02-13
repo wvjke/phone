@@ -1,0 +1,65 @@
+<div class="featured-category-wrapper">
+  <div class="container">
+    {% assign menu = linklists.department %}
+	{% if section.settings.title != blank %}
+    <h2 class="title-h2 mt-4 mb-4">{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="row">
+      {% for link in menu.links %}
+      {%- capture icon_name -%}
+      icon-department-{{ link.handle }}.svg
+      {%- endcapture -%}
+      <div class="col-md-3 pl-0" data-handle="{{ link.handle }}">
+        <a href="/collections/{{ link.handle }}" class="nav-link">
+          <span class="mega-dropdown-icon bg-container-contain" style="background-image: url({{ icon_name | file_url }});"></span>
+          <span class="mega-dropdown-label">{{ link.title }}</span>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .featured-category-wrapper{
+    background: #fafbfc;
+    padding: 2rem 0 3rem;
+    margin-bottom: -3rem;
+    margin-top: 4rem;
+  }
+  .featured-category-wrapper .bg-container-contain{
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: relative;
+    top: 4px;
+    right: 5px;
+  }
+  .featured-category-wrapper ul li{
+    display: inline;
+  }
+  .featured-category-wrapper ul li a{
+    color: #3B5266;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured category",
+  "class": "index-section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop By Category"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured category",
+	  "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

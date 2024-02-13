@@ -1,0 +1,38 @@
+{%- for field in product.metafields.sf_documentation -%}
+  {%- assign url_key = field | first -%}
+  {%- assign url_key_start = url_key | slice: 0, 3 -%}
+  {%- unless url_key_start == 'url' -%}
+    {%- continue -%}
+  {%- endunless -%}
+  {%- assign any = true -%}
+  {%- assign url = field | last -%}
+  {%- assign number = url_key | slice: 3 -%}
+  {%- assign name_key = 'name' | append: number -%}
+  {%- assign name = product.metafields.sf_documentation[name_key] -%}
+  {%- capture items -%}
+    {{- items -}}
+    <div class="row align-items-start align-items-lg-center">
+      <div class="col-auto">
+        <img src="{{ 'icon-pdf.svg' | asset_url }}" class="file-icon" alt="pdf file">
+      </div>
+      <div class="col">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg file-name">
+            {{- name -}}
+          </div>
+          <div class="col-12 col-lg-auto text-right">
+            <a href="{{ url }}" target="_blank" class="text-secondary font-weight-bold">
+              <img src="{{ 'icon-download.svg' | asset_url }}" class="download-icon" alt="download icon">
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endcapture -%}
+{%- endfor -%}
+{%- if any -%}
+  <div class="product-docs-wrap">
+    {{- items -}}
+  </div>
+{%- endif -%}

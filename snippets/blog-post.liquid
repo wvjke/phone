@@ -1,0 +1,28 @@
+<div class="pl-lg-5 pr-lg-5 ml-lg-5 mr-lg-5">
+  {% comment %}
+    Blog post title
+  {% endcomment %}
+  <h2 class="title text-center h3 mb-3 mt-5">{{ blog_post_title }} ~ {{ blog_post_author }}</h2>
+
+  {% comment %}
+    Blog post date
+  {% endcomment %}
+  <p class="text-center light">{{ blog_post_date }}</p>
+
+  {% comment %}
+    Blog post description
+  {% endcomment %}
+  <p class="text-justify">
+    {{ blog_post_description }}
+    <a href="#">View post</a>
+  <p>
+
+  {% comment %}
+    Blog post featured image
+  {% endcomment %}
+  <div>
+    <a href="https://placeholder.com"><img src="https://via.placeholder.com/1280x1600" class="img-fluid"></a>
+  </div>
+
+</div>
+

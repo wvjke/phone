@@ -1,0 +1,98 @@
+{% comment %} {% section 'collection_hero' %}
+
+{% assign menu = linklists.department %}
+{% assign break_loop = false %}
+
+{% for link in menu.links %}
+  {% for sub_link in link.links %}
+    {% for sub_sub_link in sub_link.links %}
+       {% if sub_sub_link.object.handle == collection.handle %}
+            {% assign parent_parent_menu = link %}
+            {% assign parent_menu = sub_link %}
+            {% assign current_menu_item = sub_sub_link %}
+            {% assign break_loop = true %}
+            {% break %}
+        {% endif %}
+        {% increment num %}
+    {% endfor %}
+    {% if break_loop %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% if break_loop %}
+    {% break %}
+  {% endif %}
+{% endfor %} {% endcomment %}
+
+{% comment %} {% for i in (1..900) %}
+  {% increment num %}
+{% endfor %} {% endcomment %}
+
+{% if current_menu_item != nil %}
+  <div class="collection-navigation">
+    <div class="container">
+      <div class="collection-breadcrumb"
+        data-collections="{{ collection.handle }}"
+        data-collection-labels="{{ collection.title }}"
+        data-current-active="true"
+        data-parent="{{ collection.metafields.parent.name }}"
+      >
+        <a class="navigation-breadcrumbs-link" href="/pages/{{ parent_parent_menu.object.handle }}">
+          {{ parent_parent_menu.title }}
+        </a>
+        <i class="fa fa-chevron-right navigation-breadcrumbs-icon"></i>
+        <a class="navigation-breadcrumbs-link" href="/pages/{{ parent_menu.object.handle }}">
+          {{ parent_menu.title }}
+        </a>
+        <i class="fa fa-chevron-right navigation-breadcrumbs-icon"></i>
+        <span class="navigation-breadcrumbs-active">
+            {{ current_menu_item.title }}
+        </span>
+      </div>
+      {% render 'collection_carousel', collection: collection %}
+    </div>
+  </div>
+{% endif %}
+
+<div class="container content list-collection">
+  <div>
+    {% include 'list-collections', parent_parent_menu: parent_parent_menu, parent_menu: parent_parent_menu.links, current_menu_item: current_menu_item %}
+    <pre hidden>
+    {
+      "collection": {
+        "title": "{{ collection.title}}",
+        "handle": {{ collection.handle | json }},
+        "currentVendor": "{{ collection.current_vendor | default: ''  }}",
+        "sortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+        "sortOptions": [
+          {%- for option in collection.sort_options -%}
+            {
+              "value": {{ option.value | json }},
+              "name": {{ option.name | json -}}
+            }
+            {%- unless forloop.last %},{% endunless -%}
+          {%- endfor -%}
+        ]
+      },
+      "vendors": [
+        {%- for product_vendor in collections.all.all_vendors -%}
+          {
+            "name": {{ product_vendor | json }},
+            {%- assign split = product_vendor | link_to_vendor | split: '"' -%}
+            "url": {{ split[1] | json }}
+          }
+          {%- unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      "subcollectionNumber": {{ linklists[collection.handle].links | size }}
+    }
+    </pre>
+  </div></div>
+
+  {%- assign clean_description = collection.description | strip_html | strip -%}
+  {%- if clean_description != '' -%}
+    <hr class="my-5">
+
+    {{- collection.description -}}
+  {%- endif -%}
+</div>

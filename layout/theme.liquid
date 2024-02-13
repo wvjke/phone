@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="{{ shop.locale }}" style="overflow-x: hidden;">
+  <head>
+    {% comment %}{% include 'SEOManager' %}{% endcomment %}
+<meta name="google-site-verification" content="0qAL_DLY1Q-NQnVR0CVWHy2vA7a2RuHkpO90zt6gfRo" />
+<meta name="facebook-domain-verification" content="r1wqyvoqmmk1n6g6q8uxw41f0ngyqj" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    {% if template == 'collection' %}
+      {% if collection.title contains '【' or collection.title contains '一' or collection.title contains '[' %}
+        <meta name="robots" content="noindex,nofollow">
+      {% endif %}
+    {% endif %}
+
+    {% include 'meta' %}
+
+    <script src="{{ 'ls.rias.min.js' | asset_url }}" async="async"></script>
+    <script src="{{ 'ls.bgset.min.js' | asset_url }}" async="async"></script>
+    <script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script>
+
+    {{ 'outdatedbrowser.min.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'outdatedbrowser.min.js' | asset_url }}" defer></script>
+    
+    <script type="text/javascript">
+      window.ArnoldsBoatShop = {
+        region: {{ settings.region | json }},
+        zipEnabled: {{ settings.show_zip | json }},
+        cartCurrency: {
+          iso_code: {{ cart.currency.iso_code | json }},
+          symbol: {{ cart.currency.symbol | json }},
+          format: {{ shop.money_format | json }},
+        },
+        shippingOptions: {
+          warning_text_meta: {{ product.metafields.custom.bulk_item | json }},
+          warning_text_massage: {{ settings.warning_text_massage | json }},
+          flat_shipping_rate: {{ settings.flat_shipping_rate | json }},
+          free_shipping_threshold: {{ settings.free_shipping_threshold | json }},
+          free_shipping_text: {{ settings.free_shipping_text | json }},
+          flat_rate_text: {{ settings.flat_rate_text | json }},
+          in_stock_messaging: {{ settings.in_stock_messaging | json }},
+          out_of_stock_messaging: {{ settings.out_of_stock_messaging | json }},
+          out_of_stock_with_overselling_messaging: {{ settings.out_of_stock_with_overselling_messaging | json }},
+          out_of_stock_amt_messaging: {{ settings.out_of_stock_amt_messaging | json }},
+          out_of_stock_amt_messaging_with_overselling: {{ settings.out_of_stock_amt_messaging_with_overselling | json }},
+          shipping_policy: {{ settings.shipping_policy | json }},
+          terms_conditions: {{ settings.terms_conditions | json }},
+        },
+        ratingText: {
+          ratings_bold: {{ settings.ratings_bold | json }},
+          ratings_regular: {{ settings.ratings_regular | json }}
+        },
+        productsCount: {{ settings.product_count_override }},
+        currentCollectionPath: [],
+      };
+      {% if customer %}
+        var _learnq = _learnq || [];
+        _learnq.push(['identify', {
+          $email: {{ customer.email | json }},
+          $first_name: {{ customer.first_name | json }},
+          $last_name: {{ customer.last_name | json }},
+        }]);
+      {% endif %}
+    </script>
+
+    <script src="{{ 'runtime.js' | asset_url }}" defer></script>
+    <script src="{{ 'vendors.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.layout.js' | asset_url }}" defer></script>
+    <script src="{{ 'slick.min.js' | asset_url }}" defer></script>
+
+
+    {{ content_for_header }}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+    crossorigin="anonymous">
+    {{ 'theme.layout.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-styles.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+
+    {%- if settings.scripts_gtm_use and settings.scripts_gtm_head -%}
+      {{ settings.scripts_gtm_head }}
+    {%- endif -%}
+    {{ shop.metafields.okendo.ReviewsWidgetStyleTag }}
+    {{ shop.metafields.okendo.StyleCustomizations }}
+
+  
+
+  {%- render 'bold-subscription-widget' -%}
+    
+ <meta name="tapcart-banner:appIcon"
+    content="https://storage.googleapis.com/tapcart-150607.appspot.com/80e2d63954d197f492464259b71dd662_i.jpeg">
+
+
+    
+</head>
+  <body style="overflow-x: hidden;">
+    <div id="search-backdrop-root"></div>
+    {% include 'browser-outdated' %}
+    {%- if settings.scripts_gtm_use and settings.scripts_gtm_body -%}
+      {{ settings.scripts_gtm_body }}
+    {%- endif -%}
+
+    {% section 'header' %}
+    <div class="main-content">
+      {{ content_for_layout }}
+    </div>
+    {% section 'footer' %}
+
+    <aside id="cart-drawer">
+      <p>Go to cart page</p>
+    </aside>
+
+    {% include 'swymSnippet' %}
+
+    {% include 'script-tags' %}
+    {{ 'sw.js' | asset_url | script_tag }}
+    <script>
+      function ju_init(){
+          jju('.ju_controls_btn').css('z-index',9999999999);
+      }
+      async function checkInsuranceProduct(){
+        console.log({test:'test'})
+        let Cart_Item = await(await fetch("/cart?view=nolayout")).json()
+        let InsuranceTrue = Cart_Item.find(ins=> ins.Insurance == true);
+        if(InsuranceTrue){
+          document.querySelector('body').classList.add('HasInsurance')
+        }
+      }
+      checkInsuranceProduct()
+    </script>
+    
+    <script>
+      $('.slideshow').slick({
+        arrows: false,
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true
+      });
+    </script>
+    {% comment %}
+    <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"17538321"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+  {% endcomment %}
+<!-- **BEGIN** Hextom CTB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_ctb_main', product: product, customer: customer %}
+    <!-- **END** Hextom CTB Integration // Main Include - DO NOT MODIFY -->
+{% include 'adroll' %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    //$('.menuDropdown').mouseenter(function() { $(this).trigger('click');  });
+   // $('ul.nav-bar > li').mouseenter(function() { $(this).addClass('active');  });
+   // $('.menuDropdown').mouseleave(function() { $(this).trigger('click');  });
+   // $('ul.nav-bar > li').mouseenter(function() { $(this).removeClass('active');  });
+  });
+</script>
+    
+</body>
+</html>
+
+<style>
+  span.snize-attribute {
+    display: none !important;
+  }
+</style> 

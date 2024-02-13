@@ -1,0 +1,44 @@
+{% if product.compare_at_price %}
+{% if product.compare_at_price > product.price %}
+{% assign onsale = true %}
+{% else %}
+{% assign onsale = false %}
+{% endif %}
+{% else %}
+{% assign onsale = false %}
+{% endif %}
+
+<div>
+  <a href="{{ product.url }}" class="vantablack d-flex flex-column product-card">
+
+    <div class="collection-img-container">
+      <div>
+        {% include 'responsive-image-fixed' with
+                          image: product.featured_image,
+        max_width: 600,
+        max_height: 600,
+        image_class: "collection-product-image"
+        %}
+      </div>
+    </div>
+
+
+    <div class="mb-1 product-vendor font-weight-bold text-blue">{{ product.vendor }}</div>
+    <div class="mb-2 product-title">{{ product.title | truncate: 30 }}</div>
+    <div class="d-flex flex-wrap product-prices mt-auto">
+      {% if product.price_varies %}
+      <strong>from&nbsp;</strong>
+      {% endif %}
+      {% if onsale == true %}
+      <p><strong class="product-price">{{ product.price | money }}</strong>
+        <del class="mr-2 text-blue product-compare-price price-compare">{{ product.compare_at_price | money }}</del></p>
+      {% else %}
+      <strong class="product-price">{{ product.price | money }}</strong>
+      {% endif %}
+    </div>
+  </a>
+
+</div>
+
+
+

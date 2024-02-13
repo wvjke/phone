@@ -1,0 +1,128 @@
+<aside id="cart-drawer2">
+    <div id="cart-drawer-backdrop" class="cart-drawer-backdrop" hidden></div>
+    <div class="cart-drawer">
+        <div class="cart-drawer-header">
+            <a href="/cart" class="mr-auto font-weight-bold">View Cart Full Screen</a>
+            <button type="button" class="cart-drawer-close"><i class="fa fa-times fa-lg"></i></button>
+        </div>
+
+        <div class="cart-drawer-items">
+            {% for line_item in cart.items %}
+                <div class="cart-drawer-item mb-3">
+                    <div class="row">
+                        <div class="cart-item-image col-auto">
+                            <a href="{{ line_item.product.url }}" class="d-block mb-4 position-relative">
+                                {{ line_item.image | img_url: '100x100' | img_tag }}
+                            </a>
+                            <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="text-secondary">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                        <div class="cart-drawer-item-details col">
+                            <a href="{{ line_item.product.url }}" class="d-block h5 mb-0 text-primary">{{ line_item.title }}</a>
+                            <div class="mb-3">{{ line_item.product.variant.title }}</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 row">
+                        <div class="d-flex align-items-center col-4">
+                            <input min="1" type="number" class="text-center no-spinners form-control-sm form-control" value="2">
+                        </div>
+                        <div class="text-right col-8">
+                            <div>
+                                <del class="mr-2 price-color">$18.90</del>
+                                <span class="discount-price-color">$15.90</span>
+                            </div>
+                            <div class="font-weight-bold">Total&nbsp;<span>$31.80</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+
+        <div>
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <h6 class="m-3 text-right">Subtotal</h6>
+                    <h6 class="m-3 text-right">GST</h6>
+                    <h5 class="total-price m-3 text-right">Total</h5>
+                </div>
+                <div class="col-auto">
+                    <h6 class="m-3 text-right">$417.74</h6>
+                    <h6 class="m-3 text-right">$37.98</h6>
+                    <h5 class="total-price m-3 text-right">$417.74</h5>
+                </div>
+            </div>
+
+            <div class="py-4 text-center">
+                <p class="font-weight-bold mb-0">Have a discount code or gift card?</p>
+                <p class="mb-0">You can add your discount or gift card code in the next step at checkout.</p>
+            </div>
+            
+            <form action="/cart" method="post" class="mb-1">
+                <div class="pt-2 pb-4">
+                    <h5 id="cart-order-note" class="text-center cursor-pointer">
+                        <span class="mr-2">Add Order Note</span>
+                        <i class="fa fa-sm fa-chevron-up"></i>
+                        <i class="fa fa-sm fa-chevron-down"></i>
+                    </h5>
+                    <div class="collapse order-note" style="">
+                        <textarea name="note" rows="4" class="form-control cart-notes">
+                        </textarea>
+                    </div>
+                </div>
+                <button name="checkout" class="btn btn-primary btn-lg btn-block text-uppercase btn btn-primary">Checkout</button>
+            </form>
+
+            <div class="alert alert-shipping fade show" role="alert">You've qualified for free shipping!</div>
+
+            <button type="button" class="btn btn-link btn-continue text-center d-block p-3 font-weight-bold">
+                <i class="fa fa-chevron-left fa-sm"></i>
+                <span class="ml-2">Continue Shopping</span>
+            </button>
+
+        </div>
+
+        <div class="text-center pt-3 pb-5">
+            <a class="font-weight-bold">Shipping Policy</a>
+            <span class="text-muted px-2">|</span>
+            <a class="font-weight-bold">Terms &amp; Conditions</a>
+        </div>
+
+        <div class="cart-points pc">
+            <div class="mb-4 justify-content-around no-gutters row">
+                <div class="col-auto">
+                    <i class="truck-icon mt-1"></i>
+                </div>
+                <div class="col-10">
+                    <div class="m-0 font-weight-bold">$18 Shipping | Free Shipping over $499</div>
+                    <div>All across Australia</div>
+                </div>
+            </div>
+
+            <div class="mb-4 justify-content-around no-gutters row">
+                <div class="col-auto">
+                    <i class="trophy-icon"></i>
+                </div>
+                <div class="col-10">
+                    <div class="m-0 font-weight-bold">Customers Love Arnold’s Boat Shop</div>
+                    <div>Rated 4.6 / 5 based on 1,600+ reviews</div>
+                </div>
+            </div>
+
+            <div class="justify-content-around no-gutters row">
+                <div class="col-auto">
+                    <i class="up-arrow-icon"></i>
+                </div>
+                <div class="col-10">
+                    <div class="m-0 font-weight-bold">42,000+ Products and Growing</div>
+                    <div>The one-stop boat shop</div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</aside>

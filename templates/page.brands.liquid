@@ -1,0 +1,28 @@
+{% section 'brands_hero' %}
+
+{% section 'featured-brands' %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mt-5">
+            <h2>Brands A-Z</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="alphabet-list"></div>
+        </div>
+    </div>
+</div>
+
+<div class="all-brands-hidden d-none">
+    {% for product_vendor in collections.all.all_vendors %}
+        {% assign vendorHandle = product_vendor | handle %}
+        {{ product_vendor | link_to_vendor }}
+    {% endfor %}
+</div>
+
+<div class="container all-brands">
+    <div class="row"></div>
+</div>

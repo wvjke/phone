@@ -1,0 +1,26 @@
+<div id="announcement-bar" class="top-header announcement-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-3">
+        {% if section.settings.phone_number != blank %}
+        <p>{{ section.settings.phone_number }}</p>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-3">
+        {% if section.settings.phone_number_2 != blank %}
+        <p>{{ section.settings.phone_number_2 }}</p>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-3">
+        {% if section.settings.phone_number_3 != blank %}
+        <p>{{ section.settings.phone_number_3 }}</p>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-3">
+        {% if section.settings.phone_number_4 != blank %}
+        <p>{{ section.settings.phone_number_4 }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

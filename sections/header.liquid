@@ -1,0 +1,258 @@
+{%- if template.name == 'search' and template.suffix == 'megamenu-ajax' -%}
+  {%- include 'nav-bar', json: true -%}
+{%- else -%}
+  <header>
+    {%- if section.settings.header_show_announcement -%}
+      {% include 'announcement-bar' %}
+    {%- endif -%}
+    <div id="logo-bar" class="container">
+      <div class="row justify-content-between align-items-center py-3 pt-md-3 pb-md-4">
+        <div class="logo-container col-6 col-md-3">
+          {% include 'logo' %}
+        </div>
+        <div class="col-4 col-md-4 d-none d-md-block d-lg-block">
+          <div id="search-input-wrapper" class="position-relative">
+            <form class="form-inline d-none d-lg-block flex-nowrap" action="/search">
+              <div class="input-group input-group-sm flex-nowrap">
+                <input class="form-control" type="search" placeholder="Search thousands of boat supplies" name="q"
+                       id="search-input">
+                <div class="input-group-append">
+                  <button class="btn btn-secondary btn-sm search-icon">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="account col-6 col-md-5 position-static">
+          <div class="row no-gutters justify-content-end align-items-center">
+            <div class="col-auto">
+              <a href="#swym-wishlist" id="wishlist-button" class="btn btn-link p-2 d-flex">
+                <i class="fa fa-heart d-lg-none"></i>
+                <strong class="d-none d-lg-inline">{% include 'icon-wishlist' %} Wishlist</strong>
+              </a>
+            </div>
+            <div class="col-auto">
+              <a class="btn btn-link p-2 d-flex" href="{{ routes.account_url }}">
+                <img src="{{ 'icon-account.svg' | asset_url }}" alt="account icon" class="account-icon d-lg-none mb-1">
+                <strong class="d-none d-lg-inline">{% include 'icon-user' %} My Account</strong>
+              </a>
+            </div>
+            <div id="cart-sidebar-btn" class="col-auto col-cart-btn">
+              <button class="shopping-bag-button" style="border:0;background:transparent;">
+                <span class="shopping-bag-stack">
+                  <span class="shopping-bag-quantity" {% unless cart.item_count > 0 %}hidden{% endunless %}>
+                    {%- if cart.item_count > 99 -%}
+                      99+
+                    {%- else -%}
+                      {{- cart.item_count -}}
+                    {%- endif -%}
+                  </span>
+                 {% include 'icon-cart' %}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%- capture brands_menu -%}
+      {% assign need_separator = false %}
+      {
+        "menuItems": [
+          {% for block in section.blocks %}
+          {% if block.type == 'brands-menu-item' %}
+            {%- if need_separator %},{% endif -%}
+            {% assign need_separator = true %}
+            {% assign vendor_url = block.settings.brands_menu_item_name | link_to_vendor | split: '"' %}
+            {
+              "name": "{{ block.settings.brands_menu_item_name | escape }}",
+              "logo": "{{ block.settings.brands_menu_item_logo | img_url: '160x' }}",
+              "link": "{{ vendor_url[1] }}"
+            }
+          {% endif %}
+          {% endfor %}
+        ]
+      }
+    {%- endcapture -%}
+    {%- capture news_menu -%}
+      {
+        "recentNews": [
+          {% assign news_articles = blogs.resources.articles | sort: "published_at" | reverse %}
+          {% for article in news_articles limit: 5 %}
+          {
+            "title": "{{ article.title  | escape }}",
+            "url": {{ article.url  | json }}
+          }
+          {%- unless forloop.last %},{% endunless -%}
+          {% endfor %}
+        ]
+        {% if section.settings.news_menu_featured_item != blank %}
+          {% assign featured_news = articles[section.settings.news_menu_featured_item] %}
+          ,
+          "featuredNews": {
+            "title": "{{ featured_news.title  | escape }}",
+            "url": {{ featured_news.url  | json }},
+            "image": "{{ featured_news.image | img_url: 'master' }}",
+            "excerpt": "{{ featured_news.excerpt_or_content | strip_html | trim | truncatewords: 25 | escape | strip_newlines }}"
+          }
+        {% endif %}
+      }
+    {%- endcapture -%}
+    <div class="navigation">
+      {% include 'nav-bar', brands_menu: brands_menu, news_menu: news_menu %}
+    </div>
+  </header>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "header_show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "header_show_announcement_index_only",
+      "label": "Home page only"
+    },
+    {
+      "type": "text",
+      "id": "header_announcement_text",
+      "label": "Text",
+      "default": "Announcement Text"
+    },
+    {
+      "type": "url",
+      "id": "header_announcement_link_url",
+      "label": "Link Url"
+    },
+    {
+      "type": "text",
+      "id": "header_announcement_link_text",
+      "label": "Link Text",
+      "default": "Link Text"
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_text",
+      "label": "Free Shipping Text",
+      "default": "Free Shipping over",
+      "info": "Amount will be appended (configurable in global theme settings)"
+    },
+    {
+      "type": "text",
+      "id": "flat_rate_text",
+      "label": "Flat Rate Text",
+      "default": "Shipping",
+      "info": "Amount will be prepended (configurable in global theme settings)"
+    },
+    {
+      "type": "header",
+      "content": "Contact Link"
+    },
+    {
+      "type": "url",
+      "id": "contact_page",
+      "label": "Contact Us URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "contact_page_blank",
+      "label": "Open in new tab"
+    },
+    {
+      "type": "header",
+      "content": "News Menu"
+    },
+    {
+      "type": "article",
+      "id": "news_menu_featured_item",
+      "label": "Featured News Menu Item"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_2",
+      "label": "Phone number 2"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_3",
+      "label": "Phone number 3"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_4",
+      "label": "Phone number 4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "megamenu-item",
+      "name": "Megamenu Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "top_level_label",
+          "label": "Top-level Label",
+          "info": "Defaults to the menu's title"
+        },
+        {
+          "type": "url",
+          "id": "top_level_url",
+          "label": "Label Link",
+          "info": "Leave blank if a nested menu is specified, otherwise the menu cannot be opened."
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Nested Menu"
+        },
+        {
+          "type": "checkbox",
+          "id": "icons",
+          "label": "Display department icons",
+          "info": "Only enable this for menus where each top level item links to a department collection with an icon matching the naming convention",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "brands-menu-item",
+      "name": "Brands Menu Items",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brands_menu_item_logo",
+          "label": "Brand Logo"
+        },
+        {
+          "type": "text",
+          "id": "brands_menu_item_name",
+          "label": "Brand Name"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+{% javascript %}
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],[],[[222,0,1]]]);
+{% endjavascript %}

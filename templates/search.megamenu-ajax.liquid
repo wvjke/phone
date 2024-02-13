@@ -1,0 +1,5 @@
+{% layout none %}
+{% capture content %}
+  {% section 'header' %}
+{% endcapture %}
+{{ content | strip | replace: '<div id="shopify-section-header" class="shopify-section header">', '' | replace: '</div>', '' }}

@@ -1,0 +1,64 @@
+{% assign menu = linklists.department %}
+
+<div class="megamenu-department-menu mega-dropdown-menu d-none" data-handle="department">
+    <div class="d-none d-lg-block mega-dropdown-bg with-icons">
+        <div class="container px-0">
+            <div class="no-gutters row">
+                <div class="mega-dropdown-level-0 py-4 col-3">
+                    <ul class="nav flex-column">
+                        {% for link in menu.links %}
+                            {%- capture icon_name -%}
+                                icon-department-{{ link.handle }}.svg
+                            {%- endcapture -%}
+                            <li class="d-flex align-items-center justify-content-start nav-item" data-handle="{{ link.handle }}">
+                                 <a href="/collections/{{ link.handle }}" class="nav-link">
+                                     <span class="mega-dropdown-icon bg-container-contain" style="background-image: url({{ icon_name | file_url }});"></span>
+                                     <span class="mega-dropdown-label">{{ link.title }}</span>
+                                 </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="bg-white col-9">
+                    {% for link in menu.links %}
+                        <div class="no-gutters row d-none mega-dropdown-level-0-sub" data-handle="{{ link.handle }}">
+                            <div class="mega-dropdown-level-1 py-3 col-auto">
+                                <a href="/collections/{{ link.handle }}" class="mega-dropdown-title-wrap d-block mb-3">
+                                    <div class="mega-dropdown-title">{{ link.title }}</div>
+                                </a>
+                                <ul class="nav flex-column">
+                                    {% for sub_link in link.links  %}
+                                        <li class="d-flex align-items-center justify-content-start nav-item" data-handle="{{ sub_link.handle }}">
+                                            <a href="/collections/{{ sub_link.handle }}" class="nav-link">
+                                                <span class="mega-dropdown-label">{{ sub_link.title }}</span>
+                                            </a>
+                                        </li>
+                                   {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="mega-dropdown-level-2 col">
+                                {% for sub_link in link.links %}
+                                    <div class="mega-dropdown-padding d-none">
+                                        <a href="/collections/{{ sub_link.handle }}" class="mega-dropdown-title d-block">{{ sub_link.title }}</a>
+                                        <div class="no-gutters row">
+                                            {% for sub_sub_link in sub_link.links %}
+                                                {% assign current_collection = collections[sub_sub_link.handle] %}
+                                                <a href="/collections/{{ sub_sub_link.handle }}" class="d-flex flex-column justify-content-between align-items-stretch p-3 col-4">
+                                                    <div class="embed-responsive embed-responsive-11by8 flex-grow-0">
+                                                        <div class="embed-responsive-item bg-container-contain" style="background-image: url({{ current_collection.image | img_url: '100x100' }});">
+                                                        </div>
+                                                    </div>
+                                                    <strong class="d-block text-center flex-grow-1">{{ current_collection.title }}</strong>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#{{ settings.theme-color }}">
+
+{% if template contains 'collection' and collections.[collection.handle] != empty %}
+  <link rel="canonical" href="{{ shop.url }}{{ collections.[collection.handle].url }}">
+{% else %}
+  <link rel="canonical" href="{{ canonical_url }}">
+{% endif %}
+
+{% if settings.meta_google_site_verification_tags != blank %}
+  <!-- Google Site Verification Tag -->
+  {% assign google_site_verification_tags = settings.meta_google_site_verification_tags | split: ',' %}
+  {% for gsvt in google_site_verification_tags %}
+    <meta name="google-site-verification" content="{{ gsvt }}" />
+  {% endfor %}
+  <!--End Google Site Verification Tag -->
+{% endif %}
+
+{% if settings.favicon != blank %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x' }}" type="image/png">
+{% endif %}
+
+{%- capture seo_title -%}
+  {%- if template contains 'search' and search.terms -%}
+    Search results for "{{- search.terms -}}"
+  {%- elsif template contains 'collection' and  collection.handle == 'vendors' -%}
+    {{ collection.current_vendor }} Products for Sale Online
+  {%- else -%}{{- page_title -}}{%- endif -%}
+  {%- if current_tags -%}{% assign meta_tags = current_tags | join: ', ' %} &ndash; Tags: {{ meta_tags }}{%- endif -%}
+  {%- if current_page != 1 -%} &ndash; {{- 'general.meta.page' | t: page: current_page -}}{%- endif -%}
+  {% comment %}{% unless page_title contains shop.name %} t&ndash; {{ shop.name | remove_first: " Australia" }}{% endunless %}{% endcomment %}
+{%- endcapture -%}
+
+{%- capture seo_description -%}
+  {%- if template contains 'collection' and  collection.handle == 'vendors' -%}
+    Shop {{ collection.current_vendor }} at Arnold's Boat Shop. Great Prices. Shipped to anywhere in Australia
+  {%- elsif page_description -%}
+    {{- page_description -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+<title>{% if collection.handle == 'vendors' %}
+  	{{collection.title | capitalize}} Products | Buy Online | Arnold's Boat Shop
+  {% else %}
+  	{{- seo_title | strip -}}
+  {% endif %}</title>
+
+<meta name="description" content="{% if collection.handle == 'vendors' %}Shop for {{collection.title | capitalize}} at great prices. Arnold’s Boat Shop is an online ship chandler servicing the Australian boating market. Buy now, pay leter with Zip.
+                                  {% else %}{{ seo_description | strip | escape }}{% endif %}">
+
+{% if template contains 'search' and search.terms %}
+  <meta name="robots" content="noindex">
+{% endif %}
+
+{% if current_tags %}
+  <meta name="robots" content="noindex">
+{% endif %}
+
+{% include 'social-meta-tags' %}
+
+{% if settings.scripts_slick %}
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css">
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+{% endif %}

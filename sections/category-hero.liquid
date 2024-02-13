@@ -1,0 +1,24 @@
+{% comment %} {%- assign clean_description = collections[page.handle].description | strip_html | strip -%} {% endcomment %}
+{% include 'hero', text: page.title, section: section, type: 'department' %}
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Cover Image"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Snippet height",
+      "options": [
+        {"value": "false","label": "Normal"},
+        {"value": "true","label": "Half"}
+      ]
+    }
+  ]
+}
+{% endschema %}

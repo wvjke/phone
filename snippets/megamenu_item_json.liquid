@@ -1,0 +1,13 @@
+{%- if menu.levels > 0 -%}
+  {%- capture child_links -%}
+    {%- render 'megamenu_traverse', links: menu.links, depth: 1, icons: icons -%}
+  {%- endcapture -%}
+{%- else -%}
+  {%- assign child_links = '' -%}
+{%- endif -%}
+{%- if child_links != blank -%}
+  {%- assign links_prop = ',"links":[' | append: child_links | append: ']' -%}
+{%- else -%}
+  {%- assign links_prop = '' -%}
+{%- endif -%}
+{"depth":0,"icons":{{ icons | json }},"handle":{{ menu.handle | json }},"url":{{ url | json }},"label":{{ label | json }}{{ links_prop }},"renderedAt":{{ 'now' | date: '%Y-%m-%dT%H:%M:%S%z' | json }}}

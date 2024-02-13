@@ -1,0 +1,62 @@
+{% assign tite_size = collection.title | size %}
+{% if collection.handle == "chrome-plated-brass-hatche-fasteners" %}
+	Chrome Plated Brass Hatche Fasteners | Arnold's Boat Shop
+{% elsif collection.handle == "p70s-autopilot-controller-buttons-859825" %}
+	Buy P70S Autopilot Controller (Buttons) | Arnold's Boat Shop
+{% elsif collection.handle == "tiller-extension-spares-accessories" %}
+	Tiller Extension Spares & Accessories | Arnold's Boat Shop
+{% elsif collection.handle == "manual-inflatable-lifejackets-with-harness" %}
+	Manual Inflatable Lifejackets - Harness | Arnold's Boat Shop
+{% elsif collection.handle == "raymarine-11-pin-cp470-cp570-axiom-pro-rvx" %}
+	Buy Raymarine 11-Pin Axiom Pro RVX | Arnold's Boat Shop
+{% elsif collection.handle == "pet-lifejackets-non-inflatable-lifejackets" %}
+	Buy Non-Inflatable Lifejackets for Pets | Arnold's Boat Shop
+{% elsif collection.handle == "inflatable-floor-hypalon-inflatable-boats" %}
+	Buy Inflatable Floor Hypalon Boats | Arnold's Boat Shop
+{% elsif collection.handle == "slatted-floor-hypalon-inflatable-boats" %}
+	Slatted Floor Hypalon Inflatable Boats | Arnold's Boat Shop
+{% elsif collection.handle == "automatic-inflatable-lifejacket-with-harness" %}
+	Auto Inflatable Lifejackets - Harness | Arnold's Boat Shop
+{% elsif collection.handle == "pvc-coated-s-s-wire-rope-per-per-metre" %}
+	PVC Coated S/S Wire Rope Per Per Metre | Arnold's Boat Shop
+{% elsif collection.handle == "fire-retardant-inflatable-lifejackets" %}
+	Fire Retardant Inflatable Lifejackets | Arnold's Boat Shop
+{% elsif collection.handle == "universal-multi-brand-fuel-line-connectors" %}
+	Universal Brand Fuel Line Connectors | Arnold's Boat Shop
+{% elsif collection.handle == "raymarine-9-pin-a-c-e-es-axiom-7-dv" %}
+	Raymarine 9-Pin Axiom 7 DV Transducers | Arnold's Boat Shop
+{% elsif collection.handle == "solas-approved-inflatable-lifejackets" %}
+	SOLAS Approved Inflatable Lifejackets | Arnold's Boat Shop
+{% elsif collection.handle == "surface-mount-rectangular-lights-strip-lights" %}
+	Surface Mount Rectangular Strip Lights | Arnold's Boat Shop
+{% elsif collection.handle == "led-replacement-bayonet-single-contact" %}
+	LED Replacement Bayonet Single Contact | Arnold's Boat Shop
+{% elsif collection.handle == "led-replacement-bayonet-double-contact" %}
+	LED Replacement Bayonet Double Contact | Arnold's Boat Shop
+{% elsif collection.handle == "diesel-generator-service-spare-parts" %}
+	Diesel Generator Service & Spare Parts | Arnold's Boat Shop
+{% elsif collection.handle == "underwater-light-spares-accessories" %}
+	Underwater Light Spares & Accessories | Arnold's Boat Shop
+{% elsif collection.handle == "pvc-coated-s-s-wire-rope-per-per-roll" %}
+	PVC Coated S/S Wire Rope Per Per Roll | Arnold's Boat Shop
+{% elsif collection.handle == "surface-mount-oblong-courtesy-lights" %}
+	Surface Mount Rectangular Strip Lights | Arnold's Boat Shop
+{% elsif collection.handle == "gas-petrol-vapour-carbon-monoxide-fume-detectors" %}
+	Buy Gas/Petrol Vapour/CO Fume Detectors | Arnold's Boat Shop
+{% elsif collection.handle == "battery-powered-surface-mount-lights" %}
+	Battery Powered Surface Mount Lights | Arnold's Boat Shop
+{% elsif collection.handle == "commercial-non-inflatable-lifejackets" %}
+	Commercial Non Inflatable Lifejackets | Arnold's Boat Shop
+{% elsif collection.handle == "bimini-t-top-accessories-fittings" %}
+	Bimini & T-Top Accessories & Fittings | Arnold's Boat Shop
+{% elsif collection.handle == "level-100-non-inflatable-lifejackets" %}
+	Level 100 Non Inflatable Lifejackets | Arnold's Boat Shop
+{% elsif collection.handle == "binacle-above-deck-mount-compasses" %}
+	Binacle & Above Deck Mount Compasses | Arnold's Boat Shop
+{% elsif collection.handle == "universal-multi-brand-fuel-tank-fittings" %}
+	Buy Universal Brand Fuel Tank Fittings | Arnold's Boat Shop
+{% elsif tite_size > 28 %}
+	Buy {{collection.title | capitalize}} | Arnold's Boat Shop
+{% else %}
+	Buy {{collection.title | capitalize}} Online | Arnold's Boat Shop
+{% endif %}

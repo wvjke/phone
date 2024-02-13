@@ -1,0 +1,11 @@
+<div class="not-found container text-center">
+  <h1 class="title pt-5 mb-4">{{ 'layout.not_found.title' | t }}</h1>
+  {% if settings.not_found_image != blank %}
+    <div><img class="img mb-4" src="{{ settings.not_found_image | img_url: 'x300' }}" /></div>
+  {% endif %}
+  <h2 class="subtitle">{{ 'layout.not_found.subtitle' | t }}</h2>
+  <div class="text mb-3">{{ 'layout.not_found.text' | t }}</div>
+  <a href="{{ settings.not_found_url }}" class="btn btn-cta mt-2 mb-5">{{ 'layout.not_found.button' | t }}</a>
+</div>
+
+{% include 'SEOManager-404' %}<script id="esc-redirects-404-script" src="https://redirects.eastsideco.io/js/app.js"></script>

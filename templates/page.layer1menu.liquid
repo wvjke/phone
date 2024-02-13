@@ -1,0 +1,49 @@
+{% section 'category-hero' %}
+
+<div class="container">
+    {% for link in linklists.department.links %}
+        {% if link.object.handle == page.handle %}
+            {% assign active_category = link %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+    <h3 class="text-center py-4">Shop by Category</h3>
+
+    <div class="row">
+        {% assign elements = active_category.links %}
+
+        {% for element in elements %}
+            {% assign current_collection = collections[element.object.handle] %}
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="wrapper">
+                    <a href="/pages/{{ current_collection.handle }}" class="layered-category">
+                        <div class="img-wrapper">
+                            <img class="img-fluid"
+                                 src="{{ current_collection.image | img_url: '100x100' }}"
+                                 alt="{{ current_collection.title }}">
+                        </div>
+                        <strong>{{ current_collection.title }}</strong>
+                        <p class="text-muted mb-0">({{ element.links | size }} items)</p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <p>
+                {{ collections[page.handle].description | strip_html | strip }}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <p class="py-3 py-lg-5">
+                {{ page.content }}
+            </p>
+        </div>
+    </div>
+</div>
+

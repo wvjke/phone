@@ -1,0 +1,158 @@
+<div class="featured-collection-wrapper">
+  <div class="container" style="position:relative;">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-left mt-5">
+      <h2 class="title-h2 mb-5">{{ section.settings.title | escape }}</h2>
+    </div>
+    {% endif %}
+    
+
+    {%- assign collection = collections[section.settings.collection] -%}
+    <a href="{{ collection.url }}" class="view-all">View all</a>
+
+    {% case section.settings.grid %}
+    {% when 2 %}
+    {%- assign max_height = 530 -%}
+    {%- assign grid_item_width = 'col-md-6' -%}
+    {% when 3 %}
+    {%- assign max_height = 345 -%}
+    {%- assign grid_item_width = 'col-6 col-md-4' -%}
+    {% when 4 %}
+    {%- assign max_height = 250 -%}
+    {%- assign grid_item_width = 'col-6 col-md-3' -%}
+    {% when 5 %}
+    {%- assign max_height = 195 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+
+    {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+
+    <div class="row">
+      {% for product in collection.products limit: product_limit %}
+      <div class="{{ grid_item_width }}">
+        <a href="{{ product.url }}">
+        {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+        </a>
+      </div>
+      {% else %}
+
+      {% for i in (1..product_limit) %}
+      <div class="{{ grid_item_width }}">
+        <div class="grid-view-item product-card">
+          <div class="grid-view-item__image-wrapper">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="h4 grid-view-item__title text-center" aria-hidden="true">Product Name</div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_view_all %}
+    <hr class="hr--invisible" aria-hidden="true" />
+    <div class="text-center">
+      <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
+        {{ 'collections.general.view_all' | t }}
+      </a>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+  .featured-collection-wrapper{
+    background-color: #FAFBFC;
+    padding: 2rem 0 3rem;
+    margin-top: 3rem;
+  }
+  .product-card{
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 30px;
+    min-height: 453px;
+  }
+  .product-card__title{
+    margin-bottom: 15px;
+    min-height: 50px;
+  }
+  .product-price{
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .product-compare-price,
+  .product-vendor{
+    color: #2561BD;
+    font-weight: 700;
+  }
+  a.view-all{
+    position: absolute;
+    z-index: 9;
+    right: 15px;
+    top: 15px;
+    text-decoration: underline;
+    font-weight: 700;
+    color: #2561BD;
+  }
+  .product-price-wrapper{
+    min-height: 100px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": "Products per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Rows",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendors",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'view all' button",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection",
+	  "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

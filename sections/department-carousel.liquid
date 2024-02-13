@@ -1,0 +1,61 @@
+{% assign desktop_up = 'lg' %}
+<div class="custom-carousel-wrap">
+  <div class="container text-center">
+    <h2>{{ section.settings.title }}</h2>
+    <div class="custom-carousel department-carousel">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        {%- capture icon_name -%}
+          {%- render 'icon_name_from_collection', collection: collection -%}
+        {%- endcapture -%}
+        <a href="{{ collection.url }}" class="custom-carousel-item col-6 col-{{ desktop_up }}-3" {{ block.shopify_attributes }}>
+          {% if collection %}
+            <div class="icon">
+              <img src="{{ icon_name | file_url }}" alt="{{ icon_name }}">
+            </div>
+          {% endif %}
+          <strong>{{ collection.title }}</strong>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Department Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Department"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Upload a file named icon-department-collection-handle.svg using the Shopify Admin (e.g. icon-department-electronics-navigation.svg)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Department Carousel",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}
+
+
+{% javascript %}
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],[],[[212,0,1]]]);
+{% endjavascript %}

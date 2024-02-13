@@ -1,0 +1,128 @@
+{% assign desktop_up = 'lg' %}
+<div class="featured text-center pt-5">
+  <div class="container">
+    <h2 class="mb-5">{{ section.settings.title }}</h2>
+    <div class="row">
+      {% for block in section.blocks %}
+        {% if block.type != 'item' %}
+          {% continue %}
+        {% endif %}
+        <div class="featured-item col-12 col-{{ desktop_up }}-4 d-flex flex-column justify-content-between pb-5" {{ block.shopify_attributes }}>
+          <div class="embed-responsive embed-responsive-16by9 flex-grow-0 mb-5">
+            <div class="embed-responsive-item bg-container-contain" style="background-image: url('{{ block.settings.image | img_url: '262px', scale: 2 }}')"></div>
+          </div>
+          <h3 class="flex-grow-0">{{ block.settings.title }}</h3>
+          <p class="flex-grow-1">{{ block.settings.subtitle }}</p>
+          <a class="flex-grow-0 btn btn-lg btn-primary" href="{{ block.settings.cta_url }}">{{ block.settings.cta_text }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="featured-full">
+    <div class="container">
+      <div class="row">
+        {% for block in section.blocks %}
+          {% if block.type != 'item-full' %}
+            {% continue %}
+          {% endif %}
+          <div class="featured-item col-12" {{ block.shopify_attributes }}>
+            <div class="embed-responsive embed-responsive-3by1 mb-5">
+              <div class="embed-responsive-item bg-container-contain" style="background-image: url('{{ block.settings.image | img_url: '262px', scale: 2 }}')"></div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-12 col-lg-6">
+                <h3>{{ block.settings.title }}</h3>
+                <p>{{ block.settings.subtitle }}</p>
+                <a class="btn btn-lg btn-primary px-5" href="{{ block.settings.cta_url }}">{{ block.settings.cta_text }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item (Third)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA Text"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL"
+        }
+      ]
+    },
+    {
+      "type": "item-full",
+      "name": "Item (Full)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA Text"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

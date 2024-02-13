@@ -1,0 +1,5 @@
+{%- assign sub_menu_levels = block.settings.levels | times: 1 -%}
+
+<nav>
+  {% include 'menu' with linklists[block.settings.menu], menu_levels: sub_menu_levels %}
+</nav>

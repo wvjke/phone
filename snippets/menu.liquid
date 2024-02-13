@@ -1,0 +1,11 @@
+<ul class="nav flex-column">
+  {% for l1_link in menu.links %}
+  <li class="nav-item">
+    <a class="nav-link px-3 px-md-0 py-1" href="{{ l1_link.url }}">{{ l1_link.title }}
+      {% if l1_link.links.size > 0 and menu_levels > 1 %}
+        <span>+<span>
+      {% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

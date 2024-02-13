@@ -1,0 +1,140 @@
+{% comment %}{% section 'collection_hero' %}{% endcomment %}
+
+<div class="collection-navigation">
+  {% if template.suffix == 'thumbnails' or template.suffix == 'thumbnails2' %}
+    &nbsp;
+  {% endif %}
+  <div class="container">
+    <div class="collection-breadcrumb" id="collection-breadcrumbs-root"
+      data-collections="{{ collection.handle }}"
+      data-collection-labels="{{ collection.title }}"
+      data-current-active="true"
+      data-parent="{{ collection.metafields.parent.name }}"
+    ></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-12 mt-4 mb-0 pt-1" style="padding-left: 0;">
+    <!-- <h4 class="d-none d-lg-block text-capitalize mt-5">{{ collection.title }}</h4> -->
+    <h1 class="mt-5" style="color:#3B5266;text-transform: capitalize;">{{ collection.title }}</h1>
+    
+    {% if collection.description.size > 700 %}
+    <div class="product-description-short">
+      <p>{{ collection.description | truncatewords: 50, ". . . " | strip_html }}</p>
+      <p><a class="btn btn-read readmore" href="#">Read More</a></p>
+    </div>
+    <div class="product-description-full" style="display:none;">
+      {{ collection.description }}
+      <a class="btn btn-read readless" href="#">Read Less</a>
+    </div>
+    {% else %}
+    {{ collection.description }}
+    {% endif %} 
+    
+  </div>
+</div>
+
+<div class="cat-carousel">
+  {% render 'collection_carousel', collection: collection %}
+</div>
+
+<div class="list-collection-wrapper">
+  <div class="container content list-collection">
+    {% comment %} {% include 'searchanise-navigation' %} {% endcomment %}
+    <div id="list-collection" class="row">
+      <div class="col-6">
+        <div class="product-count">
+          {% if paginate.next.is_link %}
+          Showing products {{ paginate.current_offset | plus: 1 }} - {{ paginate.current_offset | plus: paginate.page_size }} of {{ collection.all_products_count }}
+          {% else %}
+          {% capture itemsOnCurrentPage %}
+          {{ collection.all_products_count | minus: paginate.current_offset }}
+          {% endcapture %}
+          Showing {{ paginate.current_offset | plus: itemsOnCurrentPage }} Results for {{ collection.title }}
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="flex-row justify-content-end mb-5 collection-filters row">
+          <div class="d-flex align-items-center justify-content-between justify-content-lg-end mb-4 mb-lg-0 col-12 col-lg-4 py-2">
+            <label for="sort-by" class="flex-shrink-0 mb-0 pr-3 font-weight-bold">Sort By</label>
+            <select id="sort-by" class="custom-select custom-select-sm" style="width:auto!important;">
+              <option value="manual">Featured</option>
+              <option value="best-selling">Best selling</option>
+              <option value="title-ascending">Alphabetically, A-Z</option>
+              <option value="title-descending">Alphabetically, Z-A</option>
+              <option value="price-ascending">Price, low to high</option>
+              <option value="price-descending">Price, high to low</option>
+              <option value="created-ascending">Date, old to new</option>
+              <option value="created-descending">Date, new to old</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-3"> 
+       <div id="list-collection-nav">
+        <div class="text-center p-5">
+          <div class="spinner-grow">
+          </div>
+        </div>
+        <pre hidden>
+        {
+          "collection": {
+            "title": {{ collection.title | json}},
+            "handle": {{ collection.handle | json }},
+            "currentVendor": {{ collection.current_vendor | default: '' | json }},
+            {%- if collection.handle == 'vendors' -%}
+            "sortBy": {{ collection.sort_by | default: "best-selling" | json }},
+            {%- else -%}
+            "sortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+            {%- endif -%}
+            "sortOptions": [
+              {%- for option in collection.sort_options -%}
+                {
+                  "value": {{ option.value | json }},
+                  "name": {{ option.name | json -}}
+                }
+                {%- unless forloop.last %},{% endunless -%}
+              {%- endfor -%}
+            ]
+          },
+          "vendors": [
+            {%- for product_vendor in collection.all_vendors -%}
+              {
+                "name": {{ product_vendor | json }},
+                {%- assign split = product_vendor | link_to_vendor | split: '"' -%}
+                "url": {{ split[1] | json }}
+              }
+              {%- unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          ],
+          "subcollectionNumber": {{ linklists[collection.handle].links | size }}
+        }
+      </pre>
+        </div>
+
+<div style="display:block; clear:both; margin-bottom:25px;"></div>
+<div class="reviewmgr-stream" data-carousel="true" data-include-empty="false" data-review-limit="5" data-url="https://www.reviewr.app/arnoldsboatshop/"></div><script src="https://platform.reviewmgr.com/stream.js"></script>
+      </div>
+      {% include 'list-collections2' %}
+    </div>
+  </div>
+</div>
+
+<script>
+$('.readmore').click(function (event) {
+  event.preventDefault();
+  var descriptionFull = document.querySelector('.product-description-full');
+  descriptionFull.style.display = 'block';
+  var descriptionShort = document.querySelector('.product-description-short');
+  descriptionShort.style.display = 'none';
+});
+$('.readless').click(function (event) {
+  event.preventDefault();
+  var descriptionFull = document.querySelector('.product-description-full');
+  descriptionFull.style.display = 'none';
+  var descriptionShort = document.querySelector('.product-description-short');
+  descriptionShort.style.display = 'block';
+});  
+</script>

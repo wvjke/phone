@@ -1,0 +1,89 @@
+<article class="article container content">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+       <h1 class="text-center mb-4">{{ article.title }}</h1>
+        <div class="row posted">
+          <div class="col-12 text-center pb-2">
+            {% capture date %}{{ article.published_at | time_tag: format: 'day_month_year' }}{% endcapture %}
+            {% capture updated %}{{ article.updated_at | time_tag: format: 'day_month_year' }}{% endcapture %}
+            <p class="font-weight-light">{{ 'blogs.article.author_on_date_html' | t: date: date }}, {{ 'blogs.article.updated_at_date_html' | t: date: updated}}</p>
+          </div>
+        </div>
+    
+          <div class="row pb-4">
+          <div class="col-12 text-center">
+            {% if article.tags.size > 0 %}
+              <ul class="blog-filter d-inline-flex p-0 text-center">
+                {% for tag in article.tags %}
+                  <li class="blog_tag mx-1">
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                      {{ tag }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+    
+          <div class="rte">
+          {{ article.content }}
+        </div>
+    
+          <div class="row py-4">
+          <div class="col-12 text-left pt-3 pb-2">
+                <a href="{{ shop.url }}/blogs/news/" title="Back to Blog">
+                  <i class="fas fa-chevron-left mr-2"></i><strong>Back to Blog</strong>
+                </a>
+          </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4 blog-sidebar">
+
+      <div class="blog-newsletter mb-5">
+        <h4>Connect</h4>
+        <p class="footer-signup-text">Sign up for news and special offers</p>
+
+        <form class="footer-signup-form" action="//manage.kmail-lists.com/subscriptions/subscribe" method="POST">
+          <input type="hidden" name="g" value="{{ settings.klaviyo_list_id }}">
+          <div class="input-group">
+            <input type="email" name="email" class="form-control" placeholder="Enter your email"
+                   aria-label="Enter email address" aria-describedby="signup-button">
+            <div class="input-group-append">
+              <button class="btn btn-secondary btn-block" id="signup-button">
+                <i class="fa fa-lg fa-angle-right"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="blog-categories mb-5">
+        <h4>Categories</h4>
+        {% for link in linklists.blogs.links %}
+          {% comment %} {% assign blog_cat = link.object %} {% endcomment %}
+          <h5 class="text-capitalize"><a href="{{ link.url }}">{{ link.title }}</a></h5>
+        {% endfor %}
+        {% comment %}
+        {% for tag in blog.all_tags %}
+          {{ tag }}
+        {% endfor %}
+        {% endcomment %}
+      </div>
+
+      <div class="related-posts">
+          <h4>Related Posts</h4>
+          {% assign currentHandle = article.handle %}
+          {% assign articlesFound = 0 %}
+          {% for addin in blogs[blog.handle].articles %}
+            {% unless addin.handle == currentHandle %}
+             <div class="mb-2"><a href="{{ addin.url }}">{{ addin.title }}</a></div>
+             {% assign articlesFound = articlesFound |plus: 1 %}
+             {% if articlesFound == 3 %}{% break %}{% endif %}
+            {% endunless %}
+          {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</article>
+{% render 'article_meta' %}

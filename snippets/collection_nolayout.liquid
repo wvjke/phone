@@ -1,0 +1,23 @@
+{
+  "productsCount": {{ collection.products_count | default: 0 }},
+  {%- paginate collection.products by items -%}
+    "items": [
+        {%- for product in collection.products -%}
+          {
+            "compare_at_price": {{ product.compare_at_price | json }},
+            "price": {{ product.price | json }},
+            "url": {{ product.url | json }},
+            "image": {{ product.images[0] | img_url: '263x', scale: 2, crop: 'center' | json }},
+            "vendor": {{ product.vendor | json }},
+            "title": {{ product.title | json }},
+            "price_varies": {{ product.price_varies | json }},
+            "sku": {{ product.selected_or_first_available_variant.sku | json }},
+            "swymData": {% render 'swym_product_data', product: product %},
+            "superSpecial": {% render 'is_product_super_special', product: product %}
+          }
+          {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+    ],
+    "paginate": {{ paginate | json}}
+  {%- endpaginate -%}
+}

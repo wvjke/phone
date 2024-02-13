@@ -1,0 +1,49 @@
+<div class="container">
+  <h1 class="text-center blog-page-title font-weight-bold">{{ blog.title }}</h1>
+  {% section 'featured-blog-post' -%}
+  <hr>
+  {% if blog.all_tags.size > 1 %}
+    {% if current_tags.size > 0 %}
+      {% assign has_tags = true %}
+    {% else %}
+      {% assign has_tags = false %}
+    {% endif %}
+    <div class="mt-md-5 mb-md-4 blog-tags d-block mt-3 pb-3">
+      <a href="{{ blog.url }}" class="blog-tag{% unless has_tags %} active{% endunless %}">All</a>
+      {% for tag in blog.all_tags %}
+        {%- assign classes = 'blog-tag' -%}
+        {%- if current_tags contains tag -%}
+          {%- assign href = tag | link_to_remove_tag: tag | split: '"' -%}
+          {%- assign href = href[1] -%}
+          {%- assign classes = classes | append: ' ' | append: 'active' -%}
+        {%- else -%}
+          {%- assign href = tag | link_to_add_tag: tag | split: '"' -%}
+          {%- assign href = href[1] -%}
+        {%- endif -%}
+        <a href="{{ href }}" class="{{ classes }}">{{ tag | capitalize }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% paginate blog.articles by 18 %}
+  <div class="row blog-posts">
+    {% for article in blog.articles %}
+      <article class="col-12 col-md-6 col-lg-4 blog-post">
+        <a href="{{ article.url }}" class="d-block embed-responsive embed-responsive-4by3">
+          <img class="blog-image embed-responsive-item" src="{{ article.image.src | img_url: '400x300', crop: 'center' }}" alt="{{ article.image.alt }}">
+          <div class="blog-post-tags">
+            {% for tag in article.tags %}
+              <span class="blog-tag small">{{ tag | capitalize }}</span>
+            {% endfor %}
+          </div>
+        </a>
+        <a href="{{ article.url }}" class="blog-post-title">{{ article.title }}</a>
+        <p class="blog-post-excerpt">
+          {{ article.excerpt_or_content | strip_html | trim | truncate: 140 }}
+        </p>
+        <p class="blog-post-date mb-4 small"> Posted on  {{ article.created_at | date: "%d %b %Y" }}</p>
+      </article>
+    {% endfor %}
+  </div>
+  {% include 'pagination' %}
+  {% endpaginate %}
+</div>

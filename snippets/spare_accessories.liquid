@@ -1,0 +1,55 @@
+{%- assign any = false -%}
+{%- capture items -%}
+  {%- for field in product.metafields.sf_spare_accessories -%}
+    {%- assign related_handle = field | last -%}
+    {%- unless related_handle -%}
+      {%- continue -%}
+    {%- endunless -%}
+    {%- assign any = true -%}
+    {%- assign related_product = all_products[related_handle] -%}
+    {%- if related_product -%}
+      {%- if related_product.compare_at_price > related_product.price -%}
+        {% assign on_sale = true %}
+      {%- else -%}
+        {% assign on_sale = false %}
+      {%- endif -%}
+      <div class="d-block col-6 col-lg-2 mb-4 spare-accessories-item">
+        <a href="{{ related_product.url }}">
+          <div class="embed-responsive embed-responsive-1by1 mb-1">
+            <div class="embed-responsive-item bg-container-contain"
+                 style="background-image: url('{{ related_product.images[0] | img_url: '162x', crop: 'center', scale: 2 }}')">
+              <div class="wishlist-circle-root"><pre hidden>{% render 'swym_product_data', product: related_product %}</pre></div>
+              {%- if on_sale %}
+                <span class="sale-badge"></span>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="mb-1">{{ related_product.vendor }}</div>
+          <div class="mb-3 font-weight-bold">{{ related_product.title }}</div>
+          <div>
+            {%- if related_product.price_varies %}From {% endif -%}
+            {% assign price_class = 'price-color'%}
+            {%- if on_sale %}
+              {% assign price_class = 'discount-price-color'%}
+              <del class="mr-2 price-color">{{- related_product.compare_at_price | money -}}</del>
+            {%- endif -%}
+            <strong class="{{price_class}}">{{- related_product.price | money -}}</strong>
+          </div>
+        </a>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if any -%}
+  <div class="spare-accessories-wrap border-top pt-4">
+    <input type="checkbox" class="accordion-check" checked id="spare-acessories-fb1456">
+    <label class="accordion-label" for="spare-acessories-fb1456">
+      <span class="d-block h4 accordion-heading py-2">Spares / Accessories</span>
+      <i class="fa fa-angle-down accordion-icon-down"></i>
+      <i class="fa fa-angle-up accordion-icon-up"></i>
+    </label>
+    <div class="row accordion-body mt-3">
+      {{- items -}}
+    </div>
+  </div>
+{%- endif -%}

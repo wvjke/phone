@@ -1,0 +1,40 @@
+{% if section.settings.card_visible %}
+<div class="card registered-user-info-card">
+  <div class="card-body text-center py-2">
+    <div class="row justify-content-center">
+      <div class="col col-md-9">
+        <p class="font-weight-bold">
+          {{ section.settings.card_header }}
+        </p>
+        <p class="mb-0">
+          {{ section.settings.card_body }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Information card",
+
+  "settings": [
+  { "id":"card_header",
+    "label":"Card Header Text",
+    "type": "text",
+    "default": "Arnold’s Boat Shop has upgraded!<br>Already have a previous account?"
+  },
+  { "id":"card_body",
+    "label":"Card Body Text",
+    "type": "text",
+    "default": "We’ve migrated your account so all you need to do to reactivate is enter your previous account email address, first and last name, and set a new password below."
+  },
+  { "id":"card_visible",
+    "label":"Show Card on Page",
+    "type": "checkbox",
+    "default": true
+  }
+  ]
+}
+{% endschema %}

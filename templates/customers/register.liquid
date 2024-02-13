@@ -1,0 +1,171 @@
+<article class="register container content">
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-8 col-lg-6">
+
+      {% comment %}
+        Register form
+      {% endcomment %}
+      <section class="mb-2">
+        {% form 'create_customer' %}
+
+          {% comment %}
+            Title
+          {% endcomment %}
+          <h1 class="text-center mb-5">{{ 'customer.register.title' | t }}</h1>
+
+          {% section 'register-page-information' %}
+
+          {% comment %}
+            Validation errors
+          {% endcomment %}
+          {%- if form.errors -%}
+            <div class="card bg-danger rounded-6 mb-3 pt-1 px-2">
+              <div class="card-block text-white">
+                {{ form.errors | default_errors }}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {% comment %}
+            First name
+          {% endcomment %}
+          <div class="form-group mb-4">
+            <label for="FirstName" class="d-flex justify-content-between font-weight-bold">
+              {% assign label = 'customer.register.first_name' | t %}
+              {% render 'required-field-label-content', label: label %}
+            </label>
+            <input type="text" name="customer[first_name]" id="FirstName"
+                   class="form-control"
+                   required placeholder="{{ 'customer.register.first_name_placeholder' | t }}"
+                   {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autofocus>
+          </div>
+
+          {% comment %}
+            Last name
+          {% endcomment %}
+          <div class="form-group mb-4">
+            <label for="LastName" class="d-flex justify-content-between font-weight-bold">
+              {% assign label = 'customer.register.last_name' | t %}
+              {% render 'required-field-label-content', label: label %}
+            </label>
+            <input type="text" name="customer[last_name]" id="LastName"
+                   class="form-control"
+                   required placeholder="{{ 'customer.register.last_name_placeholder' | t }}"
+                   {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+          </div>
+
+          {% comment %}
+            Email
+          {% endcomment %}
+          <div class="form-group mb-4">
+            <label for="Email" class="d-flex justify-content-between font-weight-bold{% if form.errors contains 'email' %} text-danger{% endif %}">
+              {% assign label = 'customer.register.email' | t %}
+              {% render 'required-field-label-content', label: label %}
+            </label>
+            <input type="email" name="customer[email]" id="Email"
+                   class="form-control{% if form.errors contains 'email' %} text-danger {% endif %}"
+                   required placeholder="{{ 'customer.register.email_placeholder' | t }}"
+              {% if form.email %} value="{{ form.email }}"{% endif %} spellcheck="false" autocorrect="off"
+                   autocapitalize="off">
+          </div>
+
+          {% comment %}
+            Password
+          {% endcomment %}
+          <div class="form-group mb-4">
+            <label for="CreatePassword" class="d-flex justify-content-between font-weight-bold{% if form.errors contains 'password' %} text-danger{% endif %}">
+              {% assign label = 'customer.register.password' | t %}
+              {% render 'required-field-label-content', label: label %}
+            </label>
+            <input type="password" name="customer[password]" id="CreatePassword"
+                   required placeholder="{{ 'customer.register.password_placeholder' | t }}"
+                   class="form-control{% if form.errors contains 'password' %} text-danger {% endif %}">
+          </div>
+
+          {% comment %}
+            Marketing
+          {% endcomment %}
+          <div class="form-group pl-3 mb-4">
+            <div class="row">
+              <label class="check">
+                <input type="checkbox" id="marketing" name="customer[accepts_marketing]" value="true">
+                <span class="checkmark"></span>
+              </label>
+              <div class="col pl-0 marketing-label">
+                <label for="marketing" class="cursor-pointer">{{ 'customer.register.accept_marketing' | t }}</label>
+              </div>
+            </div>
+          </div>
+
+          {% comment %}
+            Submit
+          {% endcomment %}
+          <div class="row">
+            <div class="col-12 text-center">
+              <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn btn-block btn-lg btn-cta">
+              <p class="mt-4 mb-2 cta-account-info">{{ 'customer.register.login' | t }}</p>
+              <p class="cta-account-link font-weight-bold mb-4">{{ 'layout.customer.log_in' | t | customer_login_link }}</p>
+              <p class="required-fields-info mb-4"><sup><i class="asterisk-icon d-inline-block"></i></sup> are required fields</p>
+            </div>
+          </div>
+
+          {% endform %}
+      </section>
+    </div>
+  </div>
+</article>
+
+<script>
+  $(function () {
+    let submitting = false;
+    const $form = $("#create_customer");
+
+    $form.on('submit', function (e) {
+      if (!submitting && $("#marketing").is(':checked')) {
+        e.preventDefault();
+        if (submitting) {
+          return;
+        }
+
+        var $submitBtn = $form.find(':submit');
+
+        // grab fields
+        var email = $('#Email').val();
+        var firstname = $('#FirstName').val();
+        var lastname = $('#LastName').val();
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://manage.kmail-lists.com/ajax/subscriptions/subscribe",
+          "method": "POST",
+          "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache"
+          },
+          "data": {
+            "g": "{{ settings.klaviyo_list_id }}",
+            "email": email,
+            // pass in additional fields
+            "$fields": "$source, $first_name, $last_name",
+            "$source": "Account Creation",
+            "$first_name": firstname,
+            "$last_name": lastname
+          }
+        };
+        submitting = true;
+        $submitBtn.attr('disabled', submitting);
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+          // select and submit form after subscribing
+          $form.submit();
+          submitting = false;
+          $submitBtn.attr('disabled', submitting);
+        }).fail(() => {
+          submitting = false;
+          $submitBtn.attr('disabled', submitting);
+        });
+      }
+    })
+  });
+</script>

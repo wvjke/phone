@@ -1,0 +1,20 @@
+{% include 'hero' %}
+{%- capture icon_name -%}
+    {%- render 'icon_name_from_collection', collection: collection -%}
+{%- endcapture -%}
+
+<div class="container content list-collection">
+  <div id="list-collections-root">
+
+    <div class="d-none d-lg-block col-lg-3">
+      <h5 class="mb-4">Filter by Subcategory</h5>
+    </div>
+
+     <div class="current-subcategory">
+        <h6 class="subcat-icon d-flex align-items-center mb-3">
+          <img src="{{ icon_name | file_url }}" class="mr-2" alt="{{ icon_name }}" />
+          <span>{{ collection.handle }}</span>
+        </h6>
+      </div>
+  </div>
+</div>

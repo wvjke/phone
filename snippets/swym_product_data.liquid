@@ -1,0 +1,23 @@
+{%- unless current_variant -%}
+  {%- if product.selected_or_first_available_variant -%}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- else -%}
+    {%- assign current_variant = product.variants[0] -%}
+  {%- endif -%}
+{%- endunless -%}
+{%- for variant in product.variants -%}
+  {%- if variant.selected -%}
+    {%- assign current_variant = variant -%}
+  {%- endif -%}
+{%- endfor -%}
+{
+  "empi": {{ product.id }},
+  "epi": {{ current_variant.id }},
+  "pr": {{ current_variant.price | divided_by: 100.0 }},
+  "du": "{{shop.url}}/{{ current_variant.url }}",
+  "iu": {% if current_variant.image -%}
+    {{- current_variant | img_url: '620x620' | json -}}
+  {%- else -%}
+    {{- product.featured_image | img_url: '620x620' | json -}}
+  {%- endif %}
+}

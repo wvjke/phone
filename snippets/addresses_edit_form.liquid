@@ -1,0 +1,158 @@
+{% form 'customer_address', address %}
+  {% comment %}
+    Title
+  {% endcomment %}
+  <h2 class="mb-4 text-center text-lg-left">{{ 'customer.addresses.edit_address' | t }}</h4>
+
+  {{ form.errors | default_errors }}
+
+  {% comment %}
+    Name
+  {% endcomment %}
+  <div class="row">
+    <div class="form-group col-md-6 mb-4">
+      <label for="AddressFirstName_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+        {% assign label = 'customer.addresses.first_name' | t %}
+        {% render 'required-field-label-content', label: label %}
+      </label>
+      <input type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}"
+        class="form-control" required placeholder="Enter {{ 'customer.addresses.first_name' | t }}">
+    </div>
+
+    <div class="form-group col-md-6 mb-4">
+      <label for="AddressLastName_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+        {% assign label = 'customer.addresses.last_name' | t %}
+        {% render 'required-field-label-content', label: label %}
+      </label>
+      <input type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}"
+        class="form-control" required placeholder="Enter {{ 'customer.addresses.last_name' | t }}">
+    </div>
+  </div>
+
+  {% comment %}
+    Company
+  {% endcomment %}
+  <div class="form-group mb-4">
+    <label for="AddressCompany_{{ form.id }}" class="font-weight-bold">{{ 'customer.addresses.company' | t }}</label>
+    <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}"
+      class="form-control" placeholder="Enter {{ 'customer.addresses.company' | t }}">
+  </div>
+
+  {% comment %}
+    Address1
+  {% endcomment %}
+  <div class="form-group mb-4">
+    <label for="AddressAddress1_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+      {% assign label = 'customer.addresses.address1' | t %}
+      {% render 'required-field-label-content', label: label %}
+    </label>
+    <input type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}"
+      class="form-control" required placeholder="Enter {{ 'customer.addresses.address1' | t }}">
+  </div>
+
+  {% comment %}
+    Address 2
+  {% endcomment %}
+  <div class="form-group mb-4">
+    <label for="AddressAddress2_{{ form.id }}" class="font-weight-bold">{{ 'customer.addresses.address2' | t }} (optional)</label>
+    <input type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}"
+      class="form-control" placeholder="Enter {{ 'customer.addresses.address2' | t }}">
+  </div>
+
+  <div class="row">
+    {% comment %}
+      City
+    {% endcomment %}
+    <div class="form-group col-12 col-md-6 mb-4">
+      <label for="AddressCity_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+        {% assign label = 'customer.addresses.city' | t %}
+        {% render 'required-field-label-content', label: label %}
+      </label>
+      <input type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}"
+        class="form-control" required placeholder="Enter {{ 'customer.addresses.city' | t }}">
+    </div>
+
+    {% comment %}
+      Zip
+    {% endcomment %}
+    <div class="form-group col-12 col-md-6 mb-4">
+      <label for="AddressZip_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+        <span>{{ 'customer.addresses.zip' | t }}</span>
+        <span class="text-secondary"><i class="asterisk-icon"></i></span>
+      </label>
+      <input type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters"
+        class="form-control" required placeholder="Enter {{ 'customer.addresses.zip' | t }}">
+    </div>
+  </div>
+
+  <div class="row flex-md-nowrap">
+    {% comment %}
+      Country
+    {% endcomment %}
+    <div class="form-group col-12 col-md mb-4">
+      <label for="AddressCountry_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+        {% assign label = 'customer.addresses.country' | t %}
+        {% render 'required-field-label-content', label: label %}
+      </label>
+      <select id="AddressCountry_{{ form.id }}" data-form-id="{{ form.id }}" data-default="{{ form.country }}"
+        class="custom-select has-default-option" name="address[country]" required>
+        {{ all_country_option_tags }}
+      </select>
+    </div>
+
+    {% comment %}
+      Province
+    {% endcomment %}
+    <div class="form-group d-none col-12 col-md-6 mb-4" id="AddressProvinceContainer_{{ form.id }}">
+      <label for="AddressProvince_{{ form.id }}" class="d-flex justify-content-between font-weight-bold">
+        {% assign label = 'customer.addresses.province' | t %}
+        {% render 'required-field-label-content', label: label %}
+      </label>
+      <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}"
+        class="custom-select" required></select>
+    </div>
+  </div>
+
+  {% comment %}
+    Phone
+  {% endcomment %}
+  <div class="form-group">
+    <label for="AddressPhone_{{ form.id }}" class="font-weight-bold">{{ 'customer.addresses.phone' | t }}</label>
+    <input type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}"
+    class="form-control" placeholder="Enter {{ 'customer.addresses.phone' | t }}">
+  </div>
+
+  {% comment %}
+    Set as default address
+  {% endcomment %}
+  <div class="row mb-4 pt-2 align-items-center">
+    <div class="col-12 col-lg-6 mb-4 mb-lg-0 align-items-center">
+      <div class="row pl-3">
+        <label class="check">
+          {{ form.set_as_default_checkbox }}
+          <span class="checkmark"></span>
+        </label>
+        <div class="col pl-0 default-address-label-container">
+          <label class="cursor-pointer" for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
+        </div>
+      </div>
+    </div>
+
+    {% comment %}
+      Submit
+    {% endcomment %}
+    <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+      <input type="submit" class="btn btn-cta btn-block btn-lg" value="{{ 'customer.addresses.update' | t }}">
+    </div>
+  </div>
+
+  <div class="row cancel-container">
+    <div class="col-12 col-lg-6 text-center text-lg-left required-fields-info">
+      <sup><i class="asterisk-icon d-inline-block"></i></sup> are required fields
+    </div>
+
+    <div class="col-12 col-lg-6 text-center text-lg-right mb-4 mb-lg-0">
+      <a role="button" class="cancel-link font-weight-bold" data-toggle="collapse" data-form-id="{{ address.id }}" href="#EditAddress_{{ address.id }}" role="button" aria-expanded="false" aria-controls="EditAddress_{{ address.id }}">{{ 'customer.addresses.cancel' | t }}</a>
+    </div>
+  </div>
+{% endform %}

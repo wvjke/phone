@@ -1,0 +1,32 @@
+<div class="subscription-form-section" style="background-image: url('{{ section.settings.bg | img_url: 'master' }}')">
+
+  <div class="container">
+    <h2 class="text-white mb-5 text-center">{{ section.settings.title }}</h2>
+    {% include 'subscription-form' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Subscription Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Sign Up for News & Special Offers"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg",
+      "label": "Background"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription Form",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

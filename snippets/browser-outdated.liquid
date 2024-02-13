@@ -1,0 +1,75 @@
+<div id="outdated" class="outdated">
+  <i  id="outdated-close-button" class="outdated__close fas fa-times"></i>
+  <div class="outdated__container d-flex align-items-center">
+    <div class="m-auto">
+      <div class="outdated__heading">{{ "Outdated Browser" | capitalize }}</div>
+      <p class="outdated__subheading">{{ "Whoa! That's some really old software you're using" | capitalize }}</p>
+      <p class="outdated__text">Your browser isn't capable of running all of this fun in the sun!</p>
+       <p class="outdated__text">Not to worry, just update to one of the newer browsers below and you'll be straight back in the sun again.</p>
+      <div class="row">
+        <div class="col-6">
+          <a href="https://www.google.com/chrome/">
+            <div class="outdated__browser">
+              <img src="{{ 'logo-chrome.png' | asset_img_url: '100x' }}" class="outdated__logo">
+              <input type="submit" class="btn btn-action" value="UPDATE TO CHROME">
+            </div>
+          </a>
+        </div>
+        <div class="col-6">
+          <a href="https://support.apple.com/downloads/safari">
+            <div class="outdated__browser">
+              <img src="{{ 'logo-safari.png' | asset_img_url: '100x' }}" class="outdated__logo">
+              <input type="submit" class="btn btn-action" value="UPDATE TO SAFARI">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bowser@2.0.0-beta.3/es5.min.js"></script>
+<script>
+  (function(bowser) {
+    function addLoadEvent(func) {
+      var oldonload = window.onload;
+      if (typeof window.onload != 'function') {
+        window.onload = func;
+      } else {
+        window.onload = function() {
+          if (oldonload) {
+            oldonload();
+          }
+          func();
+        }
+      }
+    }
+
+    addLoadEvent(function() {
+      var outdated = document.getElementById('outdated');
+      var closeButton = document.getElementById('outdated-close-button');
+
+      outdated.addEventListener('click', function() {
+        outdated.style.display = 'none';
+      });
+
+      var browser = bowser.getParser(window.navigator.userAgent);
+      var invalidBrowser = browser.satisfies({
+        chrome: '<45',
+        safari: '<9',
+        firefox: '<38',
+        edge: '<12',
+        opera: '<30',
+        'internet explorer': '<10',
+        'android browser': '<4.4'
+      });
+
+      if (typeof invalidBrowser === 'undefined') {
+        invalidBrowser = false;
+      }
+
+      if (invalidBrowser) {
+        outdated.style.display = 'block';
+      }
+    });
+  })(bowser);
+</script>

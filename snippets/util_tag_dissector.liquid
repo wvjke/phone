@@ -1,0 +1,9 @@
+{% assign tag_parts = util_tag_dissector | split: ":" %}
+{% assign tag_prefix = tag_parts.first %}
+{% assign tag_prefix_comp = tag_parts.first | downcase %}
+{% assign tag_value = "" %}
+{% for tag_part in tag_parts %}
+  {% unless forloop.first %}
+    {% assign tag_value = tag_value | append: tag_part %}
+  {% endunless %}
+{% endfor %}

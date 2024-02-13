@@ -1,0 +1,60 @@
+{% comment %} {% assign subcollections_menu = linklists[collection.handle].links %}
+
+{% if subcollections_menu != blank %}
+<div class="custom-carousel-wrap collection-carousel-wrap">
+  <div class="container text-center">
+    <div class="custom-carousel collection-carousel justify-content-center" id="collection-carousel">
+      {% for subcollection_item in subcollections_menu %}
+      <a href="{{subcollection_item.object.url}}" class="custom-carousel-item col-6 col-lg-3 py-1">
+        <!--<div class="icon">
+          <img src="{{subcollection_item.object.image | img_url: '100x100'}}">
+        </div>-->
+        <strong class="collection-title">{{subcollection_item.object.title}}</strong>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %} {% endcomment %}
+
+
+{% for link in linklists.department.links %}
+{% if link.object.handle == collection.handle %}
+{% assign active_category = link %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+{% for link in linklists.department.links %}
+        {% assign active_parent = link %}
+        {% for sublink in link.links %}
+            {% if sublink.object.handle == collection.handle %}
+                {% assign active_category = sublink %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+        {% if active_category != nil %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+   
+<div class="custom-carousel-wrap collection-carousel-wrap">
+  <div class="container text-center">
+    <div class="custom-carousel collection-carousel justify-content-center" id="collection-carousel">
+        {% assign elements = active_category.links %}
+
+        {% for element in elements %}
+          {% assign current_collection = collections[element.object.handle] %}
+            <!--<div class="icon">
+              <img
+                   src="{{ current_collection.image | img_url: '100x100' }}"
+                   alt="{{ current_collection.title }}">
+            </div> -->
+          {% if current_collection.products.size > 0 %}
+      	    <a href="/collections/{{ current_collection.handle }}" class="custom-carousel-item col-6 col-lg-3 py-1">{{ current_collection.title }}</a>
+          {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</div>

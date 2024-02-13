@@ -1,0 +1,64 @@
+{% section 'category-hero' %}
+
+<div class="container pt-3 pb-4">
+    {% for link in linklists.department.links %}
+        {% assign active_parent = link %}
+        {% for sublink in link.links %}
+            {% if sublink.object.handle == page.handle %}
+                {% assign active_category = sublink %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+        {% if active_category != nil %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+    <div class="navigation-breadcrumbs">
+        <a class="navigation-breadcrumbs-link" href="/pages/{{ active_parent.object.handle }}">
+            {{ active_parent.title }}
+        </a>
+        <i class="fa fa-chevron-right navigation-breadcrumbs-icon"></i>
+        <span class="navigation-breadcrumbs-active">
+            {{ active_category.title }}
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="py-3 navigation-content">
+                {{ page.content }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% assign elements = active_category.links %}
+
+        {% for element in elements %}
+            {% assign current_collection = element.object %}
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="wrapper">
+                    <a href="/collections/{{ current_collection.handle }}" class="layered-category">
+                        <div class="img-wrapper">
+                            <img class="img-fluid"
+                                 src="{{ current_collection.image | img_url: '100x100' }}"
+                                 alt="{{ current_collection.title }}">
+                        </div>
+                        <strong>{{ current_collection.title }}</strong>
+                        <p class="text-muted mb-0">({{ current_collection.all_products_count }} items)</p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <hr>
+    
+    <div class="row">
+        <div class="col-12">
+            <p>
+                {{ collections[page.handle].description | strip }}
+            </p>
+        </div>
+    </div>
+</div>

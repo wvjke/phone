@@ -1,0 +1,9 @@
+{%- for value in option.values -%}
+  <label for="{{ option.name }}:{{ value }}" class="radio-wrapper swatch-wrapper mr-2">
+    <input type="radio" name="{{ option.name }}" id="{{ option.name }}:{{ value }}" value="{{ value }}" {%- if option.selected_value == value -%}checked="checked"{%- endif -%}" data-switcher-option="{{ option.position }}">
+    <span class="radio-fill">
+      <div class="radio-fill-inner swatch-{{ value | handleize }}">
+      </div>
+    </span>
+  </label>
+{%- endfor -%}

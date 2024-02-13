@@ -1,0 +1,44 @@
+<script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "url": {{ canonical_url | json }},
+ "mainEntityOfPage": {{ canonical_url | json }},
+ "name": {{ article.title | json }},
+ "headline": {{ article.title | json }},
+ "author": {
+ "@type": "Person",
+ "name": {{ article.author | json }}
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": {{ shop.name | json }}
+ {%- comment -%} 
+ {%- unless shop.metafields.SEOMetaManager.knowledgeGraphLogo == blank -%}
+ ,"logo":
+ {
+ "@type": "ImageObject",
+ "url": "https://{{ shop.metafields.SEOMetaManager.knowledgeGraphLogo | remove: "\" }}"
+ }
+ {%- endunless -%}
+ {%- endcomment -%}
+ },
+ "image": {
+ "@type": "ImageObject",
+ {%- if article.image -%}
+ "url": "https:{{ article | img_url: '1024x1024' }}",
+{%- else -%} {%- assign XQDQKVLNUU = article.content | escape -%} {%- if XQDQKVLNUU contains '&lt;img' -%} {%- assign XQDQKVLNUU = XQDQKVLNUU | split: 'src=&quot;' -%} {%- assign XQDQKVLNUU = XQDQKVLNUU[1] | split: '&quot;' -%} {%- if XQDQKVLNUU contains 'cdn.shopify.com' -%} {%- assign XQDQKVLNUU = XQDQKVLNUU[0] | remove: '//cdn' -%} {%- assign XQDQKVLNUU = XQDQKVLNUU | remove: 'http:http://' -%} {%- assign XQDQKVLNUU = XQDQKVLNUU | remove: 'https:' -%} {%- assign XQDQKVLNUU = XQDQKVLNUU | prepend: 'https://cdn' -%} {%- else -%} {%- assign XQDQKVLNUU = XQDQKVLNUU[0] -%} {%- endif -%} {%- capture EKPWDIQCPC -%}_1024x1024.{%- endcapture -%} {%- assign BCKHRWYKKP = 'pico icon thumb small compact medium large grande 1024x1024 2048x2048' | split:' ' -%} {%- for TBUOAVJSXJ in BCKHRWYKKP -%} {%- capture LBCQSOLLMH -%}_{{ TBUOAVJSXJ }}.{%- endcapture -%} {%- assign XQDQKVLNUU = XQDQKVLNUU | replace:search,replacement -%} {%- endfor -%}
+ "url": "{{ XQDQKVLNUU }}",
+ {%- else -%}
+ "url": "https://cdn.shopify.com/s/images/admin/no-image-grande.gif",
+ {%- endif -%}
+ {%- endif -%}
+ "height": "1024",
+ "width": "1024"
+ },
+ "datePublished": "{{ article.published_at }}",
+ "dateModified": "{{ article.updated_at }}",
+ "description": {{ article.excerpt_or_content | strip_html | json }},
+ "articleBody": {{ article.content | strip_html | json }}
+ }
+ </script>

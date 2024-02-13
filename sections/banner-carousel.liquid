@@ -1,0 +1,69 @@
+{{ 'slick.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+
+{% assign desktop_up = 'lg' %}
+<div class="featured pt-2">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <h2 class="title-h2 mb-5">{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="banner-carousel">
+      {% for block in section.blocks %}
+        {% if block.type != 'item' %}
+          {% continue %}
+        {% endif %}
+        <div class="featured-item" {{ block.shopify_attributes }} style="padding:10px;">
+          <a href="{{ block.settings.cta_url }}">
+            <img src="{{ block.settings.image | img_url: '500px', scale: 2 }}" />
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% if template != 'index' %}
+<style>
+  .collection-template-carousel .slick-initialized .slick-slide{
+    padding: 5px!important;
+  }
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Banner Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Carousel",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

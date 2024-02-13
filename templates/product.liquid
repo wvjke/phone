@@ -1,0 +1,326 @@
+<style>.productreview iframe { 
+height: 1000px!important;
+}</style>
+
+{% for collection in product.collections %}
+  {% if collection.metafields.parent.name != nil %}
+    {% assign parent = collection.metafields.parent.name %}
+    {% assign parentIndex = forloop.index0 %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{%include 'zip-widget'%}
+
+<div class="collection-navigation">
+  <div class="container">
+    <div class="collection-breadcrumb mb-3"
+       id="collection-breadcrumbs-root"
+       data-collections="{{ product.collections | map: 'handle' | join: ',' }}"
+       data-collection-labels="{{ product.collections | map: 'title' | join: ',' }}"
+       data-parent="{{ parent }}"
+       data-parent-index="{{ parentIndex }}"
+     ></div>
+  </div>
+</div>
+
+<div class="product container content">
+  <div class="row mb-lg-4">
+    <div class="col-12 col-lg-5 mb-2 mb-lg-0 product-image-container">
+      <div class="d-lg-none mb-4">
+        {% capture title_area %}
+          <a href="/collections/vendors?q={{ product.vendor }}"><div class="font-weight-bold mb-2 text-blue">{{ product.vendor }}</div></a>
+          <h1 class="mb-4 product-title font-weight-bold main-product-title">{{ product.title }}</h1>
+
+          <div class="goto-reviews cursor-pointer">
+            {%- render 'okendo-rating-stars', product: product -%}
+            <span class="ml-3">
+              {%- if product.metafields.okendo.ReviewCount != blank and product.metafields.okendo.ReviewCount > 0 -%}
+                See Product Reviews ({{ product.metafields.okendo.ReviewCount }})
+              {%- else -%}
+                No reviews yet
+              {%- endif -%}
+            </span>
+          </div>
+        {% endcapture %}
+      </div>
+      {% assign image_count = product.images | size %}
+      {% if image_count > 0 %}
+        {% assign images_json = product.images | json %}
+      {% else %}
+        {% assign images_json = append: product.images[0] | img_url: 'master' | json %}
+        {% assign images_json = '[' | append: images_json | append: ']' %}
+      {% endif %}
+      {% comment %} <div id="product-images-root" class="d-flex flex-column"
+           data-image-count="{{ image_count }}"
+           data-images="{{ images_json | escape }}"
+           data-super-special="{% render 'is_product_super_special', product: product %}">
+      </div> {% endcomment %}
+
+      {% include 'product_images' %}
+
+    </div>
+    <div class="col-12 offset-lg-1 col-lg-6 mb-5 mb-lg-0">
+      <div class="d-none d-lg-block mb-4">
+        {{ title_area }}
+      </div>
+
+      {% section 'product_variant_selector' %}
+    </div>
+  </div>
+  
+  <div class="featured-thumbnails bg-light mt-5 mb-5 py-3 px-3">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="row">
+          <div class="col-2">
+            <div class="text-center">
+              {% include 'icon-truck' %}
+            </div>
+          </div>
+          <div class="col-10">
+            <p class="br-grey">$18 Shipping - <b>Free Shipping over $499</b> All across Australia</p> 
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="row">
+          <div class="col-2">
+            <div class="text-center">
+              {% include 'icon-trophy' %}
+            </div>
+          </div>
+          <div class="col-10">
+            <p class="br-grey"><b>Customers Love Arnold's Boat Shop</b><br>Rated 4.2/5 based on 2,100+ reviews</p> 
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="row">
+          <div class="col-2">
+            <div class="text-center">
+              {% include 'icon-bag' %}
+            </div>
+          </div>
+          <div class="col-10">
+            <p><b>42,000+ Products and Growing</b><br>The one-stop boat shop</p> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="row">
+  <div class="col-12 col-md-7">
+    <!-- Tab links -->
+    <div class="tab">
+      <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Description')">Description</button>
+      <button class="tablinks" onclick="openCity(event, 'Shipping')">Shipping</button>
+      <button class="tablinks" onclick="openCity(event, 'Reviews')">Reviews</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Description" class="tabcontent">
+      <div class="pt-2"><span class="font-weight-bold">Part Number: </span><span class="font-weight-bold part-number"></span></div>
+      <div class="mt-4 product-description">{{ product.description }}</div>
+    </div>
+
+    <div id="Shipping" class="tabcontent">
+      <div class="mt-4">
+        {%- section 'product_shipping' -%}
+      </div>
+    </div>
+
+    <div id="Reviews" class="tabcontent">
+<div class="reviewmgr-stream" data-carousel="true" data-include-empty="false" data-review-limit="5" data-url="https://www.reviewr.app/arnoldsboatshop/"></div><script src="https://platform.reviewmgr.com/stream.js"></script>
+      <!-- {% include 'okendo-reviews-widget' %} -->
+    </div>
+  </div>
+  <div class="col-12 col-md-5">
+    <h4>Similar Products</h4>
+    {% section 'related-products' %}
+  </div>
+</div>
+
+{% include 'product-schema' %}
+
+<style>
+  /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #E1E7EF;
+  background-color: #F2F5F8;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  width: 33.33%;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #2561BD;
+  color: #fff;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 20px 40px;
+  border-radius: 0 0 8px 8px;
+}
+  
+  #product-variant-selector-root .btn-primary{
+    background: #2561BD;
+    border: 0;
+    border-radius: 20px;
+  }
+  #product-variant-selector-root .btn-link{
+    color: #AAAAB1;
+  }
+  #product-variant-selector-root .input-group{
+    border: 1px solid #DDE4F0;
+    border-radius: 10px;
+  }
+  #product-variant-selector-root input[type="number"]{
+    border: 0;
+    text-align: center!important;
+  }
+  #product-variant-selector-root input[type="number"]:disabled{
+    background: #fff!important;
+  }
+  .main-product-title{
+    font-size: 26px;
+  }
+  .discount-price-color{
+    color: #2561BD!important;
+  }
+</style>
+
+<script>
+  function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+</script>
+
+  {% render 'spare_accessories', product: product %}
+</div>
+
+<!-- <div id="recommended-products" data-product-id="{{ product.id }}" data-class-name="mb-0 pt-0 pb-lg-5"></div>  --->
+
+<div class="scroll-to-top-root vantablack d-lg-none"></div>
+
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }},
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+
+  
+</script>
+
+{% if product.variants.size > 1 %}
+<script>
+  setTimeout(() => {(function($) {
+    var variantImages = {},
+    thumbnails,
+    variant,
+    variantImage,
+    variantImage_count = 0;
+    {% for variant in product.variants %}
+       variant = {{ variant | json }};
+       if ( typeof variant.featured_image !== 'undefined' && variant.featured_image !== null ) {
+         variantImage =  variant.featured_image.src.split('?')[0].replace(/http(s)?:/,'');
+         variantImages[variantImage] = variantImages[variantImage] || {};
+         {% for option in product.options %}
+           {% assign option_value = variant.options[forloop.index0] %}
+           {% assign option_key = 'option-' | append: forloop.index0 %}
+           if (typeof variantImages[variantImage][{{ option_key | json }}] === 'undefined') {
+             variantImages[variantImage][{{ option_key | json }}] = {{ option_value | json }};
+           }
+           else {
+             var oldValue = variantImages[variantImage][{{ option_key | json }}];
+             if ( oldValue !== null && oldValue !== {{ option_value | json }} )  {
+               variantImages[variantImage][{{ option_key | json }}] = null;
+             }
+           }
+         {% endfor %}
+         variantImage_count++;
+       }
+    {% endfor %}
+ 
+    $(function() {
+      // if (variantImage_count > 0) {
+      //   $('.custom-select').change(function() {
+      //     var selectedVariant = $(this).val();
+      //     $('.slider-nav img').each(function(index, el) {
+      //       var image_title = $(el).attr('data-title');
+      //       if(selectedVariant == image_title){
+      //         $(this).click();
+      //       }
+      //     });
+      //   });
+      // } 
+    });
+})(jQuery);}, '1500')
+</script>
+{% endif %}
+
+{% render 'json_ld_product', product: product %}

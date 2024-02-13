@@ -1,0 +1,92 @@
+{% assign desktop_up = 'lg' %}
+<div class="featured-brands-wrap {% if template.name == "page" %}dark-bg pb-5{% endif %}">
+  <div class="container pt-5 {% if template.name == "page" %} px-0{% endif %}">
+    <h2 class="mb-5 title-h2">{{ section.settings.title }}</h2>
+    <div class="featured-brands row">
+      {% for block in section.blocks %}
+        {% if block.type != 'item' %}
+          {% continue %}
+        {% endif %}
+        {% assign vendor_url = block.settings.brand | link_to_vendor | split: '"' %}
+        <a class="featured-brands-item col-6 col-md-4 col-lg-2" href="{{ vendor_url[1] }}">
+          <div class="featured-brands-item-bg bg-container-contain" style="background-image: url('{{ block.settings.image | img_url: '160x' }}')" {{ block.shopify_attributes }}></div>
+        </a>
+      {% endfor %}
+    </div>
+    {% if section.settings.add_button %}
+      <div class="row text-center justify-content-center mt-4">
+        <div class="col-12 col-lg-6">
+          <a class="btn btn-lg btn-primary px-5" href="{{ section.settings.cta_url }}">
+            {{- section.settings.cta_text -}}
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  #shopify-section-16376541250e178dd2{
+    background: #fafbfc;
+    padding-bottom: 4rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Brands",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Brand"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type":      "checkbox",
+      "id":        "add_button",
+      "label":     "Enable CTA button",
+      "default":   true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "See All Brands"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "brand",
+          "label": "Brand Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Brands",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

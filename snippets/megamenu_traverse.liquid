@@ -1,0 +1,41 @@
+{%- liquid
+  for link in links
+    if depth == 3
+      assign image = link.object | img_url: '165x120', scale: 2 | json
+      assign image = ',"image":' | append: image
+    else
+      assign image = ''
+    endif
+    if link.url == '#'
+      assign url = 'null'  
+    else
+      assign url = link.url | json
+    endif
+    assign label = link.title| json
+    if link.levels > 0
+      assign new_depth = depth | plus: 1
+      capture child_links
+        render 'megamenu_traverse', links: link.links, depth: new_depth
+      endcapture
+    else
+      assign child_links = ''
+    endif
+    if child_links != blank
+      assign links_prop = ',"links":[' | append: child_links | append: ']'
+    else
+      assign links_prop = ''
+    endif
+    if icons and link.type == 'collection_link' or link.type == 'page_link'
+      capture icon_name
+        render 'icon_name_from_collection', collection: link.object
+      endcapture
+      assign icon_name = icon_name | file_url | json
+      assign icon = ',"icon":' | append: icon_name
+    else
+      assign icon = ''
+    endif
+    echo '{"depth":' | append: depth | append: ',"url":' | append: url | append: ',"label":' | append: label | append: icon | append: links_prop | append: image | append: '}'
+    unless forloop.last
+      echo ','
+    endunless
+  endfor -%}

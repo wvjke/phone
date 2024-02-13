@@ -1,0 +1,268 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Skeleton theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https:\/\/github.com\/Shopify\/skeleton-theme",
+    "theme_support_url": "https:\/\/github.com\/Shopify\/skeleton-theme\/issues"
+  },
+  {
+    "name": "Meta",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Meta"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "meta_google_site_verification_tags",
+        "label": "Google Site Verification Tags",
+        "info": "Please enter a list of comma-separated IDs"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Klaviyo List Id",
+        "info": "Please enter the list ID form Klaviyo"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Search"
+      },
+      {
+        "type": "image_picker",
+        "id": "search_default_image",
+        "label": "Default result image"
+      }
+    ]
+  },
+  {
+    "name": "Shipping & Cart",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Shipping Costs"
+      },
+      {
+        "type": "text",
+        "id": "flat_shipping_rate",
+        "label": "Flat Shipping Rate",
+        "info": "Only the amount, without the currency name or symbol",
+        "default": "18"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold",
+        "info": "Only the amount, without the currency name or symbol",
+        "default": "499"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text",
+        "label": "Free Shipping Text",
+        "default": "Free Shipping over",
+        "info": "Amount will be appended (configurable in global theme settings)"
+      },
+      {
+        "type": "text",
+        "id": "flat_rate_text",
+        "label": "Flat Rate Text",
+        "default": "Flat Rate Shipping",
+        "info": "Amount will be prepended (configurable in global theme settings)"
+      },
+      {
+        "type": "header",
+        "content": "Rating Text"
+      },
+      {
+        "type": "text",
+        "id": "ratings_bold",
+        "label": "Rating Text Bold",
+        "default": "Customer’s Love Arnold’s Boat Shop"
+      },
+      {
+        "type": "text",
+        "id": "ratings_regular",
+        "label": "Rating Text Normal",
+        "default": "Rated 4.6 \/ 5 based on 848+ reviews"
+      },
+      {
+        "type": "header",
+        "content": "Shipping Time Estimates"
+      },
+      {
+        "type": "text",
+        "id": "warning_text_massage",
+        "label": "Shipping Text",
+        "default": "For heavy items and delivery to remote areas, there may be additional costs. If the cost is vastly different to our standard delivery price, a member of our team will contact you prior to dispatch to notify you and arrange payment (or issue a refund)."
+      },
+      {
+        "type": "text",
+        "id": "in_stock_messaging",
+        "label": "In Stock Information",
+        "default": "Available to leave warehouse in 1 business day"
+      },
+      {
+        "type": "text",
+        "id": "out_of_stock_messaging",
+        "label": "Out Of Stock Information (No Amount)",
+        "default": "Sold Out"
+      },
+      {
+        "type": "text",
+        "id": "out_of_stock_with_overselling_messaging",
+        "label": "Out Of Stock Information With Overselling",
+        "default": "Order will usually leave warehouse in 2-5 business days"
+      },
+      {
+        "type": "text",
+        "id": "out_of_stock_amt_messaging_with_overselling",
+        "label": "Out Of Stock Information With Overselling (With Amount)",
+        "default": "Only {{ amount }} items are available to leave warehouse in 1 business day, order will usually leave warehouse in 2-5 business days"
+      },
+      {
+        "type": "text",
+        "id": "out_of_stock_amt_messaging",
+        "label": "Out Of Stock Information (With Amount)",
+        "default": "Only {{ amount }} items are available to leave warehouse in 1 business day"
+      },
+      {
+        "type": "header",
+        "content": "Policies"
+      },
+      {
+        "type": "url",
+        "id": "shipping_policy_url",
+        "label": "Shipping Policy"
+      },
+      {
+        "type": "url",
+        "id": "terms_conditions_url",
+        "label": "Terms & Conditions"
+      }
+    ]
+  },
+  {
+    "name": "Scripts",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Google Tag Manager"
+      },
+      {
+        "type": "checkbox",
+        "id": "scripts_gtm_use",
+        "label": "Enable GTM?",
+        "default": false
+      },
+      {
+        "type": "textarea",
+        "id": "scripts_gtm_head",
+        "label": "GTM Head Snippet",
+        "info": "https:\/\/support.google.com\/tagmanager\/answer\/6103696?hl=en"
+      },
+      {
+        "type": "textarea",
+        "id": "scripts_gtm_body",
+        "label": "GTM Body Snippet",
+        "info": "https:\/\/support.google.com\/tagmanager\/answer\/6103696?hl=en"
+      },
+      {
+        "type": "checkbox",
+        "id": "scripts_slick",
+        "label": "Add a slick slider?",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Payment Methods",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_visa",
+        "label": "Display Visa payment method",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_mastercard",
+        "label": "Display MasterCard payment method",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_amex",
+        "label": "Display American Express payment method",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_paypal",
+        "label": "Display PayPal payment method",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_afterpay",
+        "label": "Display AfterPay payment method",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_zip",
+        "label": "Display Zip payment method",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_deposit",
+        "label": "Display Direct Deposit payment method",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Not Found",
+    "settings": [
+      {
+        "type": "header",
+        "content": "404"
+      },
+      {
+        "type": "image_picker",
+        "id": "not_found_image",
+        "label": "Add an image on the 404 page"
+      },
+      {
+        "type": "url",
+        "id": "not_found_url",
+        "label": "Add a link for the button on the 404 page",
+        "default": "\/"
+      }
+    ]
+  },
+  {
+    "name": "General",
+    "settings": [
+      {
+        "type": "number",
+        "id": "product_count_override",
+        "label": "Override Products count",
+        "default": 47000
+      }
+    ]
+  }
+]

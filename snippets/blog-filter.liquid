@@ -1,0 +1,10 @@
+<ul class="filter-container blog-filter d-flex justify-content-center flex-wrap mb-4 px-2">
+  <li class="tag tag-all mx-1"><a href="{{ blog.url }}" title="All articles">All</a></li>
+  {% for tag in blog.all_tags %}
+    {% if current_tags contains tag %}
+      <li class="active tag mx-1">{{ tag | link_to_remove_tag: tag }}</li>
+    {% else %}
+      <li class="tag mx-1">{{ tag | link_to_add_tag: tag }}</li>
+    {% endif %}
+{% endfor %}
+</ul>

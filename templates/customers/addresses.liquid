@@ -1,0 +1,112 @@
+<article id="addresses_content" class="addresses container content">
+  {% paginate customer.addresses by 5 %}
+
+    {% comment %}
+      Title
+    {% endcomment %}
+    <div class="text-center mb-4 addresses-page-title-container">
+      <h1>{{ 'customer.addresses.title' | t }}</h1>
+      {% include 'back-link' with page_url: '/account', page_name: 'Account Profile' %}
+    </div>
+
+    <section class="row justify-content-center" id="AddressCards">
+
+      {% comment %}
+        List all customer addresses with a unique edit form.
+        Also add pagination in case they have a large number of addresses
+      {% endcomment %}
+      {% if customer.addresses_count > 0 %}
+        {% for address in customer.addresses %}
+
+          {% comment %}
+            Address card
+          {% endcomment %}
+          <div id="{{ address.id }}" class="col-12 col-md-10 m-2 address-card">
+            {% if address == customer.default_address %}
+              <h6 class="mb-2 mb-md-4 text-center text-md-left">{{ 'customer.addresses.default' | t }}</h6>
+            {% endif %}
+            <div class="row">
+              <div class="d-none d-md-block col-8">
+                <div>{{ address.name }}</div>
+                <div>
+                  {{ address.company }}
+                  {{ address.address1 }},
+                {% unless address.address2 == blank %}
+                  {{ address.address2 }},
+                {% endunless %}
+                  {{ address.city }},
+                  {{ address.country }},
+                  {{ address.zip }}
+                </div>
+                <div>{{ address.phone }}</div>
+              </div>
+              <div class="d-block d-md-none col-12 mb-4 text-center">
+                <div class="mb-2">{{ customer.name }}</div>
+                <div>{{ customer.default_address.company }}</div>
+                <div>{{ customer.default_address.address1 }}</div>
+                {% unless customer.default_address.address2 == blank %}
+                  <div>{{ customer.default_address.address2 }}</div>
+                {% endunless %}
+                <div>{{ customer.default_address.city }}</div>
+                <div>{{ customer.default_address.country }}, {{ customer.default_address.zip }}</div>
+                <div>{{ customer.default_address.phone }}</div>
+              </div>
+              <div class="col-12 col-md-4 d-flex justify-content-end flex-column">
+                <button type="button" class="btn btn-primary edit mb-3 mb-md-0 edit-address-btn collapsed" data-form-id="{{ address.id }}" data-toggle="collapse" data-target="#EditAddress_{{ address.id }}" role="button" aria-expanded="false" aria-controls="EditAddress_{{ address.id }}">
+                  {{ 'customer.addresses.edit' | t }}
+                </button>
+                <form data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}" class="text-center">
+                  <input type="hidden" name="_method" value="delete"/>
+                  <button type="submit" class="btn btn-link text-secondary font-weight-bold delete-address-btn">
+                    {{ 'customer.addresses.delete' | t }}
+                  </button>
+                </form>
+              </div>
+            </div>
+            <hr class="mt-3 mt-md-4">
+          </div>
+
+          {% comment %}
+            Edit form
+          {% endcomment %}
+          <div id="EditAddress_{{ address.id }}" class="col-12 col-md-8 col-lg-6 collapse mt-4 edit-address-container" aria-labelledby="{{ address.id }}" data-parent="#addresses_content">
+            {% include 'addresses_edit_form' %}
+            {%- unless forloop.last -%}
+              <hr class="mb-3 mb-md-4">
+            {%- endunless -%}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-center">{{ 'customer.addresses.empty' | t }}</p>
+      {% endif %}
+
+      {% if paginate.pages > 1 %}
+        {% include 'pagination' %}
+      {% endif %}
+    </section>
+
+    <div class="row justify-content-center">
+      <div id="FooterButtons" class="text-center col-12 col-md-6 mt-2 mb-4">
+        <a role="button" class="btn btn-cta btn-lg btn-block collapsed" data-toggle="collapse" href="#AddressNewForm" role="button" aria-expanded="false" aria-controls="AddressNewForm">{{ 'customer.addresses.add_new' | t }}</a>
+      </div>
+    </div>
+    {% comment %}
+      Add address form, hidden by default
+    {% endcomment %}
+    <section id="AddressNewForm" class="row justify-content-center collapse" aria-labelledby="FooterButtons" data-parent="#addresses_content">
+      <div class="col-12 col-md-8 col-lg-6">
+        {% include 'addresses_add_form' %}
+      </div>
+    </section>
+
+  {% endpaginate %}
+</article>
+
+{% comment %}
+  TODO: Fix auto  script loading
+{% endcomment %}
+<script>
+  window.slateplus = window.slateplus || {};
+  window.slateplus.allCountryOptionTags = {{ '<option selected value="" hidden>Select Country</option>' | append: all_country_option_tags | json }};
+</script>
+{{ 'addresses.template.js' | asset_url | script_tag }}

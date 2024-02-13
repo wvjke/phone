@@ -1,0 +1,91 @@
+{% if json %}
+{%- for block in section.blocks -%}
+{%- unless block.settings.menu == search.terms -%}
+{%- continue -%}
+{%- endunless -%}
+{%- assign menu = linklists[block.settings.menu] -%}
+{% render 'megamenu_item_json', url: url, label: label, menu: menu, icons: block.settings.icons %}
+{%- endfor -%}
+{% else %}
+
+  <nav class="navbar navbar-expand navbar-dark bg-primary on-left-edge">
+    <div class="shade left-edge align-items-center d-flex justify-content-start pl-2">
+      <i class="fas fa-chevron-left text-white left-edge-icon"></i>
+    </div>
+    <div class="shade right-edge align-items-center d-flex justify-content-end pr-2">
+      <i class="fas fa-chevron-right text-white d-none right-edge-icon"></i>
+    </div>
+    <div class="wrap">
+      <div class="container">
+        <div class="collapse show navbar-collapse">
+          <ul class="navbar-nav mr-auto">
+            {% assign menu_roots = '' %}
+            {%- for block in section.blocks -%}
+              {%- if block.settings.top_level_url == '#' -%}
+                {%- assign url = nil -%}
+              {%- else -%}
+                {%- assign url = block.settings.top_level_url -%}
+              {%- endif -%}
+              {%- assign label = block.settings.top_level_label -%}
+              {%- assign menu = nil -%}
+              {%- if block.settings.menu != blank -%}
+                {%- assign menu = linklists[block.settings.menu] -%}
+                {%- if label == blank -%}
+                  {%- assign label = label | default: menu.title -%}
+                {%- endif -%}
+              {%- endif -%}
+              <li class="nav-item {% if menu -%} mega-nav-loading {%- endif %}" {{ block.shopify_attributes }} {% if menu -%} data-handle="{{ block.settings.menu }}"{%- endif %}>
+                {%- capture caret -%}
+                  {%- if menu -%}
+                    <i class="mega-caret fa fa-chevron-down ml-2"></i>
+                    <span class="spinner-grow spinner-grow-sm ml-2 bg-white"></span>
+                  {%- endif -%}
+                {%- endcapture -%}
+                {%- if url -%}
+                  <a class="nav-link mega-nav-link" href="{{ url }}">
+                    {{- label -}} {{- caret -}}
+                  </a>
+                {%- elsif label != blank %}
+                  <span class="nav-link mega-nav-link menuDropdown">
+                    {{- label -}} {{ caret }}
+                  </span>
+                {%- endif -%}
+                {%- if menu -%}
+                  {%- capture menu_roots -%}
+                    {{- menu_roots -}}
+                    <div class="mega-dropdown-menu-root"
+                      data-handle="{{ block.settings.menu }}"
+                      {% if block.settings.menu == 'brands' %}
+                        data-brands-menu='{{ brands_menu }}'
+                      {% elsif block.settings.menu == 'news' %}
+                        data-news-menu='{{ news_menu }}'
+                      {% endif %}
+                      >
+                    </div>
+                  {%- endcapture -%}
+                {% endif %}
+              </li>
+            {%- endfor -%}
+          </ul>
+
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="mobile-search-wrapper" class="position-relative">
+  <div class="d-lg-none mobile-search">
+    <form class="container" action="/search">
+      <div class="input-group">
+        <input type="search" class="form-control border-0" placeholder="Search thousands of boat supplies" name="q">
+        <div class="input-group-append">
+          <button class="btn btn-primary">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+  {{ menu_roots }}
+{% comment %} {% include 'megamenu' %} {% endcomment %}
+{% endif %}

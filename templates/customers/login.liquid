@@ -1,0 +1,159 @@
+<article class="login container content">
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-8 col-lg-6">
+      <section id="CustomerLoginForm" class="mb-2">
+        {% form 'customer_login' %}
+
+          {% comment %}
+            Title
+          {% endcomment %}
+          <h1 class="text-center mb-5">{{ 'customer.login.title' | t }}</h1>
+
+          <div class="card registered-user-info-card">
+            <div class="card-body text-center py-2">
+              <div class="row justify-content-center">
+                <div class="col col-md-9">
+                  <p>
+                    Already a customer but can’t log in?<br>
+                    <strong>Arnold’s Boat Shop has upgraded!</strong>
+                  </p>
+                  <p class="mb-0">
+                    We’ve migrated your account so all you need to do is reactivate by clicking <strong>{{ 'here' | customer_register_link }}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% comment %}
+            Validation errors
+          {% endcomment %}
+          {%- if form.errors -%}
+            <div class="card bg-danger rounded-6 border-0 mb-3 pt-1 px-2">
+              <div class="card-block text-white">
+                {{ form.errors | default_errors }}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {% comment %}
+            Recover password info text
+          {% endcomment %}
+          <div class="card bg-success-light rounded-6 border-0 mb-3 p-2 text-center d-none" id="ResetSuccess">
+            <div class="card-block">
+              {{ 'customer.recover_password.success' | t }}
+            </div>
+          </div>
+
+          {% comment %}
+            User e-mail
+          {% endcomment %}
+          <div class="form-group my-4">
+            <label for="CustomerEmail" class="d-flex justify-content-between font-weight-bold{% if form.errors contains 'email' %} text-danger{% endif %}">
+              {% assign label = 'customer.login.email' | t %}
+              {% render 'required-field-label-content', label: label %}
+            </label>
+            <input type="email" name="customer[email]" id="CustomerEmail" class="form-control" autocorrect="off" autocapitalize="off" autofocus
+              required placeholder="{{ 'customer.login.email_placeholder' | t }}">
+          </div>
+
+          {% comment %}
+            User password
+          {% endcomment %}
+          {% if form.password_needed %}
+          <div class="form-group mb-4">
+            <label for="CustomerPassword" class="d-flex justify-content-between font-weight-bold{% if form.errors contains 'password' %} text-danger{% endif %}">
+              {% assign label = 'customer.login.password' | t %}
+              {% render 'required-field-label-content', label: label %}
+            </label>
+            <input type="password" value="" name="customer[password]" id="CustomerPassword" class="form-control"
+             required placeholder="{{ 'customer.login.password_placeholder' | t }}">
+          </div>
+          {% endif %}
+          <div class="row pt-1">
+            <div class="col-12 text-center">
+              {% if form.password_needed %}
+                <p class="text-center mb-4">
+                  <a href="#recover" id="RecoverPassword" class="font-weight-bold">{{ 'customer.login.forgot_password' | t }}</a>
+                </p>
+              {% endif %}
+              <input type="submit" value="{{ 'customer.login.sign_in' | t }}" class="btn btn-block btn-lg btn-cta">
+              <p class="mt-4 mb-2 cta-account-info">{{ 'customer.login.register' | t }}</p>
+              <p class="cta-account-link font-weight-bold mb-4">{{ 'layout.customer.create_account' | t | customer_register_link }}</p>
+              <p class="required-fields-info mb-4"><sup><i class="asterisk-icon d-inline-block"></i></sup> are required fields</p>
+            </div>
+          </div>
+
+        {% endform %}
+      </section>
+
+      {% comment %}
+        Recover password form
+      {% endcomment %}
+      <section id="RecoverPasswordForm" class="mb-2 d-none">
+
+        {% comment %}
+          Title and info text
+        {% endcomment %}
+        <h1 class="text-center mb-5">{{ 'customer.recover_password.title' | t }}</h1>
+        <p class="text-center">{{ 'customer.recover_password.subtext' | t }}</p>
+
+        {% form 'recover_customer_password' %}
+
+          {% comment %}
+            Validation errors
+          {% endcomment %}
+          {%- if form.errors -%}
+            <div id="recover_errors" class="card bg-danger rounded-6 mb-3 pt-1 px-2">
+              <div class="card-block text-white">
+                {{ form.errors | default_errors }}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {% comment %}
+            Add a hidden span to indicate the form was submitted succesfully.
+          {% endcomment %}
+          {% if form.posted_successfully? %}
+            <script>document.getElementById('ResetSuccess').classList.remove('d-none');</script>
+          {% endif %}
+
+          {% comment %}
+            User e-mail
+          {% endcomment %}
+          <div class="form-group">
+            <label for="RecoverEmail" class="font-weight-bold{% if form.errors %} text-danger{% endif %}">{{ 'customer.recover_password.email' | t }}</label>
+            <input type="email" value="" name="email" id="RecoverEmail" class="form-control" autocorrect="off" autocapitalize="off">
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-8 offset-0 offset-md-2 text-center">
+              <input type="submit" value="{{ 'customer.recover_password.submit' | t }}" class="btn btn-block btn-lg btn-cta mt-3">
+              <button type="button" id="HideRecoverPasswordLink" class="btn btn-link mt-3">{{ 'customer.recover_password.cancel' | t }}</button>
+            </div>
+          </div>
+        {% endform %}
+      </section>
+
+      {% comment %}
+        If accounts are set as optional, the following will be shown as an option
+        during checkout, not on the default /login page.
+      {% endcomment %}
+      {% if shop.checkout.guest_login %}
+        <div class="text-center mb-4">
+          <h1 class="text-center mb-5">{{ 'customer.login.guest_title' | t }}</h1>
+
+          {% form 'guest_login' %}
+            <div class="row">
+              <div class="col-12 col-md-8 offset-0 offset-md-2 text-center">
+                <input type="submit" value="{{ 'customer.login.guest_continue' | t }}" class="btn btn-block btn-lg btn-cta mt-3">
+              </div>
+            </div>
+          {% endform %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</article>

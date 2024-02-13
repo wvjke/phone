@@ -1,0 +1,62 @@
+{%- assign social_networks_string = 'facebook,twitter,pinterest,instagram,google_plus,tumblr,snapchat,youtube,vimeo' -%}
+{%- assign social_networks = social_networks_string | split: ',' -%}
+{%- assign social_networks_count = 0 %}
+
+<div class="social-media-icons">
+
+  {% if block.settings.subtitle != blank %}
+    <p>{{ block.settings.subtitle }}</p>
+  {% endif %}
+  {% if settings.subscription_form_mailchimp_url != blank %}
+    {% include 'subscription-form' %}
+  {% endif %}
+  {% for network in social_networks %}
+
+    {%- assign network_link_setting = 'social_*1_link' | replace: '*1', network -%}
+
+    {% comment %}
+      Set icon names for FontAwesome
+    {% endcomment %}
+    {% case network %}
+      {% when 'facebook' %}
+        {%- assign network_icon = 'fa-facebook-f' -%}
+      {% when 'twitter' %}
+        {%- assign network_icon = 'fa-twitter' -%}
+      {% when 'pinterest' %}
+        {%- assign network_icon = 'fa-pinterest' -%}
+      {% when 'instagram' %}
+        {%- assign network_icon = 'fa-instagram' -%}
+      {% when 'google_plus' %}
+        {%- assign network_icon = 'fa-google-plus-g' -%}
+      {% when 'tumblr' %}
+        {%- assign network_icon = 'fa-tumblr' -%}
+      {% when 'snapchat' %}
+        {%- assign network_icon = 'fa-snapchat' -%}
+      {% when 'youtube' %}
+        {%- assign network_icon = 'fa-youtube' -%}
+      {% when 'vimeo' %}
+        {%- assign network_icon = 'fa-vimeo-v' -%}
+      {% else %}
+        {%- assign network_icon = network -%}
+    {% endcase %}
+
+    {% comment %}
+      Icon
+    {% endcomment %}
+    {% if settings[network_link_setting] != '' %}
+      {%- assign social_networks_count = social_networks_count | plus: 1 %}
+      <a class="social-media-icon btn text-dark" href="{{ settings[network_link_setting] }}" data-target-new>
+        {% assign size = 'fa-' | append: block.settings.icon_size | append: 'x' %}
+        <i class="fab {{ network_icon }} {{ size }} py-1 pr-1"></i>
+      </a>
+    {% endif %}
+
+  {% endfor %}
+
+  {% comment %}
+    If no account URLs have been set
+  {% endcomment %}
+  {% if social_networks_count == 0 %}
+    <p>{{ 'onboarding.add_social_urls' | t }}</p>
+  {% endif %}
+</div>

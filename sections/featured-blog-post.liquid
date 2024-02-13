@@ -1,0 +1,34 @@
+{% if section.settings.featured_article != '' %}
+  {% assign article = articles[section.settings.featured_article] %}
+  <div class="featured-blog-post">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <a href="{{ article.url }}">
+          <div class="embed-responsive embed-responsive-4by3">
+              <img class="embed-responsive-item" src="{{ article.image.src | img_url: '400x300', crop: 'center' }}" alt="{{article.image.alt}}">
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-lg-6 featured-blog-post-content">
+        <h2 class="featured-blog-post-title my-4">{{ article.title }}</h2>
+        <p class="blog-post-date mb-4 small"> Posted on  {{ article.created_at | date: "%d %b %Y" }}</p>
+        <p>{{ article.excerpt_or_content | strip_html | truncate: 200 }}</p>
+        <a href="{{ article.url }}" class="btn featured-blog-post-see-more-btn stretched-link">Read More
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+"name": "Featured Blog Post",
+"settings": [
+{
+"type": "article",
+"id": "featured_article",
+"label": "Article to feature"
+}
+]
+}
+{% endschema %}

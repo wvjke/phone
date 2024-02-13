@@ -1,0 +1,26 @@
+
+    {% for link in linklists.department.links %}
+        {% if link.object.handle == collection.handle %}
+            {% assign active_category = link %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+   
+<div class="custom-carousel-wrap collection-carousel-wrap">
+  <div class="container text-center">
+    <div class="custom-carousel collection-carousel justify-content-center" id="collection-carousel">
+        {% assign elements = active_category.links %}
+
+        {% for element in elements %}
+          {% assign current_collection = collections[element.object.handle] %}
+            <!--<div class="icon">
+              <img
+                   src="{{ current_collection.image | img_url: '100x100' }}"
+                   alt="{{ current_collection.title }}">
+            </div> -->
+          <a href="/collections/{{ current_collection.handle }}" class="custom-carousel-item col-6 col-lg-3 py-1">{{ current_collection.title }}</a>
+        {% endfor %}
+    </div>
+  </div>
+</div>

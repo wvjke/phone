@@ -1,0 +1,892 @@
+{
+  "current": {
+    "favicon": "shopify:\/\/shop_images\/favicon-32.png",
+    "meta_google_site_verification_tags": "",
+    "klaviyo_list_id": "QasYLR",
+    "search_default_image": "shopify:\/\/shop_images\/ABS_Main_Website_logo_2e92bd63-a017-48f9-a4b0-f159b3cb3e30.png",
+    "flat_shipping_rate": "18",
+    "free_shipping_threshold": "499",
+    "free_shipping_text": "Free Shipping over",
+    "flat_rate_text": "Flat Rate Shipping",
+    "ratings_bold": "Customers Love Arnold’s Boat Shop",
+    "ratings_regular": "Rated 4.2 \/ 5 based on 2,100+ reviews",
+    "warning_text_massage": "For heavy items and delivery to remote areas, there may be additional costs. If the cost is vastly different to our standard delivery price, a member of our team will contact you prior to dispatch to notify you and arrange payment (or issue a refund)",
+    "in_stock_messaging": "Available to leave warehouse in 1 business day",
+    "out_of_stock_messaging": "Sold Out",
+    "out_of_stock_with_overselling_messaging": "Order will usually leave warehouse in 2-5 business days",
+    "out_of_stock_amt_messaging_with_overselling": "Only {{ amount }} items are available to leave warehouse in 1 business day, order will usually leave warehouse in 2-5 business days",
+    "out_of_stock_amt_messaging": "Only {{ amount }} items are available to leave warehouse in 1 business day",
+    "shipping_policy_url": "shopify:\/\/pages\/shipping-returns",
+    "terms_conditions_url": "shopify:\/\/pages\/general-terms-conditions",
+    "scripts_gtm_use": false,
+    "scripts_gtm_head": "",
+    "scripts_gtm_body": "",
+    "scripts_slick": true,
+    "show_visa": true,
+    "show_mastercard": true,
+    "show_amex": true,
+    "show_paypal": true,
+    "show_afterpay": false,
+    "show_zip": true,
+    "show_deposit": true,
+    "not_found_image": "shopify:\/\/shop_images\/ABS_Main_Website_logo_2e92bd63-a017-48f9-a4b0-f159b3cb3e30.png",
+    "not_found_url": "\/",
+    "product_count_override": 42000,
+    "checkout_header_image": "shopify:\/\/shop_images\/Brands.jpg",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Arnolds_Logo_White.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "large",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#a60d13",
+    "checkout_button_color": "#04086f",
+    "checkout_error_color": "#a60d13",
+    "theme_color": "FFF",
+    "product_slider_type": "horizontal",
+    "subscription_form_mailchimp_url": "https:\/\/createur.us2.list-manage.com\/subscribe\/post?u=022b7df14242e2d45a3a0e4b1&amp;id=9faf9a599b",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "1579095988769": {
+            "type": "megamenu-item",
+            "settings": {
+              "top_level_label": "",
+              "top_level_url": "",
+              "menu": "department",
+              "icons": true
+            }
+          },
+          "1579161205465": {
+            "type": "megamenu-item",
+            "settings": {
+              "top_level_label": "",
+              "top_level_url": "",
+              "menu": "brands",
+              "icons": false
+            }
+          },
+          "1579161412149": {
+            "type": "megamenu-item",
+            "settings": {
+              "top_level_label": "",
+              "top_level_url": "",
+              "menu": "news",
+              "icons": false
+            }
+          },
+          "1579161421436": {
+            "type": "megamenu-item",
+            "settings": {
+              "top_level_label": "Reviews",
+              "top_level_url": "shopify:\/\/pages\/reviews",
+              "menu": "",
+              "icons": false
+            }
+          },
+          "95b23a12-cef4-480c-bc1b-31f98a01ca73": {
+            "type": "megamenu-item",
+            "settings": {
+              "top_level_label": "Shipping & Returns",
+              "top_level_url": "shopify:\/\/pages\/shipping-returns",
+              "menu": "",
+              "icons": false
+            }
+          },
+          "1582725810557": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/BEP.png",
+              "brands_menu_item_name": "BEP"
+            }
+          },
+          "1be228a1-6873-4b2d-bde6-8b87f77799d0": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Unknown_2428c0f5-9c67-4c02-bb47-d5236bfa2a5c.png",
+              "brands_menu_item_name": "BLA"
+            }
+          },
+          "88e13288-1599-4076-834f-6ed4921734da": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Unknown-3_ad32b5d5-a54a-416f-b792-cf0a329133cd.png",
+              "brands_menu_item_name": "Blue Sea Systems"
+            }
+          },
+          "c6359dca-5a35-4f7d-9028-f439bd7147af": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/burke_logo_2017_b0636c83-f8c2-4690-9b64-096a95cf302c.jpg",
+              "brands_menu_item_name": "Burke"
+            }
+          },
+          "1582726139855": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Crewsaver.jpg",
+              "brands_menu_item_name": "Crewsaver"
+            }
+          },
+          "1582726154615": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Dan-Fender.jpg",
+              "brands_menu_item_name": "Dan-Fender"
+            }
+          },
+          "b4155591-48e0-4e82-970d-1562e477e0eb": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/image_3c025d56-35ff-4d2d-8428-be2cabc8d563.jpg",
+              "brands_menu_item_name": "Enerdrive"
+            }
+          },
+          "e86a4c92-cf1f-4fc3-9bf6-2774867b49bd": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/802green_46d9813f-f0e8-432d-b4ca-ff58c198b45e.png",
+              "brands_menu_item_name": "Fishski Australia"
+            }
+          },
+          "1582798214566": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Gill.png",
+              "brands_menu_item_name": "Gill"
+            }
+          },
+          "149b79ef-6aa0-4684-97d4-291400cc0259": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Hella-marine-Logo-with-big-Football-for-bright-Backgrounds_bd52e263-afd9-48a1-b6bd-b578d3997972.png",
+              "brands_menu_item_name": "Hella"
+            }
+          },
+          "9ed6d063-3f08-4ad1-a965-fdccba162293": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/1280px-Icom_logo.svg_cc53756a-9d5b-46a5-8fac-200253787847.png",
+              "brands_menu_item_name": "Icom"
+            }
+          },
+          "1582798264575": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Jabsco.jpg",
+              "brands_menu_item_name": "Jabsco"
+            }
+          },
+          "7b331385-dc52-4157-bbe8-ceaafa918109": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/KTI_Logo-700x700_a9a95dff-1b86-4164-ae90-1aa1825956ef.png",
+              "brands_menu_item_name": "KTI"
+            }
+          },
+          "1583802053294": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Lewmar.png",
+              "brands_menu_item_name": "Lewmar"
+            }
+          },
+          "1583802076711": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Mastervolt.png",
+              "brands_menu_item_name": "Mastervolt"
+            }
+          },
+          "3716771e-7d9f-4209-b955-6b808f5ffff4": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/narvamarine_logo_7c3460ef-2963-410a-985d-0b027eecc26b.jpg",
+              "brands_menu_item_name": "Narva"
+            }
+          },
+          "1583802098395": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Navionics.png",
+              "brands_menu_item_name": "Navionics"
+            }
+          },
+          "cd5548b5-3d9a-49bd-8d2c-198dfc5e89a5": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Unknown_282d3ab7-86d5-4154-91ef-90678e15fbde.jpg",
+              "brands_menu_item_name": "Ocean Guardian"
+            }
+          },
+          "1583802121305": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/OceanLED.png",
+              "brands_menu_item_name": "OceanLED"
+            }
+          },
+          "4def1bb9-04c4-4a7e-8023-70638d2ad287": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Oceansouth-HighRes-logo-2_a8a2327a-d2b4-4c6f-8d72-fdaecfb40a3b.jpg",
+              "brands_menu_item_name": "Oceansouth"
+            }
+          },
+          "7910c9f7-1c9f-44e3-9548-79c9fd58015f": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/89_img_1_6f54bca8-12fe-49c9-9ab6-1cf330f2590f.jpg",
+              "brands_menu_item_name": "R W Basham"
+            }
+          },
+          "3eedd052-a3b5-4959-a4ee-45f38c951d6d": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Screen_Shot_2021-01-30_at_11.45.49_am.png",
+              "brands_menu_item_name": "Railblaza"
+            }
+          },
+          "1583802142941": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Raymarine.png",
+              "brands_menu_item_name": "Raymarine"
+            }
+          },
+          "8d8b2e88-28e6-4c7a-afe4-d48a8d4cc3ee": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/363_30f66fa1-4d96-40f1-bebc-c80e52f96031.jpg",
+              "brands_menu_item_name": "Relaxn"
+            }
+          },
+          "1583802160869": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Ronstan.jpg",
+              "brands_menu_item_name": "Ronstan"
+            }
+          },
+          "88a2e752-82b3-4a05-9b80-f3f8aa5c41d8": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Rule-logo_9e0c9acb-cbcd-48d7-954a-d84efdcad900.jpg",
+              "brands_menu_item_name": "Rule"
+            }
+          },
+          "365ca2c8-4a16-478c-bb73-ddeacbccec3f": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/4agHI1M2_400x400_3264eee4-fe17-468f-a159-509fa0d403c3.jpg",
+              "brands_menu_item_name": "Sam Allen"
+            }
+          },
+          "6ea9f4dc-8a57-4bc9-bb99-e9173553e866": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Unknown-2_109b95e0-e6ce-40b4-a3b9-e1c49db55934.png",
+              "brands_menu_item_name": "SeaStar Solutions"
+            }
+          },
+          "7f278559-3b10-402f-be51-01391688e0a5": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Logo_Vetus_RGB_de03b6c1-a7bd-43a4-92ae-4872399052d1.jpg",
+              "brands_menu_item_name": "Vetus"
+            }
+          },
+          "18a05027-b92a-4a65-94c0-f7ddd1e132e1": {
+            "type": "brands-menu-item",
+            "settings": {
+              "brands_menu_item_logo": "shopify:\/\/shop_images\/Unknown-4_7b7c9630-6cdb-4bdd-8172-4716ee98a0bc.png",
+              "brands_menu_item_name": "Whale"
+            }
+          }
+        },
+        "block_order": [
+          "1579095988769",
+          "1579161205465",
+          "1579161412149",
+          "1579161421436",
+          "95b23a12-cef4-480c-bc1b-31f98a01ca73",
+          "1582725810557",
+          "1be228a1-6873-4b2d-bde6-8b87f77799d0",
+          "88e13288-1599-4076-834f-6ed4921734da",
+          "c6359dca-5a35-4f7d-9028-f439bd7147af",
+          "1582726139855",
+          "1582726154615",
+          "b4155591-48e0-4e82-970d-1562e477e0eb",
+          "e86a4c92-cf1f-4fc3-9bf6-2774867b49bd",
+          "1582798214566",
+          "149b79ef-6aa0-4684-97d4-291400cc0259",
+          "9ed6d063-3f08-4ad1-a965-fdccba162293",
+          "1582798264575",
+          "7b331385-dc52-4157-bbe8-ceaafa918109",
+          "1583802053294",
+          "1583802076711",
+          "3716771e-7d9f-4209-b955-6b808f5ffff4",
+          "1583802098395",
+          "cd5548b5-3d9a-49bd-8d2c-198dfc5e89a5",
+          "1583802121305",
+          "4def1bb9-04c4-4a7e-8023-70638d2ad287",
+          "7910c9f7-1c9f-44e3-9548-79c9fd58015f",
+          "3eedd052-a3b5-4959-a4ee-45f38c951d6d",
+          "1583802142941",
+          "8d8b2e88-28e6-4c7a-afe4-d48a8d4cc3ee",
+          "1583802160869",
+          "88a2e752-82b3-4a05-9b80-f3f8aa5c41d8",
+          "365ca2c8-4a16-478c-bb73-ddeacbccec3f",
+          "6ea9f4dc-8a57-4bc9-bb99-e9173553e866",
+          "7f278559-3b10-402f-be51-01391688e0a5",
+          "18a05027-b92a-4a65-94c0-f7ddd1e132e1"
+        ],
+        "settings": {
+          "header_show_announcement": true,
+          "header_show_announcement_index_only": false,
+          "header_announcement_text": "We're Sailing again - but with new crew at the helm!",
+          "header_announcement_link_url": "shopify:\/\/pages\/sailing-again",
+          "header_announcement_link_text": "Click here for details",
+          "free_shipping_text": "Free Shipping over",
+          "flat_rate_text": "Shipping",
+          "contact_page": "shopify:\/\/pages\/contact-us",
+          "contact_page_blank": true,
+          "news_menu_featured_item": "resources\/make-sure-your-tender-or-small-vessel-is-legal-at-night",
+          "phone_number": "Phone1: - (00) 0000 0000",
+          "phone_number_2": "Phone2: - (11) 1111 1111",
+          "phone_number_3": "Phone3: - (22) 2222 2222",
+          "phone_number_4": "Phone4: - (33) 3333 3333"
+        }
+      },
+      "widget_product_options": {
+        "type": "widget_product_options",
+        "blocks": {
+          "1548377276716": {
+            "type": "radios",
+            "settings": {
+              "title": "Size"
+            }
+          }
+        },
+        "block_order": [
+          "1548377276716"
+        ],
+        "settings": {
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "departments_title": "Departments",
+          "departments_menu": "department",
+          "information_title": "Information",
+          "information_menu": "footer-information"
+        }
+      },
+      "product_shipping": {
+        "type": "product_shipping",
+        "settings": {
+          "content": "<p>After ordering online, you will receive an automated email confirmation containing your order details. Your order will then be confirmed within a few minutes of placing your order.<br\/><br\/>It is our policy to ensure we deliver to our customers in a timely manner. In order to achieve this we use a range of freight companies depending on the size and weight of your order. In some instances we may use a number of carriers to get your products to you. For example, chain may come by road, some electronic equipment by air.<\/p><p><br\/><strong>Most orders are shipped within 2 - 5 Days<\/strong><br\/><br\/>Shipping rates <\/p><p><strong>Orders delivered to Australian Post Codes under $499 attract an $18.00 shipping charge.<\/strong><\/p><p><strong>Orders of $499 or more ship free.* <\/strong><\/p><p><br\/><strong>For Remote areas and bulky items. If the cost to send is vastly different to our standard delivery costs, someone from our team will contact you prior to dispatch to arrange further payment or to issue a refund if you are not happy with the additional charges.<\/strong><br\/><br\/><\/p><p>International orders will be charged at $0.00 initially and our staff will be in contact with a shipping quote. If the quote is not accepted the customer reserves the right to cancel their order and be refunded in full.<br\/><br\/>Should you have any queries or concerns about shipping, please don't hesitate to get in touch by clicking the support button on bottom right of the page.<\/p>"
+        }
+      },
+      "product_variant_selector": {
+        "type": "product_variant_selector",
+        "settings": {
+          "invalid_text": "The selected options are not available together, please adjust your selection",
+          "unavailable": "Unavailable",
+          "select_option": "Please select an option",
+          "select_variant": "Please choose a variant",
+          "insurance_text": "This Product has freight insurance. Click here to learn more.",
+          "insurance_link": "https:\/\/www.arnoldsboatshop.com.au\/pages\/shipping-returns"
+        }
+      },
+      "collection_hero": {
+        "type": "collection_hero",
+        "settings": {
+          "background": "shopify:\/\/shop_images\/banner_default.jpg",
+          "size": "true"
+        }
+      },
+      "featured-blog-post": {
+        "type": "featured-blog-post",
+        "settings": {
+          "featured_article": "resources\/university-of-western-australia-releases-results-of-research-and-field-tests-of-shark-shield-devices"
+        }
+      },
+      "brands_hero": {
+        "type": "brands_hero",
+        "settings": {
+          "background": "shopify:\/\/shop_images\/image-home-01-desktop.jpg"
+        }
+      },
+      "featured-brands": {
+        "type": "featured-brands",
+        "blocks": {
+          "1580995685028": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-acr-grey.png",
+              "brand": "ACR"
+            }
+          },
+          "1580995756845": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-attwood-grey.png",
+              "brand": "Attwood"
+            }
+          },
+          "1580996082459": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-baltic-grey.png",
+              "brand": "Baltic"
+            }
+          },
+          "1580996173167": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-bep-grey.png",
+              "brand": "BEP"
+            }
+          },
+          "1580996155615": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-crewsaver-grey.png",
+              "brand": "Crewsaver"
+            }
+          },
+          "1580996194806": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-dan-fender-grey.png",
+              "brand": "Dan-Fender"
+            }
+          },
+          "1580996286984": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-easterner-grey.png",
+              "brand": "Easterner"
+            }
+          },
+          "1580996300856": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-eclectic-energy-grey.png",
+              "brand": "Eclectic Energy"
+            }
+          },
+          "1580996337791": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-gill-grey.png",
+              "brand": "Gill"
+            }
+          },
+          "1580996437604": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-jabsco-grey.png",
+              "brand": "Jabsco"
+            }
+          },
+          "1580996451575": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-jbl-grey.png",
+              "brand": "JBL"
+            }
+          },
+          "1580996459016": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-kvh-grey.png",
+              "brand": "KVH"
+            }
+          },
+          "1580996470016": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-lewmar-grey.png",
+              "brand": "Lewmar"
+            }
+          },
+          "1580996478759": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-mastervolt-grey.png",
+              "brand": "Mastervolt"
+            }
+          },
+          "1580996488400": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-navionics-grey.png",
+              "brand": "Navionics"
+            }
+          },
+          "1580996501543": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-ocean-led-grey.png",
+              "brand": "OceanLED"
+            }
+          },
+          "1580996524464": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-raymarine-grey.png",
+              "brand": "Raymarine"
+            }
+          },
+          "1580996533313": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/logo-brand-ronstan-grey.png",
+              "brand": "Ronstan"
+            }
+          }
+        },
+        "block_order": [
+          "1580995685028",
+          "1580995756845",
+          "1580996082459",
+          "1580996173167",
+          "1580996155615",
+          "1580996194806",
+          "1580996286984",
+          "1580996300856",
+          "1580996337791",
+          "1580996437604",
+          "1580996451575",
+          "1580996459016",
+          "1580996470016",
+          "1580996478759",
+          "1580996488400",
+          "1580996501543",
+          "1580996524464",
+          "1580996533313"
+        ],
+        "settings": {
+          "title": "Featured Brands",
+          "add_button": false,
+          "cta_text": "See All Brands",
+          "cta_url": ""
+        }
+      },
+      "category-hero": {
+        "type": "category-hero",
+        "settings": {
+          "background": "shopify:\/\/shop_images\/Safety_Equipment.jpg",
+          "size": "true"
+        }
+      },
+      "1637548557ff962ad6": {
+        "type": "hero",
+        "blocks": {
+          "de782201-6dec-467f-bdf9-56e574a1d8f7": {
+            "type": "text",
+            "settings": {
+              "cover_image": "shopify:\/\/shop_images\/image-home-01-desktop.jpg",
+              "title": "",
+              "subtitle": "",
+              "subtitle2": "",
+              "button_text": "",
+              "button_link": ""
+            }
+          },
+          "17aef404-0280-4b01-8f24-4608df6d6d57": {
+            "type": "text",
+            "disabled": true,
+            "settings": {
+              "cover_image": "shopify:\/\/shop_images\/Add_a_heading.png",
+              "title": "",
+              "subtitle": "",
+              "subtitle2": "",
+              "button_text": "",
+              "button_link": "https:\/\/www.arnoldsboatshop.com.au\/collections\/raymarine-element"
+            }
+          },
+          "b8de8f68-3181-4751-8852-170963b7325a": {
+            "type": "text",
+            "disabled": true,
+            "settings": {
+              "cover_image": "shopify:\/\/shop_images\/banner_f83073c4-b49b-4f74-be8d-c5a438ce59fa.jpg",
+              "title": "We're Back<br>Sailing Again",
+              "subtitle": "The Arnold's Boat Shop website is sailing again<br>but with a new crew at the helm.",
+              "subtitle2": "",
+              "button_text": "",
+              "button_link": ""
+            }
+          },
+          "5ea24065-981a-4ee0-bb44-7eb4081813a0": {
+            "type": "text",
+            "disabled": true,
+            "settings": {
+              "cover_image": "shopify:\/\/shop_images\/Raymarine_Ugrade.png",
+              "title": "Raymarine Upgrade Offer",
+              "subtitle": "34,000+ products growing by the day",
+              "subtitle2": "34,000+ products growing by the day",
+              "button_text": "",
+              "button_link": ""
+            }
+          },
+          "7995014c-d5f3-49cb-9bdd-6d679eec397c": {
+            "type": "text",
+            "disabled": true,
+            "settings": {
+              "title": "Your One-Stop Boat Shop",
+              "subtitle": "34,000+ products growing by the day",
+              "subtitle2": "34,000+ products growing by the day",
+              "button_text": "",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "de782201-6dec-467f-bdf9-56e574a1d8f7",
+          "17aef404-0280-4b01-8f24-4608df6d6d57",
+          "b8de8f68-3181-4751-8852-170963b7325a",
+          "5ea24065-981a-4ee0-bb44-7eb4081813a0",
+          "7995014c-d5f3-49cb-9bdd-6d679eec397c"
+        ],
+        "settings": {
+        }
+      },
+      "16376428998bdea71c": {
+        "type": "banners",
+        "blocks": {
+          "fa37f0df-fd43-46c2-bb1e-fa7bd42540ae": {
+            "type": "item-half",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/free-shipping_e30e065e-3121-474a-a1b4-e168414ad79e.jpg",
+              "cta_url": ""
+            }
+          },
+          "579ce989-4d6b-4dcc-8a0f-00c5ede2eed6": {
+            "type": "item-half",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Frame_1.png",
+              "cta_url": "https:\/\/www.arnoldsboatshop.com.au\/blogs\/resources\/raymarine-upgrade-offer"
+            }
+          }
+        },
+        "block_order": [
+          "fa37f0df-fd43-46c2-bb1e-fa7bd42540ae",
+          "579ce989-4d6b-4dcc-8a0f-00c5ede2eed6"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "16376496808ed748e0": {
+        "type": "banner-carousel",
+        "blocks": {
+          "dfccf978-5a18-407f-82b0-54baad551493": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/electronics.jpg",
+              "cta_url": "https:\/\/www.arnoldsboatshop.com.au\/collections\/electronics-navigation"
+            }
+          },
+          "94c8b0b7-d2f9-45f2-9415-636f4527ba9e": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/sail-boat-hardware.jpg",
+              "cta_url": "https:\/\/www.arnoldsboatshop.com.au\/collections\/sail-boat-hardware"
+            }
+          },
+          "7d05d85e-a748-4fc6-9339-d7bed754b076": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/9ZvWHK8e.png",
+              "cta_url": "https:\/\/www.arnoldsboatshop.com.au\/collections\/safety"
+            }
+          }
+        },
+        "block_order": [
+          "dfccf978-5a18-407f-82b0-54baad551493",
+          "94c8b0b7-d2f9-45f2-9415-636f4527ba9e",
+          "7d05d85e-a748-4fc6-9339-d7bed754b076"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "16376531588faae7a4": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "Best Selling Gear",
+          "collection": "ra-best-sellers",
+          "grid": 4,
+          "rows": 2,
+          "show_vendor": true,
+          "show_view_all": false
+        }
+      },
+      "16376541250e178dd2": {
+        "type": "featured-brands",
+        "blocks": {
+          "a3f31168-851e-440a-8eac-3512c5d3b730": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/image_21.png",
+              "brand": ""
+            }
+          },
+          "23eb4a3c-9a5b-4efc-82e4-ba3db583131a": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/raymarine_d0bd53e5-c2c6-4796-b38f-82e8842f543c.png",
+              "brand": ""
+            }
+          },
+          "d3025c50-e43f-4c2f-b204-8912e0026f27": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/image_23.png",
+              "brand": ""
+            }
+          },
+          "75f92383-0248-4fe2-a0ad-6c0de066865d": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/mastervault.png",
+              "brand": ""
+            }
+          },
+          "3ab65c26-1779-422c-b2ad-1062b3fe1251": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/crewsaver-logo-new.png",
+              "brand": ""
+            }
+          }
+        },
+        "block_order": [
+          "a3f31168-851e-440a-8eac-3512c5d3b730",
+          "23eb4a3c-9a5b-4efc-82e4-ba3db583131a",
+          "d3025c50-e43f-4c2f-b204-8912e0026f27",
+          "75f92383-0248-4fe2-a0ad-6c0de066865d",
+          "3ab65c26-1779-422c-b2ad-1062b3fe1251"
+        ],
+        "settings": {
+          "title": "Popular Brands We Stock",
+          "add_button": true,
+          "cta_text": "See All Brands",
+          "cta_url": "https:\/\/www.arnoldsboatshop.com.au\/pages\/brands"
+        }
+      },
+      "1637659424eb74e588": {
+        "type": "image-with-text",
+        "settings": {
+          "title": "High-Quality Boating Supplies",
+          "description": "<p>Arnold’s Boat Shop is an online ship chandler servicing the Australian boating market.<\/p><p>Our mission is to be a one-stop shop for the largest range possible of marine products - to meet the needs of those involved in both recreational and commercial boating activity.<\/p><p>Our unique advantage is that, as an online store, we are able to distribute products to anywhere in Australia quickly, efficiently and at very competitive pricing.<\/p><p>The range of products we have listed on our website is exhaustive and continues to grow. And while we make every effort to list everything, not all products are listed. So where a customer can’t find something they are specifically looking for, we welcome them to contact us or email <a href=\"mailto:sales@arnoldsboatshop.com.au\">sales@arnoldsboatshop.com.au<\/a><\/p>",
+          "image": "shopify:\/\/shop_images\/Mask_Group.jpg"
+        }
+      },
+      "1637660242a0c7d276": {
+        "type": "featured-category",
+        "disabled": true,
+        "settings": {
+          "title": "Most Popular Categories"
+        }
+      },
+      "banner-carousel": {
+        "type": "banner-carousel",
+        "blocks": {
+          "78da9d9a-c92f-4e80-8442-5bdb2e259272": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/electronics.jpg",
+              "cta_url": ""
+            }
+          },
+          "268a9cbe-192d-411d-8e9e-c37613084391": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/sail-boat-hardware.jpg",
+              "cta_url": ""
+            }
+          },
+          "3db87999-cc63-49f5-ae55-63db7054cfe5": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/shop-sail-boat-hardware.jpg",
+              "cta_url": ""
+            }
+          },
+          "c4d600dd-fcb3-4034-9294-c63b6b68b1ee": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/electronics.jpg",
+              "cta_url": ""
+            }
+          },
+          "5728ba7d-1d8e-4b5c-8e56-f055d4a537ba": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/sail-boat-hardware.jpg",
+              "cta_url": ""
+            }
+          },
+          "24d591d7-e59b-42a6-b08b-4a13c55e9eb7": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/shop-sail-boat-hardware.jpg",
+              "cta_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "78da9d9a-c92f-4e80-8442-5bdb2e259272",
+          "268a9cbe-192d-411d-8e9e-c37613084391",
+          "3db87999-cc63-49f5-ae55-63db7054cfe5",
+          "c4d600dd-fcb3-4034-9294-c63b6b68b1ee",
+          "5728ba7d-1d8e-4b5c-8e56-f055d4a537ba",
+          "24d591d7-e59b-42a6-b08b-4a13c55e9eb7"
+        ],
+        "settings": {
+          "title": "Looking for Something Else?"
+        }
+      },
+      "related-products": {
+        "type": "related-products",
+        "settings": {
+          "show_related_products": true,
+          "related_title": "Other fine products",
+          "related_grid_num": "4",
+          "related_grid_row": "1"
+        }
+      },
+      "1657380080496b4bda": {
+        "type": "reviews",
+        "settings": {
+          "cta_text": "See All Reviews",
+          "cta_url": ""
+        }
+      }
+    },
+    "content_for_index": [
+      "1637548557ff962ad6",
+      "16376428998bdea71c",
+      "16376496808ed748e0",
+      "1657380080496b4bda",
+      "16376531588faae7a4",
+      "16376541250e178dd2",
+      "1637659424eb74e588",
+      "1637660242a0c7d276"
+    ]
+  },
+  "presets": {
+    "Default": {
+    }
+  }
+}

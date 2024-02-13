@@ -1,0 +1,15 @@
+{% assign desktop_up = 'lg' %}
+{% assign background-img-name = type | append: '-' | append: text | handleize  | append: '.jpg'%}
+<div class="collection-hero bg-container-cover p-4 p-{{desktop_up}}-3 d-flex"
+    style="background-image: url('{{ background-img-name | file_img_url: 'master' }}'), url('{{ section.settings.background | img_url: 'master' }}'); {% if section.settings.size == 'true' %}min-height: 120px{% else %}height: 120px{% endif %}">
+  <div class="container">
+    <h1 style="text-align: center;" class="text-white m-0 h2 text-capitalize">
+      {{- text -}}
+    </h1>
+    {%- if description != nil -%}
+      <p style="text-align: center;" class="text-white mt-2">
+        {{- description -}}
+      </p>
+    {%- endif -%}
+  </div>
+</div>

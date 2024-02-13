@@ -1,0 +1,167 @@
+{
+  "onboarding": {
+    "add_social_urls": "Add URLs for your social accounts in the sidebar under General settings > Social media.",
+    "back_link": "Back to "
+  },
+  "blogs": {
+    "article": {
+      "author_on_date_html": "Posted on {{ date }}",
+      "updated_at_date_html": "Last Updated {{ date }}"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "message": "Message",
+      "send": "Send",
+      "post_success": "Message sent successfully!"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%B %d, %Y",
+    "day_month_year": "%d %b %Y"
+  },
+  "customer": {
+    "account": {
+      "title": "Account",
+      "details": "Profile",
+      "view_addresses": "View Addresses",
+      "return": "Return to Account Details"
+    },
+    "activate_account": {
+      "title": "Activate Account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Activate Account",
+      "cancel": "Decline Invitation"
+    },
+    "addresses": {
+      "title": "Addresses",
+      "default": "Default Address",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address",
+      "address2": "Apartment, Suite, etc.",
+      "city": "Suburb",
+      "country": "Country",
+      "province": "State\/Territory",
+      "zip": "Postcode",
+      "phone": "Phone Number",
+      "set_default": "Set as default address",
+      "add": "Add Address",
+      "update": "Save Address",
+      "cancel": "Cancel",
+      "edit": "Edit Address",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?",
+      "empty": "You haven't registered any adress yet."
+    },
+    "login": {
+      "title": "Log In",
+      "email": "Email",
+      "email_placeholder": "Enter Email",
+      "password": "Password",
+      "password_placeholder": "Enter Password",
+      "forgot_password": "Forgot your password",
+      "sign_in": "Log In",
+      "guest_title": "Continue as a guest",
+      "guest_continue": "Continue",
+      "register": "Don't have an account yet?"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Orders",
+      "date": "Date",
+      "payment_status": "Payment Status",
+      "fulfillment_status": "Status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet."
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "date": "Placed on {{ date }}",
+      "cancelled": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "product": "Product",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at": "Fulfilled {{ date }}",
+      "subtotal": "Subtotal",
+      "track_shipment": "Track shipment"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "email": "Email",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "subtext": "We will send you an email to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
+    },
+    "register": {
+      "title": "Create Account",
+      "first_name": "First Name",
+      "first_name_placeholder": "Enter First Name",
+      "last_name": "Last Name",
+      "last_name_placeholder": "Enter Last Name",
+      "email": "Email",
+      "email_placeholder": "Enter Email",
+      "password": "Password",
+      "password_placeholder": "Enter Password",
+      "submit": "Create Account",
+      "login": "Already have an account?",
+      "accept_marketing": "Keep me updated on news and exclusive members only offers"
+    }
+  },
+  "layout": {
+    "customer": {
+      "account": "Account",
+      "log_out": "Log out",
+      "log_in": "Log In",
+      "create_account": "Create Account",
+      "reset_password": "Reset Password"
+    },
+    "not_found": {
+      "title": "404",
+      "subtitle": "Oops!",
+      "text": "The page you were looking for doesn't exists.",
+      "button": "Back to home"
+    }
+  },
+  "products": {
+    "product": {
+      "regular_price": "Regular price",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "on_sale_from_html": "On Sale from {{ price }}",
+      "from_text_html": "From {{ price }}",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to Cart"
+    }
+  },
+  "footer": {
+    "copyright_message": "© {{ current_year }} Arnold's Boat Shop. All Rights Reserved"
+  }
+}

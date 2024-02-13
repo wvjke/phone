@@ -1,0 +1,139 @@
+<div class="col-12 col-lg-9">
+  <div id="collection-products-container">
+    <div class="row" id="collection-products-row">
+        {% if collection.products.size > 0 %}
+          {% paginate collection.products by 12 %}
+            {% for product in collection.products %}
+              {% if product.compare_at_price %}
+                {% if product.compare_at_price > product.price %}
+                  {% assign onsale = true %}
+                  {% else %}
+                  {% assign onsale = false %}
+                {% endif %}
+              {% else %}
+                {% assign onsale = false %}
+              {% endif %}
+
+              <div class="d-block mb-5 position-relative collection-product col-6 col-lg-4 d-flex flex-column">
+                <a href="{{ product.url }}" class="vantablack d-flex flex-column">
+                  {% if template contains 'search' %}
+      {% for variant in item.variants %}
+        {% assign saving = variant.compare_at_price | minus: variant.price %}
+        {% assign amount = saving | at_least: amount %}
+      {% endfor %}
+    {% else %}
+      {% for variant in product.variants %}
+      {% assign saving = variant.compare_at_price | minus: variant.price %}
+          {% assign amount = saving | at_least: amount %}
+      {% endfor %}
+    {% endif %}
+    {% capture saved_amount %}{{ amount | money_without_trailing_zeros }}{% endcapture %}
+                    <span class="sale-badge">
+                        Save up to {{ saved_amount }}
+                    </span>
+            
+                  {% if product.images[1] != nil %}
+                    <div class="collection-img-container">
+                      <div class="product-img-fade-on-hover">
+                        {% include 'responsive-image-fixed' with
+                          image: product.featured_image,
+                          max_width: 600,
+                          max_height: 600,
+                          image_class: "collection-product-image"
+                        %}
+                      </div>
+                      <div class="product-img-show-on-hover">
+                        {% include 'responsive-image-fixed' with
+                          image: product.images[1],
+                          max_width: 600,
+                          max_height: 600,
+                          image_class: "collection-product-image"
+                        %}
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="collection-img-container">
+                      <div>
+                        {% include 'responsive-image-fixed' with
+                          image: product.featured_image,
+                          max_width: 600,
+                          max_height: 600,
+                          image_class: "collection-product-image"
+                        %}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  <div class="mb-1 product-vendor font-weight-bold text-blue">{{ product.vendor }}</div>
+                  <div class="mb-2 product-title font-weight-bold">{{ product.title | truncate: 50 }}</div>
+                  <div class="mb-2 mt-auto">Part Number: {{ product.variants[0].sku }}</div>
+                  <div class="d-flex flex-wrap product-prices mt-auto">
+                    {% if onsale == true %}
+                      <p>
+                        {% if product.price_varies %}
+                        <strong>from&nbsp;</strong>
+                        {% endif %}
+                        <strong class="product-price">{{ product.price | money }}</strong>
+                        <del class="mr-2 text-blue product-compare-price price-compare">{{ product.compare_at_price | money }}</del></p>
+                    {% else %}
+                      <strong class="product-price">{{ product.price | money }}</strong>
+                    {% endif %}
+                  </div>
+                </a>
+                <form action="/cart/add" method="post" class="collection-cart-form mt-3">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                  <div><button type="submit" name="add" class="btn-primary btn btn-sm btn-add-to-cart">Add to cart</button></div> 
+                </form>
+                
+              </div>
+            {% endfor %}
+
+          <nav class="collection-pagination col-12" aria-label="Collection pagination">
+            {{ paginator.next_page_path }}
+            <ul class="pagination">
+              {% if paginate.previous.is_link %}
+                <li class="page-item">
+                  <a href="{{ paginate.previous.url }}" class="page-link"><i class="fa fa-chevron-left fa-sm"></i></a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <button class="page-link"><i class="fa fa-chevron-left fa-sm"></i></button>
+                </li>
+              {% endif %}
+
+            {% for part in paginate.parts %}
+              {% if part.is_link or part.title.first %}
+               <li class="page-item">
+                <a href="{{ part.url }}" class="page-link">
+                  <strong>{{ part.title }}</strong>
+                </a>
+               </li>
+              {% else %}
+                <li class="page-item active">
+                  <button class="page-link">
+                    <strong>{{ part.title }}</strong>
+                  </button>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next.is_link %}
+              <li class="page-item">
+                <a href="{{ paginate.next.url }}" class="page-link"><i class="fa fa-chevron-right fa-sm"></i></a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <button class="page-link"><i class="fa fa-chevron-right fa-sm"></i></button>
+              </li>
+            {% endif %}
+            </ul>
+          </nav>
+        {% endpaginate %}
+        {% else %}
+          <div class="col-12">
+            <div class="mt-3 text-center alert alert-danger fade show" role="alert">No products found</div>
+          </div>
+        {% endif %}
+    </div>
+  </div>
+</div>

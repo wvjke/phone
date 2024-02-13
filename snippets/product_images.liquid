@@ -1,0 +1,62 @@
+<div class="product-images mb-2">
+  <span class="sale-badge">
+    {% comment %}{% if product.compare_at_price > product.price %}
+    - {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | money_without_currency | times: 100 | remove: '.0'}}%
+    {% endif %}{% endcomment %}
+    
+ {% assign amount = 0 %}
+    {% if template contains 'search' %}
+      {% for variant in item.variants %}
+        {% assign saving = variant.compare_at_price | minus: variant.price %}
+        {% assign amount = saving | at_least: amount %}
+      {% endfor %}
+    {% else %}
+      {% for variant in product.variants %}
+        {% assign saving = variant.compare_at_price | minus: variant.price %}
+        {% assign amount = saving | at_least: amount %}
+      {% endfor %}
+    {% endif %}
+    {% capture saved_amount %}{{ amount | money_without_trailing_zeros }}{% endcapture %}
+    Save up to {{ saved_amount }}
+  </span>
+  <div class="row">
+    <div class="col-3">
+        <div id="product-page-thumbnails" class="product-thumbnails-slider">
+          {% for image in product.images %}
+            {% assign is_break = false %}
+            {% for variant in product.variants %}
+                {% assign variant_image = variant.image | img_url: 'master' %}
+                {% assign product_image = image | img_url: 'master' %}
+                {% if product_image == variant_image %}
+                  <div class="product-thumbnail">
+                    <img id="var-{{ variant.id }}" data-title="{{ variant.title }}" src="{{ variant.image.src | product_img_url: '75x75', crop: 'center' }}" alt="">
+                  </div>
+                  {% assign is_break = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% if is_break == true %}
+              {% continue %}
+            {% else %}
+              <div class="product-thumbnail">
+                <img src="{{ image | product_img_url: '75x75', crop: 'center' }}" alt="">
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+    <div class="col-9">
+      <div id="product-page-images" class="product-image-container mb-4">
+        {% for image in product.images %}
+        <div class="product-image">
+          {% include 'responsive-image-fixed' with
+                    image: image,
+          max_width: 400,
+          max_height: 400
+          %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

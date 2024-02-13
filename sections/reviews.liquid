@@ -1,0 +1,45 @@
+{% assign desktop_up = 'lg' %}
+<!--<div class="reviews container text-center pt-5">
+  <script src="https://apps.elfsight.com/p/platform.js"></script>
+  <div class="elfsight-app-f014e9ec-1f3e-48a2-8467-e5402236533f"></div>
+  <div class="row text-center justify-content-center mt-5">
+    <div class="col-12 col-lg-6">
+      <a class="btn btn-lg btn-primary px-5" href="{{ section.settings.cta_url }}">
+        {{- section.settings.cta_text -}}
+      </a>
+    </div>
+  </div>
+</div>-->
+
+<div class="reviews container text-center pt-5">
+  <div class="row text-center justify-content-center mt-5">
+    <div class="col-12">
+      <h1>What Our Customers Are Saying</h1>
+<div class="reviewmgr-stream" data-show-aggregate-rating="false" data-include-empty="false" data-review-limit="4" data-url="https://www.reviewr.app/arnoldsboatshop/"></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.reviewmgr.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "reviewmgr-wjs");</script>
+  </div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "See All Reviews"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

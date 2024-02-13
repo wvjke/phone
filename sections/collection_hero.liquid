@@ -1,0 +1,27 @@
+{% include 'hero', text: collection.title, section: section, type: 'collection' %}
+
+{% schema %}
+{
+  "name": "Collection Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Settings for all collections"
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Snippet height",
+      "options": [
+        {"value": "false","label": "Normal"},
+        {"value": "true","label": "Half"}
+      ]
+    }
+  ]
+}
+{% endschema %}

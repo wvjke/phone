@@ -1,0 +1,207 @@
+{% if parent_parent_menu.object.handle != nil %}
+  {%- capture icon_name -%}
+    icon-department-{{ parent_parent_menu.object.handle }}.svg
+  {%- endcapture -%}
+{% endif %}
+
+<div class="container content list-collection">
+  <div id="list-collections-root" class="row">
+
+    <div class="d-none d-lg-block col-lg-3">
+
+      {% comment %} {% if icon_name != nil %}
+        <h5 class="mb-4">Filter by Subcategory</h5>
+        <div class="current-subcategory">
+          <h6 class="subcat-icon d-flex align-items-center mb-3">
+            <img src="{{ icon_name | file_url }}" class="mr-2" alt="{{ icon_name }}" />
+            <span>{{ parent_parent_menu.object.title }}</span>
+          </h6>
+        </div>
+
+        {% for link in parent_menu %}
+          {%- if link.child_active -%}
+            {%- assign active_class = "active" -%}
+          {%- else -%}
+            {%- assign active_class = "" -%}
+          {%- endif -%}
+          <div class="sidenav-accordion">
+            <div class="sidenav-accordion-header {{ active_class }}">
+              <a href="{{ link.url }}">{{ link.title }}&nbsp;<small class="text-muted">({{- collections[link.handle].all_products_count -}}&nbsp;Items)</small></a>
+              <i class="fa p-2 fa-plus sidenav-toggle-open"></i>
+              <i class="fa p-2 fa-minus sidenav-toggle-close"></i>
+            </div>
+            <ul class="sidebar-nav-sub-menu">
+              {% for sub_link in link.links %}
+                <li>
+                  {% if sub_link.active %}
+                    <a href="{{ sub_link.url }}" class="active">{{ sub_link.title }}</a>
+                  {% else %}
+                    <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+        <hr class="my-4">
+       {% endif %} {% endcomment %}
+
+      {% comment %} <div class="rest-departments py-2 py-lg-0">
+        {% for link in menu.links %}
+          {% if link.object.handle == parent_parent_menu.object.handle %}
+            {% continue %}
+          {% endif %}
+          {%- capture menu_icon_name -%}
+            icon-department-{{ link.object.handle }}.svg
+          {%- endcapture -%}
+          <a href="/pages/{{ link.object.handle }}" class="h6 subcat-icon d-flex align-items-center">
+            <img src="{{ menu_icon_name | file_url }}" class="mr-3 mr-lg-2" alt="icon">
+            <span>{{ link.object.title }}</span>
+          </a>
+        {% endfor %}
+      </div> {% endcomment %}
+
+      <hr class="my-4">
+
+      <div class="form-group">
+        <label for="filter-brand" class=""><h5>Shop Brands</h5></label>
+        <select id="filter-brand" class="custom-select custom-select-sm">
+          <option value="" hidden="">Filter By Brands</option>
+          {% for product_vendor in collection.all_vendors %}
+            <option value="{{ product_vendor | url_for_vendor }}">{{ product_vendor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+    </div>
+
+    <div class="col-12 col-lg-9">
+      <h4 class="d-none d-lg-block">{{ collection.title }}</h4>
+
+      <div class="flex-row flex-lg-row-reverse mb-5 collection-filters row">
+        <div class="d-flex align-items-center justify-content-between justify-content-lg-end mb-4 mb-lg-0 col-12 col-lg-4">
+          <label for="sort-by" class="flex-shrink-0 mb-0 pr-3 font-weight-bold">Sort By</label>
+          <select id="sort-by" class="custom-select custom-select-sm">
+            <option value="manual">Featured</option>
+            <option value="best-selling">Best selling</option>
+            <option value="title-ascending">Alphabetically, A-Z</option>
+            <option value="title-descending">Alphabetically, Z-A</option>
+            <option value="price-ascending">Price, low to high</option>
+            <option value="price-descending">Price, high to low</option>
+            <option value="created-ascending">Date, old to new</option>
+            <option value="created-descending">Date, new to old</option>
+          </select>
+        </div>
+        
+        <div class="d-flex align-items-center justify-content-between justify-content-lg-start col-12 col-lg-8">
+          <div class="mb-0 font-weight-bold">Results per page</div>
+            <div role="group" class="btn-group"><button type="button" class="btn btn-link">
+              <strong class="mb-0">12</strong></button><button type="button" class="btn btn-link">
+              <strong class="mb-0">24</strong></button><button type="button" class="text-secondary btn btn-link">
+              <strong class="mb-0">48</strong></button>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+          {% paginate collection.products by 12 %}
+            {% for product in collection.products %}
+              {% if product.compare_at_price %}
+                {% if product.compare_at_price > product.price %}
+                  {% assign onsale = true %}
+                  {% else %}
+                  {% assign onsale = false %}
+                {% endif %}
+              {% else %}
+                {% assign onsale = false %}
+              {% endif %}
+
+              <div class="d-block mb-5 position-relative collection-product col-6 col-lg-4 col-xl-3">
+                <a href="{{ product.url }}" class="vantablack">
+                  <div class="embed-responsive embed-responsive-1by1 mb-3">
+                    {% comment %} {% if product.images[1] != nil %}
+                     <div class="embed-responsive-item bg-container-contain"
+                        style="background-image: url({{ product.images[1] | img_url: '600x600' }})">
+                      </div>
+                      <div class="embed-responsive-item bg-container-contain product-img-fade-on-hover"
+                        style="background-image: url({{ product.featured_image | img_url: '600x600' }})">
+                      </div>
+                    {% else %}
+                      <div class="embed-responsive-item bg-container-contain"
+                        style="background-image: url({{ product.featured_image | img_url: '600x600' }})">
+                      </div>
+                    {% endif %} {% endcomment %}
+                    {% comment %} <div class="add-to-cart-circle">
+                      <button title="Add to Cart"><img src="{{ 'icon-cart.svg' | asset_url }}" alt="cart icon"/></button>
+                    </div> {% endcomment %}
+                  </div>
+                  <div class="lazyload" data-bgset="{% include 'responsive-bg-image', image: product.featured_image %}"></div>
+                  <div class="mb-1 product-vendor font-weight-bold text-blue">{{ product.vendor }}</div>
+                  <div class="mb-2 product-title font-weight-bold">{{ product.title }}</div>
+                  <div class="mb-2">Part Number: {{ product.variants[0].sku }}</div>
+                  <div class="d-flex flex-wrap product-prices">
+                    {% if product.price_varies %}
+                      <strong>from&nbsp;</strong>
+                    {% endif %}
+                    {% if onsale == true %}
+                      <del class="mr-2 price-color">{{ product.compare_at_price | money }}</del>
+                      <strong class="discount-price-color">{{ product.price | money }}</strong>
+                    {% else %}
+                      <strong class="price-color">{{ product.price | money }}</strong>
+                    {% endif %}
+                  </div>
+                </a>
+                <form action="/cart/add" method="post" id="collection-cart-form" class="mt-2">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                    <div><button type="submit" name="add" class="btn-primary btn btn-sm">Add to cart</button></div>  
+                </form>
+              </div>
+            {% endfor %}
+
+            <nav class="collection-pagination col-12" aria-label="Collection pagination">
+              {{ paginator.next_page_path }}
+              <ul class="pagination">
+                {% if paginate.previous.is_link %}
+                  <li class="page-item">
+                    <a href="{{ paginate.previous.url }}" class="page-link"><i class="fa fa-chevron-left fa-sm"></i></a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <button class="page-link"><i class="fa fa-chevron-left fa-sm"></i></button>
+                  </li>
+                {% endif %}
+               
+                {% for part in paginate.parts %}
+                  {% if part.is_link or part.title.first %}
+                   <li class="page-item">
+                    <a href="{{ part.url }}" class="page-link">
+                      <strong>{{ part.title }}</strong>
+                    </a>
+                   </li>
+                  {% else%}
+                    <li class="page-item active">
+                      <button class="page-link">
+                        <strong>{{ part.title }}</strong>
+                      </button>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+    
+                {% if paginate.next.is_link %}
+                  <li class="page-item">
+                    <a href="{{ paginate.next.url }}" class="page-link"><i class="fa fa-chevron-right fa-sm"></i></a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <button class="page-link"><i class="fa fa-chevron-right fa-sm"></i></button>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
+          {% endpaginate %}
+
+      </div>
+    </div>
+
+  </div>
+</div>

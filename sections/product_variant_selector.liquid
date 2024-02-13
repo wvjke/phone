@@ -1,0 +1,106 @@
+
+<div id="product-variant-selector-root">
+  <div class="p-5 text-center">
+    <div class="spinner-grow"></div>
+  </div>
+
+  <pre hidden>
+    {
+      "variants": [
+        {%- for variant in product.variants -%}
+          {
+            "id": {{ variant.id }},
+            "selected": {{ variant.selected | json }},
+            "sku": {{ variant.sku | default: '-' | json  }},
+            "inventory_quantity": {{ variant.inventory_quantity }},
+            "inventory_policy": {{ variant.inventory_policy | default: '' | json }},
+            "option1": {{ variant.option1 | default: '' | json }},
+            "option2": {{ variant.option2 | default: '' | json }},
+            "option3": {{ variant.option3 | default: '' | json }},
+            "price": {{ variant.price | append: '' | json }},
+            "compare_at_price": {% if variant.compare_at_price -%}
+              {{ variant.compare_at_price | append: '' | json }}
+            {%- else -%}
+              null
+            {%- endif %},
+            "swymData": {% render 'swym_product_data', product: product %},
+            "metafields": {{ variant.metafields.sf_variant_selector | json }},
+            "Insurance" : {%- if variant.metafields.custom.insuranceismandatory == true -%}true{%- else -%}false{%- endif -%},
+            "insurance_text" : {{ section.settings.insurance_text | default: '' | json }},
+            "insurance_link" : {{ section.settings.insurance_link | default: '' | json }}
+          }
+          {%- unless forloop.last %},{% endunless -%}
+        {%- endfor -%}
+      ],
+      "productOptions": [
+        {% for option_name in product.options %}
+          {
+            "name": {{ option_name | json }},
+            "available": [
+              {% for option in product.options_by_name[option_name].values %}
+                {{ option | json }}
+                {%- unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }
+          {%- unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+      "default_variant": {{ product.has_only_default_variant | json }},
+      "settings": {{ section.settings | json }},
+      "product": {
+        "price": {{ product.price | append: '' | json }},
+        "compare_at_price": {{ product.compare_at_price | append: '' | json }},
+        "handle": "{{ product.handle }}"
+      }
+    }
+  </pre>
+</div>
+
+
+{% schema %}
+{
+  "name": "Product Variant Selector",
+  "settings": [
+    {
+      "type": "text",
+      "id": "invalid_text",
+      "label": "Invalid option combination message",
+      "default": "The chosen options are not available together, please adjust your selection",
+      "info": "Displayed when the selected options cannot be matched to any variants"
+    },
+    {
+      "type": "text",
+      "id": "unavailable",
+      "label": "Unavailable variant option label",
+      "default": "Unavailable"
+    },
+    {
+      "type": "text",
+      "id": "select_option",
+      "label": "Select an option label",
+      "default": "Please select an option"
+    },
+    {
+      "type": "text",
+      "id": "select_variant",
+      "label": "Choose a variant message",
+      "default": "Please choose a variant"
+    },
+    {
+      "type" : "header",
+      "content" : "Insurance Text"
+    },
+    {
+      "type": "text",
+      "id": "insurance_text",
+      "label": "Add Text"
+    },
+    {
+      "type": "url",
+      "id": "insurance_link",
+      "label": "Add Link"
+    }
+  ]
+}
+{% endschema %}

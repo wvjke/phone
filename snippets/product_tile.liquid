@@ -1,0 +1,32 @@
+<div class="col-md-3 col-6 text-center my-3">
+  <form action="/cart/add" data-productid="{{ product.id }}" method="post" enctype="multipart/form-data" class="d-flex flex-column h-100">
+    <a href="{{ product.url | within: collection }}" class="d-flex flex-column h-100">
+      {% assign featured_image = product.image | default: product.featured_image %}
+      {%- if featured_image != blank -%}
+        {{ featured_image | img_url: '240x240' | img_tag: 'product image', 'img-fluid mb-2' }}
+      {%- endif -%}
+      <div class="d-flex flex-column justify-content-between flex-grow-1">
+        <h3 class="h5 my-2">{{ product.title }}</h3>
+        {%- case product_tile -%}
+          {%- when 'product' -%}
+            <p>
+              {%- if product.price_varies -%}
+                From <span>{{ product.price | money }}</span>
+              {%- else -%}
+                <span>{{ product.price | money }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <s>{{ product.compare_at_price | money }}</s>
+                {%- endif -%}
+              {%- endif -%}
+            </p>
+          {%- when 'article' -%}
+            <p>{{ product.excerpt | default: product.content | strip_html | truncate: 100 }}</p>
+          {%- when 'page' -%}
+            <p>{{ product.excerpt | default: product.content | strip_html | truncate: 100 }}</p>
+        {%- endcase -%}
+      </div>
+
+    </a>
+    <button type="submit" name="add" class="btn btn-primary px-3">Add to bag</button>
+  </form>
+</div>

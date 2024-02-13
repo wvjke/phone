@@ -1,0 +1,15 @@
+<div class="row recommended-products mb-5">
+  {% assign related_products_added = 0 %}
+  {% for related_product in products %}
+    {% if related_products_added == max_items %}
+      {% break %}
+    {% endif %}
+
+    {% if related_product.id == product.id %}
+      {% continue %}
+    {% endif %}
+
+    {% include 'recommended-product-item', product: related_product %}
+    {% assign related_products_added = related_products_added | plus: 1 %}
+  {% endfor %}
+</div>

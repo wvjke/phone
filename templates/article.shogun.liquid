@@ -1,0 +1,33 @@
+<article class="article article_shogun container content">
+  <div class="rte">
+    {{ article.content }}
+  </div>
+
+  <div class="row py-4">
+    <div class="col-12 col-md-6 text-center text-md-left">
+      {% if article.tags.size > 0 %}
+        <ul class="blog-filter d-flex p-0">
+          {% for tag in article.tags %}
+            <li class="blog_tag mx-1">
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                {{ tag }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="col-12 col-md-6 text-center text-md-right pb-4">
+      {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+      <p class="font-weight-light text-right">{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
+    </div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-12 text-left pt-3 pb-2">
+      <a href="{{ shop.url }}/blogs/news/" title="Back to Blog">
+        <i class="fas fa-chevron-left mr-2"></i><strong>Back to Blog</strong>
+      </a>
+    </div>
+  </div>
+</article>

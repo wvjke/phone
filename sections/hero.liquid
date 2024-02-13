@@ -1,0 +1,100 @@
+<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+
+
+{% assign desktop_up = 'lg' %}
+<div class="slideshow hero-wrap bg-primary text-white text-center">
+  {% for block in section.blocks %}
+  <div class="hero">
+    <div class="hero-image" style="background-image: url('{{ block.settings.cover_image | img_url: 'master' }}')"></div>
+    {%- comment -%}<div class="hero-image-overlay d-{{ desktop_up }}-none"></div>{%- endcomment -%}
+    <div class="hero-text d-flex align-items-center">
+      <div class="container">
+        <div class="hero-title-wrapper">
+          {% if block.settings.subtitle2 != null and section.settings.subtitle2 != "" %}
+          <div class="hero-title">{{ block.settings.title }}</div>
+          <div style="color:#A8D0F2;" class="hero-subtitle">{{ block.settings.subtitle }}</div>
+          <div style="color:#A8D0F2;" class="hero-subtitle">{{ block.settings.subtitle2 }}</div>
+          {% else %}
+          <h2 class="hero-title">{{ block.settings.title }}</h2>
+          <p style="color: #dfe8eb;" class="hero-subtitle">{{ block.settings.subtitle }}</p>
+          {% if block.settings.button_link != blank %}
+          <a href="{{ block.settings.button_link }}" class="btn btn-secondary">{{ block.settings.button_text }} {% include 'icon-shopping' %}</a>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+  .slideshow .slick-dots{
+    bottom: 10px!important;
+  }
+  .slideshow .slick-dots li button:before{
+    color: #fff!important;
+    font-size: 12px!important;
+  }
+  @media only screen and (max-width: 1023px){
+    .hero .hero-image {
+      height: calc(100vw / 24 * 11);
+      background-position: center;
+      background-size: cover;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [],
+  "blocks":[
+	{
+      "name": "Hero",
+	  "type": "text",
+      "settings": [
+        	{
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Your One-Stop Boat Shop"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "34,000+ products growing by the day"
+        },
+        {
+          "type": "text",
+          "id": "subtitle2",
+          "label": "Subtitle 2",
+          "default": "34,000+ products growing by the day"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

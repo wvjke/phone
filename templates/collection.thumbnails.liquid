@@ -1,0 +1,99 @@
+{% comment %}{% section 'category-hero' %}{% endcomment %}
+
+<div class="collection-navigation">
+  {% if template.suffix == 'thumbnails' or template.suffix == 'thumbnails2' %}
+    &nbsp;
+  {% endif %}
+  <div class="container">
+    <div class="collection-breadcrumb" id="collection-breadcrumbs-root"
+      data-collections="{{ collection.handle }}"
+      data-collection-labels="{{ collection.title }}"
+      data-current-active="true"
+      data-parent="{{ collection.metafields.parent.name }}"
+    ></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-12 mt-4 mb-5" style="padding-left: 0;">
+    <h1 class="d-none d-lg-block text-capitalize mt-5">{{ collection.title }}</h1>
+    <div>{{ collection.description  }}</div>
+  </div>
+</div>
+
+<div class="cat-carousel">
+  {% render 'collection_main_carousel', collection: collection %}
+</div>
+
+<div class="list-collection-wrapper">
+  <div class="container content list-collection">
+    {% comment %} {% include 'searchanise-navigation' %} {% endcomment %}
+    <div id="list-collection" class="row">
+      <div class="col-12">
+        <div class="flex-row justify-content-end mb-5 collection-filters row">
+          <div class="d-flex align-items-center justify-content-between justify-content-lg-end mb-4 mb-lg-0 col-12 col-lg-4 py-2">
+            <label for="sort-by" class="flex-shrink-0 mb-0 pr-3 font-weight-bold">Sort By</label>
+            <select id="sort-by" class="custom-select custom-select-sm">
+              <option value="manual">Featured</option>
+              <option value="best-selling">Best selling</option>
+              <option value="title-ascending">Alphabetically, A-Z</option>
+              <option value="title-descending">Alphabetically, Z-A</option>
+              <option value="price-ascending">Price, low to high</option>
+              <option value="price-descending">Price, high to low</option>
+              <option value="created-ascending">Date, old to new</option>
+              <option value="created-descending">Date, new to old</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div id="list-collection-nav" class="col-12 col-lg-3">
+        <div class="text-center p-5">
+          <div class="spinner-grow">
+          </div>
+        </div>
+        <pre hidden>
+        {
+          "collection": {
+            "title": {{ collection.title | json}},
+            "handle": {{ collection.handle | json }},
+            "currentVendor": {{ collection.current_vendor | default: '' | json }},
+            {%- if collection.handle == 'vendors' -%}
+            "sortBy": {{ collection.sort_by | default: "best-selling" | json }},
+            {%- else -%}
+            "sortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+            {%- endif -%}
+            "sortOptions": [
+              {%- for option in collection.sort_options -%}
+                {
+                  "value": {{ option.value | json }},
+                  "name": {{ option.name | json -}}
+                }
+                {%- unless forloop.last %},{% endunless -%}
+              {%- endfor -%}
+            ]
+          },
+          "vendors": [
+            {%- for product_vendor in collection.all_vendors -%}
+              {
+                "name": {{ product_vendor | json }},
+                {%- assign split = product_vendor | link_to_vendor | split: '"' -%}
+                "url": {{ split[1] | json }}
+              }
+              {%- unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          ],
+          "subcollectionNumber": {{ linklists[collection.handle].links | size }}
+        }
+      </pre>
+      </div>
+      {% include 'list-collections2' %}
+    </div>
+  </div>
+</div>
+
+{% comment %}
+<div class="mt-5 mb-5 collection-template-carousel">
+  {% section 'banner-carousel' %}
+</div>
+{% endcomment %}
+

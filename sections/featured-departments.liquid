@@ -1,0 +1,50 @@
+{% assign desktop_up = 'lg' %}
+<div class="container featured-departments">
+  <div class="row text-center">
+    {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.collection] %}
+      <a href="{{ collection.url }}" class="featured-collection-item col-6 col-{{ desktop_up }}-3 d-block">
+        <div class="embed-responsive embed-responsive-1by1 mb-5" {{ block.shopify_attributes }}>
+          <div class="embed-responsive-item bg-container-contain" style="background-image: url('{{ collection | img_url: '262px', scale: 2 }}')"></div>
+        </div>
+        <div class="collection-name">
+          {%- if collection.handle != blank -%}
+            {%- capture icon_name -%}
+              {%- render 'icon_name_from_collection', collection: collection -%}
+            {%- endcapture -%}
+            <span class="icon">
+              <img src="{{ icon_name | file_url }}" alt="{{ icon_name }}">
+            </span>
+          {%- endif -%}
+          <strong>{{ collection.title }}</strong>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Departments",
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Upload a file named icon-department-collection-handle.svg using the Shopify Admin (e.g. icon-department-electronics-navigation.svg)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Departments",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

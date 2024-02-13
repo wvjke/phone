@@ -1,0 +1,138 @@
+<article class="account container content">
+    <div class="text-center font-weight-bold account-page-header">
+      <h1 class="my-2">{{ 'customer.account.title' | t }}</h1>
+      <span class="mr-2">{{ 'layout.customer.log_out' | t | customer_logout_link }}</span>
+      <a href="/account/login#recover">{{ 'layout.customer.reset_password' | t }}</a>
+    </div>
+
+    <div class="row pb-2">
+      <section class="account-details col-12 col-md-4 offset-0 offset-md-4 mb-2 text-center">
+        <h2 class="mb-3">{{ 'customer.account.details' | t }}</h2>
+        <div class="mb-3 account-data">
+          <div>{{ customer.name }}</div>
+<!-- Begin ReCharge code -->
+<p id="rc_link_container">
+    <a href="/tools/recurring/login">Manage Subscriptions</a>
+</p>
+<!-- End ReCharge code -->
+
+          <div class="mb-3">{{ customer.email }}</div>
+          <div>{{ customer.default_address.company }}</div>
+          <div>{{ customer.default_address.address1 }}</div>
+          {% unless customer.default_address.address2 == blank %}
+            <div>{{ customer.default_address.address2 }}</div>
+          {% endunless %}
+          <div>{{ customer.default_address.city }}</div>
+          <div>{{ customer.default_address.country }}, {{ customer.default_address.zip }}</div>
+          <div>{{ customer.default_address.phone }}</div>
+        </div>
+        {% if customer.addresses_count >= 1 %}
+          <a href="/account/addresses" class="d-block font-weight-bold mb-4" title="{{ 'customer.account.view_addresses' | t }}">
+            {{ 'customer.account.view_addresses' | t }}
+          </a>
+        {% else %}
+          <a href="/account/addresses" class="btn btn-cta mb-4" title="{{ 'customer.addresses.add_new' | t }}">
+            {{ 'customer.addresses.add_new' | t }}
+          </a>
+        {% endif %}
+        <a href="#swym-wishlist" title="View Wishlist" class="btn btn-block btn-lg btn-primary">View Wishlist</a>
+      </section>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+      <section class="order-history col-12 col-md-10 offset-0 offset-md-1 mb-4 text-center">
+          <h2 class="mt-3 mb-4 mb-lg-3">{{ 'customer.orders.title' | t }}</h2>
+          {% paginate customer.orders by 20 %}
+            {% if customer.orders.size != 0 %}
+              <div class="table-responsive-sm  d-none d-lg-block orders-table">
+                <table class="table table-account table-borderless text-left">
+                  <thead>
+                    <tr>
+                      <th>{{ 'customer.orders.order_number' | t }}</th>
+                      <th>{{ 'customer.orders.date' | t }}</th>
+                      <th>{{ 'customer.orders.payment_status' | t }}</th>
+                      <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                      <th class="text-right">{{ 'customer.orders.total' | t }}</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in customer.orders %}
+                      <tr>
+                        <td data-label="{{ 'customer.orders.order_number' | t }}" class="font-weight-bold">
+                          <a href="{{ order.customer_url }}" title="View Order">{{ order.name }}</a>
+                        </td>
+                        <td data-label="{{ 'customer.orders.date' | t }}">
+                          {{ order.created_at | date: '%b %d, %Y' }}
+                        </td>
+                        <td data-label="{{ 'customer.orders.payment_status' | t }}">
+                          <span class="badge badge-black">{{ order.financial_status_label }}</span>
+                        </td>
+                        <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                          <span class="badge badge-black">{{ order.fulfillment_status_label }}</span>
+                        </td>
+                        <td data-label="{{ 'customer.orders.total' | t }}" class="text-right">
+                          {{ order.total_price | money }}
+                        </td>
+                        <td class="text-center font-weight-bold">
+                          <a href="{{ order.customer_url }}" title="View Order">View Order</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="d-block d-lg-none">
+                {% for order in customer.orders %}
+                  <div class="card order-card mb-3">
+                    <div class="card-body">
+                      <div class="row mb-2">
+                        <div class="col text-left font-weight-bold">
+                          <a href="{{ order.customer_url }}" title="View Order">{{ order.name }}</a>
+                        </div>
+                        <div class="col text-right text-muted">
+                          {{ order.created_at | date: '%b %d, %Y' }}
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col text-left">
+                          <div class="mb-1">
+                            <span class="mr-2">{{ 'customer.orders.payment_status' | t }}:</span>
+                            <span class="badge badge-black">{{ order.financial_status_label }}</span>
+                          </div>
+                          <div>
+                            <span class="mr-2">{{ 'customer.orders.fulfillment_status' | t }}:</span>
+                            <span class="badge badge-black">{{ order.fulfillment_status_label }}</span>
+                          </div>
+                        </div>
+                        <div class="col-auto text-right font-weight-bold">
+                          <div class="mb-1">
+                            {{ 'customer.orders.total' | t }}:
+                          </div>
+                          <div>
+                            {{ order.total_price | money }}
+                          </div>
+                        </div>
+                      </div>
+                      <a href="{{ order.customer_url }}" title="View Order" class="btn btn-block btn-primary view-order">View Order</a>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+
+            {% else %}
+              <p class="text-center">{{ 'customer.orders.none' | t }}</p>
+              <a href="/collections/all" class="btn btn-cta" title="Continue Shopping">
+                Continue Shopping
+              </a>
+            {% endif %}
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+          {% endpaginate %}
+        </section>
+      </div>
+
+</article>

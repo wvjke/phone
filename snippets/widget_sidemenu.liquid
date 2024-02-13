@@ -1,0 +1,24 @@
+<div class="sidemenu-container sidemenu-container-{{ side }} position-fixed d-flex">
+  {% if side == 'right' %}
+    <div>
+      <a class="btn btn-primary btn-side-{{ side }} collapsed rotate" data-toggle="collapse" href="#sidemenu" role="button" aria-expanded="false" aria-controls="sidemenu">
+        <i class="fas fa-chevron-left text-white"></i>
+      </a>
+    </div>
+  {% endif %}
+  <div class="collapse h-100" id="sidemenu">
+    <div class="card card-body h-100">
+      <a class="btn-close float-{{ side }} mb-2 rotate" data-toggle="collapse" href="#sidemenu" role="button" aria-expanded="false" aria-controls="sidemenu">
+        <i class="fas fa-times"></i>
+      </a>
+      Side menu {{ side }}
+    </div>
+  </div>
+  {% if side == 'left' %}
+    <div>
+      <a class="btn btn-primary btn-side-{{ side }} collapsed rotate" data-toggle="collapse" href="#sidemenu" role="button" aria-expanded="false" aria-controls="sidemenu">
+        <i class="fas fa-chevron-right text-white"></i>
+      </a>
+    </div>
+  {% endif %}
+</div>

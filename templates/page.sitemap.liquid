@@ -1,0 +1,8 @@
+{% assign my_blogs = "news" | split: "," %}
+
+{% for blog_handle in my_blogs %}
+    {% assign this_blog = blogs[blog_handle] %}
+    {% for article in this_blog.articles | limit: 3 %}
+        {% include 'article-excerpt' %}
+    {% endfor %}
+{% endfor %}

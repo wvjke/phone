@@ -1,0 +1,27 @@
+<input type="checkbox" class="accordion-check" id="{{ id }}" {% if open == true -%} checked {%- endif %}>
+
+{% assign label_classes = 'accordion-label' %}
+{% assign heading_classes = 'accordion-heading' %}
+{% assign body_classes = 'accordion-body' %}
+
+{% if label_class %}
+  {% assign label_classes = label_classes | append: ' ' |  append: label_class %}
+{% endif %}
+
+{% if heading_class %}
+  {% assign heading_classes = heading_classes | append: ' ' |  append: heading_class %}
+{% endif %}
+
+{% if body_class %}
+  {% assign body_classes = body_classes | append: ' ' |  append: body_class %}
+{% endif %}
+
+<label class="{{ label_classes }}" for="{{ id }}">
+  <span class="d-block h4 {{ heading_classes }}">{{ title }}</span>
+  <i class="fa fa-angle-down accordion-icon-down"></i>
+  <i class="fa fa-angle-up accordion-icon-up"></i>
+</label>
+<div class="{{ body_classes }}">
+  {{ content }}
+</div>
+

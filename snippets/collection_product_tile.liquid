@@ -1,0 +1,37 @@
+<div class="collection-product-tile col-12 col-sm-6 col-md-4">
+  <a href="{{ tile_product.url | within: collection }}" title="View {{ tile_product.title }}" class="d-block position-relative text-center mb-5 mb-md-4">
+    <img src="{{ tile_product.featured_image | img_url: '400x400', crop: 'center' }}">
+
+    {% if tile_product.compare_at_price > tile_product.price %}
+      <h6 class="badge-sale position-absolute d-flex align-items-center justify-content-center uppercase bg-danger text-white">{{ 'products.product.on_sale' | t }}</h6>
+
+    {% endif %}
+    <p class="text-center mt-3 mb-1">{{ tile_product.title }}</p>
+    <h4 class="text-center {% unless tile_product.available %}alpha-lg{% endunless %}">
+      {% if tile_product.compare_at_price > tile_product.price %}
+        <span class="d-none">{{ 'products.product.regular_price' | t }}</span>
+        <s class="text-muted">{{ tile_product.compare_at_price | money }}</s>
+        <span class="text-danger">
+          {% if tile_product.price_varies %}
+            {%- assign sale_price = product.price | money -%}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            {{ tile_product.price | money }}
+          {% endif %}
+        </span>
+      {% else %}
+
+        {% if tile_product.price_varies %}
+          {%- assign price = tile_product.price | money -%}
+          {{ 'products.product.from_text_html' | t: price: price }}
+        {% else %}
+          {{ tile_product.price | money }}
+        {% endif %}
+      
+      {% endif %}
+    </h4>
+    {% unless tile_product.available %}
+      <h5 class="badge badge-danger">{{ 'products.product.sold_out' | t }}</h5>
+    {% endunless %}
+  </a>
+</div>

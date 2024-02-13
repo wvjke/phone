@@ -1,0 +1,82 @@
+{%- assign blog = blogs[section.settings.blog] -%}
+
+<div class="featured-blog py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">{{ section.settings.title }}</h2>
+    <article class="row">
+      {% if blog != empty and blog.articles_count > 0 %}
+        {% for article in blog.articles limit: section.settings.article_limit %}
+        <div class="col-12 col-md-6">
+          <a href="{{ article.url }}">
+            <div class="embed-responsive embed-responsive-4by3">
+              <div class="embed-responsive-item bg-container-contain" style="background-image: url('{{ article.image | img_url: 'master' }}')"></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 p-4">
+          <div class="d-flex flex-column justify-content-between flex-grow-1">
+            <h3 class="h5 mb-3">
+              {{- article.title -}}
+            </h3>
+
+            <p class="mb-2"><small>Posted on {{ article.created_at | date: "%b %d %Y" }}</small></p>
+
+            {% if article.excerpt %}
+              <p class="mb-2">{{ article.excerpt }}</p>
+            {% endif %}
+
+            {% comment %}
+              Article link
+            {% endcomment %}
+            <strong><a href="{{ article.url }}">Read More &rsaquo;</a></strong>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </article>
+    <div class="row text-center justify-content-center mt-5">
+      <div class="col-12 col-lg-6">
+        <a class="btn btn-lg btn-primary px-5" href="{{ blog.url }}">See All Posts</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %}
+  Schema
+{% endcomment %}
+{% schema %}
+  {
+    "name": "News",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Latest News"
+      },
+      {
+        "id": "blog",
+        "type": "blog",
+        "label": "Blog"
+      },
+      {
+        "id": "article_limit",
+        "type": "range",
+        "min": 1,
+        "max": 5,
+        "label": "Article Limit",
+        "default": 1
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blog posts",
+        "category": "Homepage",
+        "settings": {
+          "blog": "News"
+        }
+      }
+    ]
+  }
+{% endschema %}

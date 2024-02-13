@@ -1,0 +1,72 @@
+{%- for option in product.options_with_values -%}
+  {%- unless option.values.first == "Default Title" -%}
+    <div class="mb-4">
+      <h5>{{ option.name }}:</h5>
+      <div class="mb-1">
+        {% assign option_configured = false %}
+        {% for block in section.blocks %}
+          {% if block.settings.title == option.name %}
+            {% assign option_configured = true %}
+            {% case block.type %}
+              {% when 'dropdown' %}
+                {% include 'widget_product_options_dropdown' %}
+              {% when 'radios' %}
+                {% include 'widget_product_options_radios' %}
+            {% endcase %}
+          {% endif %}
+        {% endfor %}
+        {% unless option_configured %}
+          <select name="{{ option.name }}" data-switcher-option="{{ option.position }}">
+            {%- for value in option.values -%}
+              <option value="{{ value }}" {%- if option.selected_value == value -%}selected{%- endif -%}">{{ value }}</span>
+            {%- endfor -%}
+          </select>
+        {% endunless %}
+      </div>
+      {% comment %}
+        <p>
+          <a href="#">size guide</a>
+          <a href="#">out of stock?</a>
+        </p>
+      {% endcomment %}
+    </div>
+  {%- endunless -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Product Options",
+  "blocks": [
+    {
+      "type": "dropdown",
+      "name": "Dropdown",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Dropdown"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Option Name"
+        }
+      ]
+    },
+    {
+      "type": "radios",
+      "name": "Radios",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Radios"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Option Name"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
