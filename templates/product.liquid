@@ -32,7 +32,7 @@ height: 1000px!important;
           <a href="/collections/vendors?q={{ product.vendor }}"><div class="font-weight-bold mb-2 text-blue">{{ product.vendor }}</div></a>
           <h1 class="mb-4 product-title font-weight-bold main-product-title">{{ product.title }}</h1>
 
-          <div class="goto-reviews cursor-pointer">
+          <div class="mb-4 goto-reviews cursor-pointer">
             {%- render 'okendo-rating-stars', product: product -%}
             <span class="ml-3">
               {%- if product.metafields.okendo.ReviewCount != blank and product.metafields.okendo.ReviewCount > 0 -%}
@@ -42,6 +42,14 @@ height: 1000px!important;
               {%- endif -%}
             </span>
           </div>
+
+          {% if product.metafields.custom.bulk_item or product.tags contains "bulk" %}
+            <div class="bulk_item">
+              <img src="{{ 'icon-bulk.svg' | asset_url }}" alt="Bulk Item">
+              <span>Bulk Item</span>
+            </div>
+          {% endif %} 
+        
         {% endcapture %}
       </div>
       {% assign image_count = product.images | size %}

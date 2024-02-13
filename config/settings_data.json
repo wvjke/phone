@@ -347,7 +347,7 @@
           "18a05027-b92a-4a65-94c0-f7ddd1e132e1"
         ],
         "settings": {
-          "header_show_announcement": true,
+          "header_show_announcement": false,
           "header_show_announcement_index_only": false,
           "header_announcement_text": "We're Sailing again - but with new crew at the helm!",
           "header_announcement_link_url": "shopify:\/\/pages\/sailing-again",
@@ -356,11 +356,7 @@
           "flat_rate_text": "Shipping",
           "contact_page": "shopify:\/\/pages\/contact-us",
           "contact_page_blank": true,
-          "news_menu_featured_item": "resources\/make-sure-your-tender-or-small-vessel-is-legal-at-night",
-          "phone_number": "Phone1: - (00) 0000 0000",
-          "phone_number_2": "Phone2: - (11) 1111 1111",
-          "phone_number_3": "Phone3: - (22) 2222 2222",
-          "phone_number_4": "Phone4: - (33) 3333 3333"
+          "news_menu_featured_item": "resources\/make-sure-your-tender-or-small-vessel-is-legal-at-night"
         }
       },
       "widget_product_options": {
